@@ -1,0 +1,21 @@
+:root{
+	--color-blue: #3369F3;
+	--primary-text-color: #1E1E1E;
+	--secondary-text-color: #999;
+	--border-color: #EAEAEA;
+	--danger-color: #FF0000;
+	--link-color: var(--color-blue);
+	--button-color: var(--color-blue);
+}
+
+*{
+	margin: 0;
+	padding: 0;
+}
+
+html{
+	font-family: Inter, sans-serif;
+	font-style: normal;
+	font-weight: 500;
+	color: var(--primary-text-color);
+}

@@ -1,0 +1,217 @@
+.chat-window-wrapper {
+	display: flex;
+	height: 100vh;
+}
+
+.chat-window-wrapper .chatlist {
+	width: 30%;
+	min-width: 310px;
+	background-color: #fbfbfb;
+	padding: 0 10px;
+	overflow-y: auto;
+}
+
+.chat-window-wrapper a.goto-profile {
+	float: right;
+	font-size: 12px;
+	line-height: 100%;
+	padding-right:12px;
+	margin: 21px auto 23px auto;
+	color: var(--secondary-text-color);
+	text-decoration: none;
+	vertical-align: middle;
+	background: none;
+	border: none;
+	background: url('./static/images/caret-right.svg') no-repeat right;
+}
+
+.chat-window-wrapper a.goto-profile:hover{
+	color: var(--link-color);
+}
+
+.chat-window-wrapper .goto-profile svg{
+	vertical-align: middle;
+	margin-left: 8px;
+	margin-top: -1px;
+}
+
+.chat-window-wrapper .chat-menu{
+	width: 3px;
+	height: 15px;
+	background: transparent url('./static/images/dots-menu-v.svg') no-repeat;
+	background-size: contain;
+	border:none;
+	float: right;
+}
+
+.chat-window-wrapper .profile-image {
+	width: 47px;
+	height: 47px;
+	flex-shrink: 0;
+	border-radius: 50%;
+	margin-right: 10px;
+	background-color: #EFEFEF;
+}
+
+.chat-window-wrapper .chat-header {
+	display: flex;
+	align-items: center;
+	padding-bottom: 12px;
+	margin-bottom: 48px;
+	border-bottom: 1px solid var(--border-color);
+}
+
+.chat-window-wrapper .user-profile{
+	width:100%;
+	display: flex;
+	align-items: center;
+}
+
+.chat-window-wrapper .chat-header .profile-image{
+	width: 34px;
+	height: 34px;
+}
+
+
+.chat-window-wrapper h3 {
+	margin: 0;
+	margin-bottom: 4px;
+	color: var(--primary-text-color);
+	font-size: 13px;
+	font-style: normal;
+	font-weight: 600;
+}
+
+.chat-window-wrapper .chat-window {
+	flex-grow: 1;
+	padding: 10px 20px 0 20px;
+	border-left: 1px solid var(--border-color);
+	overflow-y: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.chat-window-wrapper .message {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+	position: relative;
+	max-width: 70%;
+}
+
+.chat-window-wrapper .message-text {
+	background-color: #f8f8f8;
+	padding: 12px 12px;
+	border-radius: 0 12px 12px 12px;
+	color: var(--primary-text-color);
+	font-size: 12px;
+	line-height: 125%;
+	text-align: left;
+}
+
+.chat-window-wrapper .byme {
+	align-self: flex-end;
+	min-width: 120px;
+}
+
+.chat-window-wrapper .byme .message-text {
+	border-radius: 12px 12px 0 12px;
+	background-color: #E4EDFD;
+}
+
+.byme .message-text p{
+	display: inline-block;
+}
+
+.chat-window-wrapper .message-time {
+	color: var(--secondary-text-color);
+	text-align: right;
+	font-size: 9px;
+	line-height: 9px; 
+	position: absolute;
+	bottom: 0;
+	right:12px;
+	bottom: 12px;
+}
+
+.chat-window-wrapper .byme .message-time {
+	color: #3369F3;
+}
+
+.chat-window-wrapper .chat-date{
+	color: var(--secondary-text-color);
+	text-align: center;
+	font-size: 12px;
+	margin-bottom: 30px;
+}
+
+.chat-window-wrapper .chat-date p{
+	margin:0;
+}
+
+.chat-window-wrapper .message-status {
+	width: 10px;
+	height: 5px;
+	background-image: url('./static/images/check-read.svg');
+	background-size:contain;
+	background-repeat: no-repeat;
+	display: inline-block;
+	margin: 0;
+}
+
+.chat-window-wrapper .messages-container{
+	display: flex;
+	flex-direction: column;
+}
+
+.chat-window-wrapper .message--input-block{
+	display:flex;
+	flex-direction: row;
+	width:100%;
+	height: 54px;
+	border-top: 1px solid var(--border-color);
+	align-items: center;
+	gap: 10px;
+}
+
+.chat-window-wrapper .message--input-bar{
+	width: 100%;
+}
+
+.chat-window-wrapper .message--input-bar input{
+	width: 100%;
+	height: 32px;
+	background-color: #EFEFEF;
+	border-radius: 50px;
+	border: none;
+	box-sizing: border-box;
+	padding: 0 20px;
+	color: var(--secondary-text-color);
+}
+
+.chat-window-wrapper .message--attach-media {
+	width: 32px;
+	height: 32px;
+	flex-shrink: 0;
+	background-image: url(./static/images/attach.svg);
+}
+
+.chat-window-wrapper .message--send-button {
+	width: 28px;
+	height: 28px;
+	flex-shrink: 0;
+	background-image: url(./static/images/send.svg);
+}
+
+.chat-window-wrapper .chats-search-bar input{
+	width: 100%;
+	height: 32px;
+	background-color: #EFEFEF;
+	border-radius: 5px;
+	border: none;
+	box-sizing: border-box;
+	margin-bottom: 14px;
+	color: var(--secondary-text-color);
+	text-align: center;
+}

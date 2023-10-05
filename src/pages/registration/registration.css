@@ -1,0 +1,103 @@
+
+.registration {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	text-align: center;
+	display: flex;
+}
+
+.registration form{
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	width: 340px;
+	height: auto;
+	gap: 47px;
+	padding: 50px 30px 30px 30px;
+	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+	border-radius: 12px;
+	background: white;
+}
+
+.registration form h2 {
+	font-size: 20px;
+	font-weight: 500;
+	margin-top: 0;
+	margin-bottom: 40px;
+}
+
+.registration .inputs-container{
+	display: flex;
+	flex-direction: column;
+}
+
+.registration .input-group {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 16px;
+}
+
+.registration .input-group {
+	text-align: left;
+	color: #999;
+	font-family: Inter;
+	font-size: 9px;
+	font-style: normal;
+	font-weight: 500;
+	line-height: 100%;
+}
+
+.registration .input-group input {
+	padding: 0;
+	margin:0;
+	border-style: none;
+	border-bottom: 1px solid #3369F3;;
+	color: #1E1E1E;
+	font-size: 13px;
+	line-height: 13px;
+	/* height: 29px; */
+	padding: 7px 0;
+}
+
+.registration .input-group p {
+	color:red;
+	padding-top: 7px;
+}
+
+.registration .input-group:last-of-type{
+	margin-bottom:0;
+}
+
+.registration .input-group:focus{
+	border-style: none;
+}
+
+.registration .btn-signup {
+	display: inline-block;
+	padding: 12px 0;
+	font-size: 13px;
+  text-align: center;
+	text-decoration: none;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	background-color: var(--link-color);
+	cursor: pointer;
+	width:100%;
+}
+
+.registration .btn-signin:hover {
+	background-color: #0056b3;
+}
+
+.registration .signup-link {
+	margin-top: 14px;
+	color: #3369F3;
+	text-align: center;
+	font-size: 11px;
+	line-height: 11px;
+	display: block;
+	text-decoration: none;
+}
