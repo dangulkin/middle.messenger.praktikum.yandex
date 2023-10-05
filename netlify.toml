@@ -27,3 +27,8 @@ status = 200
 from = "/page500"
 to = "/index.html"
 status = 200
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
