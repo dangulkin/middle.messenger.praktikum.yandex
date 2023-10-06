@@ -1,39 +1,10 @@
-# [[redirects]]
-# from = "/chatlist"
-# to = "/index.html"
-# status = 200
-
-# [[redirects]]
-# from = "/authorization"
-# to = "/index.html"
-# status = 200
-
-# [[redirects]]
-# from = "/registration"
-# to = "/index.html"
-# status = 200
-
-# [[redirects]]
-# from = "/profile"
-# to = "/index.html"
-# status = 200
-
-# [[redirects]]
-# from = "/page404"
-# to = "/index.html"
-# status = 200
-
-# [[redirects]]
-# from = "/page500"
-# to = "/index.html"
-# status = 200
+[[redirects]]
+from = "*/assets"
+to = "/static"
+status = 200
 
 [[redirects]]
 from = "/*"
 to = "/index.html"
 status = 200
 
-[[redirects]]
-from = "/assets"
-to = "/static"
-status = 200
