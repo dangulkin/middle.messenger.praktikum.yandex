@@ -1,34 +1,39 @@
+# [[redirects]]
+# from = "/chatlist"
+# to = "/index.html"
+# status = 200
+
+# [[redirects]]
+# from = "/authorization"
+# to = "/index.html"
+# status = 200
+
+# [[redirects]]
+# from = "/registration"
+# to = "/index.html"
+# status = 200
+
+# [[redirects]]
+# from = "/profile"
+# to = "/index.html"
+# status = 200
+
+# [[redirects]]
+# from = "/page404"
+# to = "/index.html"
+# status = 200
+
+# [[redirects]]
+# from = "/page500"
+# to = "/index.html"
+# status = 200
+
 [[redirects]]
-from = "/chatlist"
+from = "/*"
 to = "/index.html"
 status = 200
 
 [[redirects]]
-from = "/authorization"
-to = "/index.html"
-status = 200
-
-[[redirects]]
-from = "/registration"
-to = "/index.html"
-status = 200
-
-[[redirects]]
-from = "/profile"
-to = "/index.html"
-status = 200
-
-[[redirects]]
-from = "/page404"
-to = "/index.html"
-status = 200
-
-[[redirects]]
-from = "/page500"
-to = "/index.html"
-status = 200
-
-[[redirects]]
-from = "/assets/static/images/profile-picture.svg"
-to = "./static/images/profile-picture.svg"
+from = "/assets"
+to = "/static"
 status = 200
