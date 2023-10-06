@@ -29,6 +29,6 @@ to = "/index.html"
 status = 200
 
 [[redirects]]
-from = "/assets/static"
-to = "/static"
+from = "/assets/*"
+to = "/*"
 status = 200
