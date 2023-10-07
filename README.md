@@ -10,6 +10,9 @@ $ npm run build
 Launch locally on 3000 port using comand
 $ node server.js
 
+Design layout in Figma
+https://www.figma.com/file/MpPp04Uk2Q7BQAMCvrYh4n/Yandex-Practicum-chat-design?type=design&node-id=0%3A1&mode=design&t=vtE6ntNs6BAnHrrp-1 
+
 Application pages available via Netlify:
 
 Main - https://dangulkin-messenger.netlify.app
