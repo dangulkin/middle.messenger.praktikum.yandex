@@ -5,3 +5,4 @@ status = 200
 
 [build]
   publish = "dist"
+	
