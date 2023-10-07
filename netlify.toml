@@ -1,5 +1,5 @@
 [[redirects]]
-from = "/asssets/*"
+from = "/asssets/static/*"
 to = "/static/:splat"
 status = 200
 
