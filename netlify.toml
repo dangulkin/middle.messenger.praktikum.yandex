@@ -4,7 +4,7 @@ to = "/static/:splat"
 status = 200
 
 [[redirects]]
-from = "/*"
+from = "/chatlist"
 to = "/index.html"
 status = 200
 
