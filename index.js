@@ -1,6 +1,6 @@
- import { Main } from './src/pages/authorization/authorization.js';
- import { Registration } from './src/pages/registration/registration.js';
- import { Chatlist } from './src/pages/chatlist/chatlist.js'; 
+import { Main } from './src/pages/authorization/authorization.js';
+import { Registration } from './src/pages/registration/registration.js';
+import { Chatlist } from './src/pages/chatlist/chatlist.js'; 
 import { Profile } from './src/pages/profile/profile.js'; 
 import { Page404 } from './src/pages/page404/page404.js'; 
 import { Page500 } from './src/pages/page500/page500.js'; 
