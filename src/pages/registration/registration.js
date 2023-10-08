@@ -13,7 +13,7 @@ export const Registration = () => {
 		loginLink: Link({
 			to: '/authorization',
 			text: 'Login',
-			class: 'signup-link'
+			class: 'signin-link'
 		})
 	});
 }

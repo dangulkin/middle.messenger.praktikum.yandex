@@ -1,8 +1,15 @@
 :root{
+	--light-grey-color: #EAEAEA;
+	--darker-light-grey: #E4EDFD;
+	--off-white: #FBFBFB;
 	--color-blue: #3369F3;
+	--hover-blue: #0056b3;
 	--primary-text-color: #1E1E1E;
 	--secondary-text-color: #999;
-	--border-color: #EAEAEA;
+	--message-bg: #f8f8f8;
+	--input-bg: #EFEFEF;
+	--border-color: var(--light-grey-color);
+	--border-blue: var(--color-blue);
 	--danger-color: #FF0000;
 	--link-color: var(--color-blue);
 	--button-color: var(--color-blue);

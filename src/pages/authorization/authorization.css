@@ -47,7 +47,7 @@
 .authorization .input-group input {
 	padding: 0;
 	border-style: none;
-	border-bottom: 1px solid #3369F3;;
+	border-bottom: 1px solid var(--border-blue);
 	color: #1E1E1E;
 	font-size: 13px;
 	line-height: 13px;
@@ -70,12 +70,12 @@
 }
 
 .authorization .btn-signin:hover {
-	background-color: #0056b3;
+	background-color: var(--hover-blue);
 }
 
 .authorization .signup-link {
 	margin-top: 14px;
-	color: #3369F3;
+	color: var(--color-blue);
 	text-align: center;
 	font-size: 11px;
 	line-height: 11px;

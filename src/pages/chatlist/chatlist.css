@@ -6,7 +6,7 @@
 .chat-window-wrapper .chatlist {
 	width: 30%;
 	min-width: 310px;
-	background-color: #fbfbfb;
+	background-color: var(--off-white);
 	padding: 0 10px;
 	overflow-y: auto;
 }
@@ -50,7 +50,7 @@
 	flex-shrink: 0;
 	border-radius: 50%;
 	margin-right: 10px;
-	background-color: #EFEFEF;
+	background-color: var(--light-grey-color);
 }
 
 .chat-window-wrapper .chat-header {
@@ -101,7 +101,7 @@
 }
 
 .chat-window-wrapper .message-text {
-	background-color: #f8f8f8;
+	background-color: var(--message-bg);
 	padding: 12px 12px;
 	border-radius: 0 12px 12px 12px;
 	color: var(--primary-text-color);
@@ -117,7 +117,7 @@
 
 .chat-window-wrapper .byme .message-text {
 	border-radius: 12px 12px 0 12px;
-	background-color: #E4EDFD;
+	background-color: var(--darker-light-grey);
 }
 
 .byme .message-text p{
@@ -136,7 +136,7 @@
 }
 
 .chat-window-wrapper .byme .message-time {
-	color: #3369F3;
+	color: var(--blue-color);
 }
 
 .chat-window-wrapper .chat-date{
@@ -182,7 +182,7 @@
 .chat-window-wrapper .message--input-bar input{
 	width: 100%;
 	height: 32px;
-	background-color: #EFEFEF;
+	background-color: var(--input-bg);
 	border-radius: 50px;
 	border: none;
 	box-sizing: border-box;
@@ -207,7 +207,7 @@
 .chat-window-wrapper .chats-search-bar input{
 	width: 100%;
 	height: 32px;
-	background-color: #EFEFEF;
+	background-color: var(--input-bg);
 	border-radius: 5px;
 	border: none;
 	box-sizing: border-box;
