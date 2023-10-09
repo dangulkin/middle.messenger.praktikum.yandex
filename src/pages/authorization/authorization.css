@@ -1,0 +1,84 @@
+.authorization {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	text-align: center;
+}
+
+.authorization h2 {
+	font-size: 20px;
+	margin-top: 0;
+	margin-bottom: 40px;
+}
+
+.authorization form{
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	width: 340px;
+	height: 450px;
+	text-align: center;
+	padding: 50px 30px 30px 30px;
+	box-shadow: 0px 0px 6px 0px rgba(0, 0, 0, 0.14);
+	border-radius: 12px;
+	background: white;
+}
+
+.authorization .inputs-container{
+	display: flex;
+	flex-direction: column;
+}
+
+.authorization .input-group, .authorization .input-group label{
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.authorization .input-group label {
+	text-align: left;
+	color: #999;
+	font-family: Inter;
+	font-size: 9px;
+	line-height: 9px;
+}
+
+.authorization .input-group input {
+	padding: 0;
+	border-style: none;
+	border-bottom: 1px solid var(--border-blue);
+	color: #1E1E1E;
+	font-size: 13px;
+	line-height: 13px;
+	height: 28px;
+	margin-bottom: 16px;
+}
+
+.authorization a.btn-signin{
+	display: inline-block;
+	padding: 12px 0;
+	font-size: 13px;
+  text-align: center;
+	text-decoration: none;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	background-color: var(--link-color);
+	cursor: pointer;
+	width:100%;
+}
+
+.authorization .btn-signin:hover {
+	background-color: var(--hover-blue);
+}
+
+.authorization .signup-link {
+	margin-top: 14px;
+	color: var(--color-blue);
+	text-align: center;
+	font-size: 11px;
+	line-height: 11px;
+	display: block;
+	text-decoration: none;
+}

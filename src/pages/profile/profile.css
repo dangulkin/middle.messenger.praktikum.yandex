@@ -1,0 +1,154 @@
+.sidebar{
+	position: fixed;
+	left:0;
+	width: 64px;
+	height: 100vh;
+	background-color: var(--off-white);
+	border-right: var(--border-color) 1px solid;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.sidebar a{
+	width: 28px;
+	height: 28px;
+	border:none;
+	background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMjgnIGhlaWdodD0nMjgnIHZpZXdCb3g9JzAgMCAyOCAyOCcgZmlsbD0nbm9uZScgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJz4KPGcgaWQ9J0dyb3VwIDIwMic+CjxjaXJjbGUgaWQ9J0VsbGlwc2UgMzYnIGN4PScxNCcgY3k9JzE0JyByPScxNCcgZmlsbD0nIzMzNjlGMycvPgo8cmVjdCBpZD0nUmVjdGFuZ2xlIDQ0NycgeD0nOCcgeT0nMTMuMicgd2lkdGg9JzExJyBoZWlnaHQ9JzEuNicgZmlsbD0nd2hpdGUnLz4KPHBhdGggaWQ9J1ZlY3RvciAxJyBkPSdNMTUgOUwxOSAxNEwxNSAxOScgc3Ryb2tlPSd3aGl0ZScgc3Ryb2tlLXdpZHRoPScxLjYnLz4KPC9nPgo8L3N2Zz4K');
+	transform: scaleX(-1);
+}
+
+.profile-wrapper{
+	width: calc(100%-64px);
+	height:100%;
+	display: flex;
+	justify-content: center;
+	float:right;
+}
+
+.profile-data{
+	width: 510px;
+	display: flex;
+	flex-direction: column;
+	gap: 60px;
+}
+
+.profile-data label{
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	color: var(--primary-color);
+	font-size: 13px;
+	line-height: 100%;
+	font-weight: 500;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: var(--border-color) 1px solid;
+}
+
+.profile-data input{
+	color: var(--secondary-color);
+	background: none;
+	border: none;
+	text-align: right;
+}
+
+.user-data{
+	display: flex;
+	flex-direction: column;
+	width:100%;
+}
+
+.profile-header{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 21px;
+	margin-top: 60px;
+}
+
+.user-photo{
+	width: 130px;
+	height: 130px;
+	background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTMwJyBoZWlnaHQ9JzEzMCcgdmlld0JveD0nMCAwIDEzMCAxMzAnIGZpbGw9J25vbmUnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+CjxwYXRoIGQ9J00xMzAgNjVDMTMwIDEwMC44OTkgMTAwLjg5OSAxMzAgNjUgMTMwQzI5LjEwMTUgMTMwIDAgMTAwLjg5OSAwIDY1QzAgMjkuMTAxNSAyOS4xMDE1IDAgNjUgMEMxMDAuODk5IDAgMTMwIDI5LjEwMTUgMTMwIDY1WicgZmlsbD0nI0VGRUZFRicvPgo8cGF0aCBkPSdNNTUuOTA5MSA1OS41NDU1QzU3LjkxNzQgNTkuNTQ1NSA1OS41NDU1IDU3LjkxNzQgNTkuNTQ1NSA1NS45MDkxQzU5LjU0NTUgNTMuOTAwOCA1Ny45MTc0IDUyLjI3MjcgNTUuOTA5MSA1Mi4yNzI3QzUzLjkwMDggNTIuMjcyNyA1Mi4yNzI4IDUzLjkwMDggNTIuMjcyOCA1NS45MDkxQzUyLjI3MjggNTcuOTE3NCA1My45MDA4IDU5LjU0NTUgNTUuOTA5MSA1OS41NDU1WicgZmlsbD0nI0NEQ0RDRCcvPgo8cGF0aCBmaWxsLXJ1bGU9J2V2ZW5vZGQnIGNsaXAtcnVsZT0nZXZlbm9kZCcgZD0nTTQ5IDQ1QzQ2Ljc5MDkgNDUgNDUgNDYuNzkwOSA0NSA0OVY4MUM0NSA4My4yMDkxIDQ2Ljc5MDkgODUgNDkgODVIODFDODMuMjA5MSA4NSA4NSA4My4yMDkxIDg1IDgxVjQ5Qzg1IDQ2Ljc5MDkgODMuMjA5MSA0NSA4MSA0NUg0OVpNODEgNDdINDlDNDcuODk1NCA0NyA0NyA0Ny44OTU0IDQ3IDQ5VjcwLjI2NjdMNTkuNjU0NyA2Ny4zMTM5QzYwLjU0ODYgNjcuMTA1MyA2MS40NjM1IDY3IDYyLjM4MTQgNjdINjcuNjE4NkM2OC41MzY1IDY3IDY5LjQ1MTQgNjcuMTA1MyA3MC4zNDUzIDY3LjMxMzlMODMgNzAuMjY2N1Y0OUM4MyA0Ny44OTU0IDgyLjEwNDYgNDcgODEgNDdaJyBmaWxsPScjQ0RDRENEJy8+Cjwvc3ZnPgo=');
+}
+
+.user-name{
+	color: var(--primary-text-color);
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 100%;
+}
+
+.profile-settings, .password-settings{
+	width:100%;
+}
+
+.profile-settings div{
+	font-size: 13px;
+	line-height: 100%;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: var(--border-color) 1px solid;
+}
+
+.profile-settings div:last-child{
+	border: none;
+}
+
+.profile-settings div:last-child>a{
+	color:var(--danger-color);
+}
+
+.profile-settings a{
+	color: var(--link-color);
+	border: none;
+	background: none;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.user-photo-hover{
+	display: none;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, .5);
+	border-radius: 100%;
+	color: white;
+}
+
+.user-photo:hover .user-photo-hover{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+.profile-wrapper form{
+	display: flex;
+	flex-direction: column;
+	gap:60px;
+	align-items: center;
+}
+
+.profile-wrapper form button[type='submit']{
+	padding: 12px 0;
+	font-size: 13px;
+  text-align: center;
+	text-decoration: none;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	background-color: var(--button-color);
+	cursor: pointer;
+	width: 280px;
+	display: none;
+}
+
+.profile-wrapper form button[type='submit']:hover{
+	background-color: var(--button-hover);
+}
