@@ -1,5 +1,4 @@
 export const tmpl = `
-<div class='authorization'>
 	<form>
 		<div class='inputs-container'>
 			<h2>Sign In</h2>
@@ -9,9 +8,8 @@ export const tmpl = `
 			</div>
 		</div>
 		<div class='button-container'>
-			{{{signInLink}}}
+			{{{submit}}}
 			{{{signUpLink}}}
 		</div>
 	</form>
-</div>
 `

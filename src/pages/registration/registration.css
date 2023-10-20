@@ -33,13 +33,10 @@
 	flex-direction: column;
 }
 
-.registration .input-group {
+.registration .inputs-container label {
 	display: flex;
 	flex-direction: column;
 	margin-bottom: 16px;
-}
-
-.registration .input-group {
 	text-align: left;
 	color: var(--secondary-text-color);
 	font-family: Inter;
@@ -49,7 +46,7 @@
 	line-height: 100%;
 }
 
-.registration .input-group input {
+.registration .inputs-container input {
 	padding: 0;
 	margin:0;
 	border-style: none;
@@ -61,35 +58,13 @@
 	padding: 7px 0;
 }
 
-.registration .input-group p {
+.registration .inputs-container p {
 	color:var(--danger-color);
 	padding-top: 7px;
 }
 
-.registration .input-group:last-of-type{
+.registration .inputs-container div:last-of-type>label{
 	margin-bottom:0;
-}
-
-.registration .input-group:focus{
-	border-style: none;
-}
-
-.registration .btn-signup {
-	display: inline-block;
-	padding: 12px 0;
-	font-size: 13px;
-  text-align: center;
-	text-decoration: none;
-	color: #fff;
-	border: none;
-	border-radius: 8px;
-	background-color: var(--link-color);
-	cursor: pointer;
-	width:100%;
-}
-
-.registration .btn-signup:hover {
-	background-color: var(--hover-blue);
 }
 
 .registration .signin-link {

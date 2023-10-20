@@ -13,6 +13,7 @@
 	--danger-color: #FF0000;
 	--link-color: var(--color-blue);
 	--button-color: var(--color-blue);
+	--button-hover: var(--hover-blue);
 }
 
 *{

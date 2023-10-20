@@ -12,6 +12,7 @@
 }
 
 .sidebar a{
+	display: block;
 	width: 28px;
 	height: 28px;
 	border:none;
@@ -32,26 +33,28 @@
 	display: flex;
 	flex-direction: column;
 	gap: 60px;
+	margin-bottom: 60px;
 }
 
-.profile-data label{
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+.profile-data label.field{
+	display: block;
+	
 	color: var(--primary-color);
 	font-size: 13px;
 	line-height: 100%;
 	font-weight: 500;
-	padding-bottom: 10px;
+	/* padding-bottom: 10px; */
 	margin-bottom: 10px;
 	border-bottom: var(--border-color) 1px solid;
+	height: 33px;
 }
 
 .profile-data input{
-	color: var(--secondary-color);
+	color: var(--secondary-text-color);
 	background: none;
 	border: none;
 	text-align: right;
+	float:right;
 }
 
 .user-data{
@@ -86,7 +89,7 @@
 	width:100%;
 }
 
-.profile-settings div{
+.profile-settings .link{
 	font-size: 13px;
 	line-height: 100%;
 	padding-bottom: 10px;
@@ -94,15 +97,19 @@
 	border-bottom: var(--border-color) 1px solid;
 }
 
-.profile-settings div:last-child{
+.user-data  label.field:last-child, 
+.password-settings  label.field:last-child, 
+.profile-settings div:last-child .link{
 	border: none;
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
 
-.profile-settings div:last-child>a{
+.profile-settings .logout .link a{
 	color:var(--danger-color);
 }
 
-.profile-settings a{
+.profile-settings .link a{
 	color: var(--link-color);
 	border: none;
 	background: none;
@@ -115,7 +122,7 @@
 	text-align: center;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, .5);
+	background-color: rgba(0, 0, 0, 50%);
 	border-radius: 100%;
 	color: white;
 }
@@ -128,27 +135,13 @@
 	cursor: pointer;
 }
 
-.profile-wrapper form{
+.profile-wrapper .form{
 	display: flex;
 	flex-direction: column;
 	gap:60px;
 	align-items: center;
 }
 
-.profile-wrapper form button[type='submit']{
-	padding: 12px 0;
-	font-size: 13px;
-  text-align: center;
-	text-decoration: none;
-	color: white;
-	border: none;
-	border-radius: 8px;
-	background-color: var(--button-color);
-	cursor: pointer;
+.profile-wrapper .form button{
 	width: 280px;
-	display: none;
-}
-
-.profile-wrapper form button[type='submit']:hover{
-	background-color: var(--button-hover);
 }

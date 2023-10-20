@@ -13,12 +13,12 @@ export const tmpl = `
 					</div>
 					<p class='user-name'>Ivan</p>
 				</div>
-				<form action=''>
+				<form class='form'>
 					<div class='user-data'>
 						{{{email}}}
 						{{{login}}}
 						{{{firstName}}}
-						{{{lastName}}}
+						{{{secondName}}}
 						{{{displayName}}}
 						{{{phone}}}
 					</div>
@@ -27,7 +27,7 @@ export const tmpl = `
 						{{{newPassword}}}
 						{{{repeatNewPassword}}}
 					</div>
-					<button type='submit'>Сохранить</button>
+					{{{saveButton}}}
 				</form>
 				<div class='profile-settings'>
 					<div class='change-data'>{{{manageAccountLink}}}</div>

@@ -1,0 +1,24 @@
+button{
+	display: inline-block;
+	padding: 12px 0;
+	font-size: 13px;
+  text-align: center;
+	text-decoration: none;
+	color: #fff;
+	border: none;
+	border-radius: 8px;
+	background-color: var(--link-color);
+	cursor: pointer;
+	width:100%;
+}
+
+button:hover {
+	background-color: var(--hover-blue);
+}
+
+button:disabled, 
+button:disabled:hover{
+	background-color: var(--input-bg);
+	color: var(--secondary-text-color);
+	cursor: default;
+}
