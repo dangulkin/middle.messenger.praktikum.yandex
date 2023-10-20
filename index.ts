@@ -15,21 +15,44 @@ const ROUTES: Record<string,any> = {
 	'/page500' : Page500
 }
 
-type userdata = {
-	name: string,
-	second_name: string,
-	display_name: string,
-	nickname: string,
-	login: string,
-	email: string,
-	password: string,
-	new_password: string
-}
-
 window.addEventListener('DOMContentLoaded', () => {
 	const root = document.querySelector('main')!;
-	
-	const component = new ROUTES[window.location.pathname]() || new Page404();
+
+	const route = window.location.pathname;
+	let component;
+	switch(route){
+		case '/': 
+			component = new Main();
+			break;
+		
+		case '/authorization': 
+			component = new Main();
+			break;
+
+		case '/registration':
+			component = new Registration();
+			break;
+
+		case '/chats':
+			component = new Chats();
+			break;
+
+		case '/profile':
+			component = new Profile();
+			break;
+
+		case '/Page404':
+			component = new Page404();
+			break;
+
+		case '/Page500':
+			component = new Page500();
+			break;
+
+		default:
+			component = new Page404();
+
+	}
 	root?.append(component.element!);
 	component.dispatchComponentDidMount();
 

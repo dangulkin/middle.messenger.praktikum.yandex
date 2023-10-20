@@ -143,7 +143,7 @@ export class Registration extends Block {
 				input: {
 					name: 'password',
 					type: 'text',
-					value: 'random_pass',
+					value: 'random_pass4R',
 					autocomplete: 'current_password',
 					pattern: ValidationRules.password,
 					events: {
@@ -163,7 +163,7 @@ export class Registration extends Block {
 				input: {
 					name: 'password_repeat',
 					type: 'text',
-					value: 'random_pass',
+					value: 'random_pass4R',
 					autocomplete: 'new_password',
 					pattern: ValidationRules.password,
 					events: {
@@ -194,7 +194,8 @@ export class Registration extends Block {
 			events: {
 				click: (e:Event) => {
 					e.preventDefault();
-						this.logFormData();
+					this.logFormData();
+					window.location.href='/chats';
 				}
 			}
 	});

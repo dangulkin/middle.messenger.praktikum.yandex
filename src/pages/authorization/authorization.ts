@@ -60,11 +60,11 @@ export class Main extends Block {
 				type: 'submit',
 				label: 'Sign In',
 				class: 'btn-signin',
-				disabled: true,
 				events: {
 					click: (e:Event) => {
 						e.preventDefault();
 						this.logFormData();
+						window.location.href='/chats';
 					}
 				}
 		});

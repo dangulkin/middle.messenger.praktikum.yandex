@@ -170,7 +170,7 @@ export class Profile extends Block {
 				input: {
 					name: 'password',
 					type: 'text',
-					value: 'random_pass',
+					value: 'random_pass4R',
 					autocomplete: 'current-password',
 					pattern: ValidationRules.password,
 					events: {
@@ -190,7 +190,7 @@ export class Profile extends Block {
 				input: {
 					name: 'new_password',
 					type: 'text',
-					value: 'random_pass',
+					value: 'random_pass4E',
 					autocomplete: 'new-password',
 					pattern: ValidationRules.password,
 					events: {
@@ -210,7 +210,7 @@ export class Profile extends Block {
 				input: {
 					name: 'repeat_new_password',
 					type: 'text',
-					value: 'random_pass',
+					value: 'random_pass4E',
 					autocomplete: 'new-password',
 					pattern: ValidationRules.password,
 					events: {
@@ -250,7 +250,6 @@ export class Profile extends Block {
 			name: 'submit',
 			type: 'submit',
 			label: 'Save changes',
-			disabled: true,
 			events: {
 				click: (e:Event) => {
 					e.preventDefault();
