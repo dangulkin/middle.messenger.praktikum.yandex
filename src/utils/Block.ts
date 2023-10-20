@@ -1,7 +1,6 @@
 import Handlebars from 'handlebars';
 import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
-import { isEmpty } from './mydash/isempty';
 
 class Block<P extends Record<string, any> = any> {
   static EVENTS = {
@@ -19,12 +18,10 @@ class Block<P extends Record<string, any> = any> {
 	private eventBus: () => EventBus;
 	private _element: HTMLElement | null = null;
 
-/** JSDoc
-   * @param {string} _tagName
-   * @param {Object} props
-   *
-   * @returns {void}
-   */
+	/**
+	 * JSDoc
+	 * @returns {void}
+	 */
 constructor(tagName = "div", propsWithChildren:P) {
 	const eventBus = new EventBus();
 	const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -104,7 +101,7 @@ private _componentDidUpdate(oldProps:P, newProps:P) {
 }
 
 // Может переопределять пользователь, необязательно трогать
-protected componentDidUpdate(oldProps:P, newProps:P) {
+protected componentDidUpdate(_oldProps:P, _newProps:P) {
   return true;
 }
 
@@ -144,7 +141,7 @@ protected compile(template: string, context: any) {
   Object.entries(this.children).forEach(([name, components]) => {
 		const componentsArray = Array.isArray(components) ? components : [components];
 			contextAndStubs[name] = '';
-      componentsArray.forEach((component, index) => {
+      componentsArray.forEach((component, _) => {
 				contextAndStubs[name] += `<div data-id="${component.id}"></div>`;
       });
   });
@@ -153,10 +150,10 @@ protected compile(template: string, context: any) {
   const temp = document.createElement('template');
   temp.innerHTML = html;
 	
-  Object.entries(this.children).forEach(([name, components]) => {
+  Object.entries(this.children).forEach(([_, components]) => {
 		const componentsArray = Array.isArray(components) ? components : [components];
 
-		componentsArray.forEach((component, index) => {
+		componentsArray.forEach((component, _) => {
 			const stub = temp.content.querySelector(`[data-id="${component.id}"]`);
 
 				if (!stub) 
