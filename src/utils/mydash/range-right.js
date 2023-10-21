@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /*
 rangeRight(4); // => [3, 2, 1, 0]
 rangeRight(-4); // => [-3, -2, -1, 0]

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 const METHODS = {
   GET: 'GET',
   PUT: 'PUT',
@@ -10,7 +11,7 @@ const METHODS = {
  * Example: { a: 1, b: 2, c: { d: 123 }, k: [1, 2, 3] }
  * Output: '?a=1&b=2&c=[object Object]&k=1,2,3'
  */
-function queryStringify(data: Record<string, any>): string {
+function queryStringify(data: Record<string, unknown>): string {
   if (typeof data !== 'object')
 	throw new Error('Data must be object');
 
@@ -23,6 +24,7 @@ function queryStringify(data: Record<string, any>): string {
 interface RequestOptions {
   headers?: Record<string, string>;
   method?: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data?: any;
   timeout?: number;
 }
@@ -61,7 +63,7 @@ class HTTPTransport {
         isGet && !!data ? `${url}${queryStringify(data)}` : url
       );
 
-      Object.keys(headers).forEach((key) => {
+      Object.keys(headers).forEach((key:string) => {
         xhr.setRequestHeader(key, headers[key]);
       });
 
@@ -86,7 +88,7 @@ class HTTPTransport {
 
 function fetchWithRetry(url: string, retries: number = 3, options: RequestOptions) {
 
-	function onError(err: any, tries: number): Promise<any> {
+	function onError(err: unknown, tries: number): Promise<unknown> {
     const triesLeft = tries - 1;
     if (!triesLeft) {
       throw err;
@@ -94,7 +96,7 @@ function fetchWithRetry(url: string, retries: number = 3, options: RequestOption
     return fetchWithRetry(url, triesLeft, options);
   }
 
-	return new Promise<any>((resolve, reject) => {
+	return new Promise<unknown>((resolve, reject) => {
     let tries = retries;
 
     function doRequest() {

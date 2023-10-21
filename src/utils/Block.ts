@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import Handlebars from 'handlebars';
 import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
 
-class Block<P extends Record<string, any> = any> {
+class Block<P extends Record<string, unknown> = unknown> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -21,8 +22,10 @@ class Block<P extends Record<string, any> = any> {
 	/**
 	 * JSDoc
 	 * @returns {void}
+	 * @param {string} tagName
+	 * @param {Object} propsWithChildren
 	 */
-constructor(tagName = "div", propsWithChildren:P) {
+constructor(tagName: string = "div", propsWithChildren:P) {
 	const eventBus = new EventBus();
 	const { props, children } = this._getChildrenAndProps(propsWithChildren);
 	
@@ -56,7 +59,8 @@ private _addEvents() {
 	const {events = {}} = this.props as P & { events: Record<string, (e:Event) => void> };
 
 	Object.keys(events).forEach(eventName => {
-		this._element?.addEventListener(eventName, events[eventName]);
+		if(this._element)
+			this._element.addEventListener(eventName, events[eventName]);
 	});
 }
 
@@ -101,6 +105,7 @@ private _componentDidUpdate(oldProps:P, newProps:P) {
 }
 
 // Может переопределять пользователь, необязательно трогать
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 protected componentDidUpdate(_oldProps:P, _newProps:P) {
   return true;
 }
@@ -124,7 +129,7 @@ set className(name:string) {
 	this.setAttribute('class', this._className);
 }
 
-setAttribute = (attr:string, value:any) => {
+setAttribute = (attr:string, value:unknown) => {
 		if(typeof value === 'boolean' ){
 			if(value) 
 				this.getContent()!.setAttribute(attr, '');
@@ -135,7 +140,7 @@ setAttribute = (attr:string, value:any) => {
 		}
 }
 
-protected compile(template: string, context: any) {
+protected compile(template: string, context: unknown) {
   const contextAndStubs = { ...context };
 
   Object.entries(this.children).forEach(([name, components]) => {
@@ -221,6 +226,7 @@ getContent() {
 }
 
 _makePropsProxy(props:P) {
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const self = this;
 
     return new Proxy(props, {

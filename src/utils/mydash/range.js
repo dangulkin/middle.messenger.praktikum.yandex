@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /*
 	* range(4); // => [0, 1, 2, 3] 
 	* range(-4); // => [0, -1, -2, -3]

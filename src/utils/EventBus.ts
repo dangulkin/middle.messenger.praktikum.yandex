@@ -1,9 +1,9 @@
-type Handler<A extends any[] = unknown[]> = (...args: A) => void;
+type Handler<A extends unknown[] = unknown[]> = (...args: A) => void;
 type MapInterface<P> = P[keyof P]
 
 export class EventBus <
 											E extends Record<string, string> = Record<string, string>, 
-											Args extends Record<MapInterface<E>, any[]> = Record<string, any[]>
+											Args extends Record<MapInterface<E>, unknown[]> = Record<string, unknown[]>
 											>
 {
   private readonly listeners: {[K in MapInterface<E>]?: Handler<Args[K]>[]} = {}

@@ -1,3 +1,4 @@
+/* eslint-disable no-irregular-whitespace */
 /*
 isEmpty(null); // => true
 isEmpty(true); // => true
@@ -13,7 +14,7 @@ isEmpty(new Map([['1', 'str1'], [1, 'num1'], [true, 'bool1']])) // => false
 isEmpty(new Set(['value1', 'value2', 'value3'])) // => false
 */
 
-export function isEmpty(value: any): Boolean{
+export function isEmpty(value: unknown): boolean{
   let  empty = true;
   
   switch (typeof value){

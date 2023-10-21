@@ -7,9 +7,9 @@ import { Chat } from '../../components/Chat/chat';
 import { ValidationRules } from '../../utils/mydash/validationrules';
 
 export class Chats extends Block {
-  constructor() {
+constructor() {
 		super('div.chat-window-wrapper', {});
-  }
+}
 
 	init(){
 		this.props.chats = [
@@ -17,53 +17,53 @@ export class Chats extends Block {
 				chatname: 'Jack', 
 				text: 'Hi!',
 				unread: 1,
-  			events: {
-  			  click: () => {}
-  			}
+				events: {
+					click: () => {}	
+				}
 			},
 			{
 				chatname: 'Alice', 
 				text: 'Изображение',
 				unread:0,
-  			events: {
-  			  click: () => {}
-  			}
+				events: {
+					click: () => {}
+				}
 			},
 			{
 				chatname: 'Beou', 
 				text: 'Let\'s get drunk! 🍻',
 				unread:3,
-  			events: {
-  			  click: () => {}
-  			}
+				events: {
+				click: () => {}
+				}
 			},
 			{
 				chatname: 'Йохан', 
 				text: 'Чо кого?',
 				unread:0,
-  			events: {
-  			  click: () => {}
-  			}
+			events: {
+			click: () => {}
+			}
 			},
 			{
 				chatname: 'Анжела', 
 				text: 'Вечером всё в силе? 😏',
 				unread:0,
-  			events: {
-  			  click: () => {}
-  			}
+			events: {
+			click: () => {}
+			}
 			},
 			{
 				chatname: 'Random guy from the job', 
 				text: 'HB dude! I\'m so happy knowing ya! You are my best buddy ever! Love you bro 💋',
 				unread:23,
-  			events: {
-  			  click: () => {}
-  			}
+			events: {
+			click: () => {}
+			}
 			}];
 
-			this.children.chatlist = this.props.chats.map((chat:any) => {
-				return new Chat(chat)
+			this.children.chatlist = this.props.chats.map((chat:unknown) => {
+					return new Chat(chat)
 			});
 
 			this.children.profileLink = new Link({
@@ -101,7 +101,7 @@ export class Chats extends Block {
 			});
 	}
 
-  render() {
-    return this.compile(tmpl, this.props);
-  }
+render() {
+return this.compile(tmpl, this.props);
+}
 }

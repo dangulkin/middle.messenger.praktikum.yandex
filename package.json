@@ -2,7 +2,7 @@
   "name": "messenger",
   "private": true,
   "version": "0.0.2",
-  "type": "commonjs",
+  "type": "module",
   "browserslist": "last 2 versions",
   "packageManager": "npm@9.8.1",
   "scripts": {
@@ -14,6 +14,8 @@
     "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
     "autoprefixer": "^10.4.16",
     "cssnano": "^6.0.1",
     "eslint": "8.52.0",

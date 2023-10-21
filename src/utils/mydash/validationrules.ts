@@ -1,3 +1,4 @@
+/* eslint-disable no-useless-escape */
 export enum ValidationRules{
   name = '[A-ZА-Я][A-ZА-Яa-zа-я\s\\-]*(\s|$)',
 	login = '([A-Za-z_0-9\\-]+){3,20}',

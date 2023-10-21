@@ -42,12 +42,12 @@ export default `
 			</div>
 		</div>
 	</div>
-	<div class='message--input-block'>
-			<div class='message--attach-media'></div>
-			<div class='message--input-bar'>
+	<div class='message-input-block'>
+			<div class='message-attach-media'></div>
+			<div class='message-input-bar'>
 					{{{message}}}
 			</div>
-			<div class='message--send-button'></div>
+			<div class='message-send-button'></div>
 		</div>
 </div>
 `

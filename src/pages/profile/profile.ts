@@ -7,9 +7,9 @@ import { Button } from '../../components/Button/button';
 import { ValidationRules } from '../../utils/mydash/validationrules';
 
 export class Profile extends Block {
-  constructor() {
-    super('div.profile', {});
-  }
+constructor() {
+super('div.profile', {});
+}
 
 	get passEqual(){
 		const formData = new FormData(this.form());
@@ -254,12 +254,12 @@ export class Profile extends Block {
 				click: (e:Event) => {
 					e.preventDefault();
 					this.logFormData();
-			 	}
+				}
 			},
 		});
 	}
 
-  render() {
-    return this.compile(tmpl, this.props);
-  }
+render() {
+return this.compile(tmpl, this.props);
+}
 }
