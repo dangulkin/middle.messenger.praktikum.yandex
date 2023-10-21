@@ -1,9 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Handlebars from 'handlebars';
 import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
 
-class Block<P extends Record<string, unknown> = unknown> {
+class Block<P extends Record<string, unknown> = any> {
   static EVENTS = {
     INIT: "init",
     FLOW_CDM: "flow:component-did-mount",
@@ -31,8 +32,9 @@ constructor(tagName: string = "div", propsWithChildren:P) {
 	
 	this.children = children;
   this.props = this._makePropsProxy(props);
-	this._tagName = tagName.split('.')[0];
-	this._className = tagName.split('.')[1];
+
+	this._tagName = tagName.split('.')[0] || tagName;
+	this._className = tagName.split('.')[1] || '';
 
   this.eventBus = () => eventBus;
 
@@ -140,7 +142,7 @@ setAttribute = (attr:string, value:unknown) => {
 		}
 }
 
-protected compile(template: string, context: unknown) {
+protected compile(template: string, context: object) {
   const contextAndStubs = { ...context };
 
   Object.entries(this.children).forEach(([name, components]) => {
