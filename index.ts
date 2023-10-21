@@ -5,16 +5,6 @@ import { Profile } from './src/pages/profile/profile.ts';
 import { Page404 } from './src/pages/page404/page404.ts'; 
 import { Page500 } from './src/pages/page500/page500.ts'; 
 
-const ROUTES: Record<string,any> = {
-	'/' : Main,
-	'/authorization' :  Main,
-	'/registration' : Registration,
-	'/chats' : Chats,
-	'/profile' : Profile,
-	'/page404' : Page404,
-	'/page500' : Page500
-}
-
 window.addEventListener('DOMContentLoaded', () => {
 	const root = document.querySelector('main')!;
 

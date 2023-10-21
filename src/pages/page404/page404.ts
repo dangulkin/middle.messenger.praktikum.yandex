@@ -24,13 +24,3 @@ export class Page404 extends Block {
     return this.compile(tmpl, this.props);
   }
 }
-
-
-// export const Page404 = () => {
-// 	return Handlebars.compile(tmpl)({
-// 		backToChats: Link({
-// 			text: 'Назад к чатам',
-// 			to: '/chatlist'
-// 		})
-// 	});
-// }
