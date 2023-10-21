@@ -1,12 +1,12 @@
-import express, { static } from 'express';
-import path from 'path';
+const express = require('express');
+const path = require('path');
 const app = express();
 const PORT = 3000;
 
-app.use(static('dist'));
-app.use(static('static'));
+app.use(express.static('dist'));
+app.use(express.static('static'));
 
-app.use('/assets/static', static(__dirname + '/static'));
+app.use('/assets/static', express.static(__dirname + '/static'));
 
 app.use('/*', (req, res) => {
   res.sendFile(__dirname + '/dist/index.html');

@@ -10,6 +10,6 @@
     "plugin:@typescript-eslint/recommended"
   ],
 	"ignorePatterns": [
-		"server.js"
+		"server.cjs", "Block.ts"
 	]
 }
