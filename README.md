@@ -1,5 +1,4 @@
 Messenger page layouts for Yandex Practicum Middle Front-end Developer course 2023-2024
-Sprint 2
 
 Start using command
 $ npm run start
