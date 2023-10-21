@@ -14,8 +14,10 @@
     "lint": "npx eslint 'src/**/*.{js,jsx,ts,tsx}'"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "^7.22.15",
     "autoprefixer": "^10.4.16",
     "cssnano": "^6.0.1",
+    "eslint": "<15",
     "handlebars": "^4.7.8",
     "postcss": "^8.4.31",
     "postcss-cli": "^10.1.0",
@@ -25,6 +27,7 @@
     "vite": "^4.4.5"
   },
   "dependencies": {
+    "eslint-config-standard-with-typescript": "^39.1.1",
     "express": "^4.18.2",
     "handlebars": "^4.7.8",
     "nanoid": "^3.3.6",
