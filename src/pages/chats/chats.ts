@@ -6,6 +6,15 @@ import { Input } from '../../components/Input/input';
 import { Chat } from '../../components/Chat/chat';
 import { ValidationRules } from '../../utils/mydash/validationrules';
 
+type ChatProps = {
+  chatname: string;
+  text: string;
+  unread: number;
+  events: {
+    click: () => void;
+  };
+};
+
 export class Chats extends Block {
 constructor() {
 		super('div.chat-window-wrapper', {});
@@ -62,7 +71,7 @@ constructor() {
 			}
 			}];
 
-			this.children.chatlist = this.props.chats.map((chat:unknown) => {
+			this.children.chatlist = this.props.chats.map((chat:ChatProps) => {
 					return new Chat(chat)
 			});
 

@@ -58,12 +58,13 @@ private _getChildrenAndProps(childrenAndProps: P): {props: P, children: Record<s
 }
 
 private _addEvents() {
-	const {events = {}} = this.props as P & { events: Record<string, (e:Event) => void> };
+  const { events = {} } = this.props as P & { events?: Record<string, (e: Event) => void> };
 
-	Object.keys(events).forEach(eventName => {
-		if(this._element)
-			this._element.addEventListener(eventName, events[eventName]);
-	});
+  Object.keys(events).forEach(eventName => {
+    if (this._element && events[eventName]) {
+      this._element.addEventListener(eventName, events[eventName] as EventListener);
+    }
+  });
 }
 
 private _registerEvents(eventBus: EventBus) {
@@ -143,7 +144,7 @@ setAttribute = (attr:string, value:unknown) => {
 }
 
 protected compile(template: string, context: object) {
-  const contextAndStubs = { ...context };
+  const contextAndStubs = { ...context } as { [key: string]: string };
 
   Object.entries(this.children).forEach(([name, components]) => {
 		const componentsArray = Array.isArray(components) ? components : [components];
@@ -206,21 +207,23 @@ get formIsValid() {
 	return isValid;
 }
 
-protected logFormData(){
-	if(!this.formIsValid)
-		return
+protected logFormData() {
+  if (!this.formIsValid) {
+    return;
+  }
 
-	const formData = new FormData(this.form());
+  const formData = new FormData(this.form());
 
-	if(this.formIsValid) {
-		console.log(`\nForm is valid`);
-		console.log(`\nForm data`);
-		for (const [key, value] of formData) {
-			console.log(`${key}: ${value}`);
-		}
-	}
-
+  if (this.formIsValid) {
+    console.log(`\nForm is valid`);
+    console.log(`\nForm data`);
+    
+    formData.forEach((value, key) => {
+      console.log(`${key}: ${value}`);
+    });
+  }
 }
+
 //////////////////////////////////////////////////
 
 getContent() {

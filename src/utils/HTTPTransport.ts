@@ -49,6 +49,10 @@ class HTTPTransport {
   request = (url: string, options: RequestOptions = {}, timeout = 5000): Promise<XMLHttpRequest> => {
     const { headers = {}, method, data } = options;
 
+    if (!url) {
+      return Promise.reject('No URL specified');
+    }
+
     return new Promise<XMLHttpRequest>(function (resolve, reject) {
 			if (!method) {
         reject('No method');
@@ -63,9 +67,16 @@ class HTTPTransport {
         isGet && !!data ? `${url}${queryStringify(data)}` : url
       );
 
-      Object.keys(headers).forEach((key:string) => {
-        xhr.setRequestHeader(key, headers[key]);
-      });
+      for (const key in headers) {
+        if (Object.prototype.hasOwnProperty.call(headers, key)) {
+          const headerValue = headers[key];
+          if (typeof headerValue === 'string') {
+            xhr.setRequestHeader(key, headerValue);
+          } else {
+            reject(`Invalid header value for key '${key}': ${headerValue}`);
+          }
+        }
+      }
 
       xhr.onload = function () {
         resolve(xhr);

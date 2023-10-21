@@ -7,7 +7,7 @@ Build using command
 $ npm run build
 
 Launch locally on 3000 port using comand
-$ node server.js
+$ node server.cjs
 
 Check types using
 $ npm run check-types
