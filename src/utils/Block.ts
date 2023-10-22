@@ -3,6 +3,7 @@
 import Handlebars from 'handlebars';
 import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
+import { isEmpty } from './mydash/isempty';
 
 class Block<P extends Record<string, unknown> = any> {
   static EVENTS = {
@@ -20,6 +21,8 @@ class Block<P extends Record<string, unknown> = any> {
 	private eventBus: () => EventBus;
 	private _element: HTMLElement | null = null;
 
+	private _meta : {oldProps: P}
+
 	/**
 	 * JSDoc
 	 * @returns {void}
@@ -29,6 +32,10 @@ class Block<P extends Record<string, unknown> = any> {
 constructor(tagName: string = "div", propsWithChildren:P) {
 	const eventBus = new EventBus();
 	const { props, children } = this._getChildrenAndProps(propsWithChildren);
+
+	this._meta = {
+		oldProps: {} as P
+	};
 	
 	this.children = children;
   this.props = this._makePropsProxy(props);
@@ -65,6 +72,18 @@ private _addEvents() {
       this._element.addEventListener(eventName, events[eventName] as EventListener);
     }
   });
+
+}
+
+private _removeEvents() {
+	const { events = {} } = this._meta.oldProps as P & { events?: Record<string, (e: Event) => void> };
+
+  Object.keys(events).forEach(eventName => {
+    if (this._element && events[eventName]) {
+      this._element.removeEventListener(eventName, events[eventName] as EventListener);
+    }
+  });
+
 }
 
 private _registerEvents(eventBus: EventBus) {
@@ -117,6 +136,8 @@ setProps = (nextProps:P) => {
   if (!nextProps) {
     return;
   }
+
+	Object.assign(this._meta.oldProps, this.props);
   Object.assign(this.props, nextProps);
 	Object.entries(this.props).forEach(([key, value]) => {
 		this.setAttribute(key, value as string);
@@ -178,8 +199,12 @@ protected compile(template: string, context: object) {
 private _render() {
   const fragment = this.render();
 
+	if(!isEmpty(this._meta.oldProps))
+		this._removeEvents();
+
   this._element!.innerHTML = '';
 	this._element!.append(fragment);
+
 	this._addEvents();
 }
 

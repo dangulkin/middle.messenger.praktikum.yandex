@@ -12,7 +12,7 @@ export class Page404 extends Block {
 	init() {
 		this.children.backToChats = new Link({
 				text: 'Назад к чатам',
-				to: '/chatlist',
+				to: '/chats',
 				events: {
 					click: () => { console.log('back to chats') }
 				}
@@ -20,7 +20,6 @@ export class Page404 extends Block {
 	}
 
   render() {
-		console.log('Page 404 compile');
     return this.compile(tmpl, this.props);
   }
 }

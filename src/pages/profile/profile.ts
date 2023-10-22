@@ -20,7 +20,6 @@ super('div.profile', {});
 	private _checkForm(){
 		if(!this.passEqual){
 			(this.children.repeatNewPassword as Field).setCustomValidity('Пароли не совпадают ¯\\_(ツ)_/¯');
-			//(this.children.repeatPassword as Block).setProps({error: 'Пароли не совпадают ¯\\_(ツ)_/¯'});
 		}else{
 			(this.children.repeatNewPassword as Field).setCustomValidity('');
 		}
@@ -254,6 +253,7 @@ super('div.profile', {});
 				click: (e:Event) => {
 					e.preventDefault();
 					this.logFormData();
+					(this.children.saveButton as Button).setProps({label: 'Сохранить'});
 				}
 			},
 		});

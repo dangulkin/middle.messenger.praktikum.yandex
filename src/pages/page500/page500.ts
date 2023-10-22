@@ -11,7 +11,7 @@ export class Page500 extends Block {
 	init() {
 		this.children.backToChats = new Link({
 				text: 'Назад к чатам',
-				to: '/chatlist',
+				to: '/chats',
 				events: {
 					click: () => { console.log('back to chats') }
 				}
@@ -19,7 +19,6 @@ export class Page500 extends Block {
 	}
 
   render() {
-		console.log('Page 500 compile');
     return this.compile(tmpl, this.props);
   }
 }
