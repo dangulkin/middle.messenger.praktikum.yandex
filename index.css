@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter');
+
 :root{
 	--light-grey-color: #EAEAEA;
 	--darker-light-grey: #E4EDFD;
@@ -10,9 +12,10 @@
 	--input-bg: #EFEFEF;
 	--border-color: var(--light-grey-color);
 	--border-blue: var(--color-blue);
-	--danger-color: #FF0000;
+	--danger-color: #F00;
 	--link-color: var(--color-blue);
 	--button-color: var(--color-blue);
+	--button-hover: var(--hover-blue);
 }
 
 *{

@@ -1,4 +1,4 @@
-.wrapper{
+.notfound{
 	text-align: center;
 	height: 100vh;
 	display: flex;
@@ -6,21 +6,21 @@
 	justify-content: center;
 }
 
-.wrapper h2{
+.notfound h2{
 	font-size: 40px;
 	font-weight: 500;
 	line-height: 100%;
 	margin-bottom: 20px;
 }
 
-.wrapper p{
+.notfound p{
 	font-size: 20px;
 	font-weight: 500;
 	line-height: 100%;
 	margin-bottom: 69px;
 }
 
-.wrapper a{
+.notfound a{
 	font-size: 11px;
 	font-weight: 500;
 	line-height: 100%;

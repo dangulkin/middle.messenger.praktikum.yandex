@@ -1,15 +1,12 @@
 export default `
-<div class='chat-window-wrapper'>
 <div class='chatlist'>
 	{{{profileLink}}}
 	<div class='chats-search-bar'>
-		<input type='text' name='chat-search' value='Search'></input>
+		{{{search}}}
 	</div>
 
 <!-- Chat list items -->
-	{{#each chats}}
-		{{> chat }}
-	{{/each}}
+		{{{chatlist}}}
 <!-- End of chat list items -->
 </div> 
 
@@ -45,13 +42,12 @@ export default `
 			</div>
 		</div>
 	</div>
-	<div class='message--input-block'>
-			<div class='message--attach-media'></div>
-			<div class='message--input-bar'>
-					<input type='text' name='message' value='Message'>
+	<div class='message-input-block'>
+			<div class='message-attach-media'></div>
+			<div class='message-input-bar'>
+					{{{message}}}
 			</div>
-			<div class='message--send-button'></div>
+			<div class='message-send-button'></div>
 		</div>
-</div>
 </div>
 `
