@@ -29,20 +29,22 @@ interface RequestOptions {
   timeout?: number;
 }
 
+type HTTPMethod = (url: string, options?: RequestOptions) => Promise<XMLHttpRequest>;
+
 class HTTPTransport {
-  get = (url: string, options: RequestOptions = {}): Promise<XMLHttpRequest> => {
+  get: HTTPMethod = (url, options = {}): Promise<XMLHttpRequest> => {
     return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
   };
 
-  put = (url: string, options: RequestOptions = {}): Promise<XMLHttpRequest> => {
+  put: HTTPMethod = (url, options = {}): Promise<XMLHttpRequest> => {
     return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
   };
 
-  post = (url: string, options: RequestOptions = {}): Promise<XMLHttpRequest> => {
+  post: HTTPMethod = (url, options = {}): Promise<XMLHttpRequest> => {
     return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
   };
 
-  delete = (url: string, options: RequestOptions = {}): Promise<XMLHttpRequest> => {
+  delete: HTTPMethod = (url, options = {}): Promise<XMLHttpRequest> => {
     return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
   };
 
