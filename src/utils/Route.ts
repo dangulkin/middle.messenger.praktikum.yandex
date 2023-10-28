@@ -1,4 +1,3 @@
-import { isEqual } from "./mydash/isequal";
 import Block from "./Block";
 
 class Route {
@@ -28,7 +27,7 @@ class Route {
     }
 
     match(pathname: string): boolean {
-        return isEqual(pathname, this._pathname);
+        return pathname === this._pathname;
     }
 
     render(): void {
