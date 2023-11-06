@@ -1,10 +1,10 @@
 import './chats.css';
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import tmpl from './chats.tmpl';
 import { Link } from '../../components/Link/link';
 import { Input } from '../../components/Input/input';
 import { Chat } from '../../components/Chat/chat';
-import { ValidationRules } from '../../utils/mydash/validationrules';
+import { ValidationRules } from '../../utils/validationrules';
 
 type ChatProps = {
   chatname: string;
@@ -110,7 +110,7 @@ constructor() {
 			});
 	}
 
-render() {
-return this.compile(tmpl, this.props);
-}
+	render() {
+		return this.compile(tmpl, this.props);
+	}
 }

@@ -5,10 +5,9 @@ export const tmpl = `
 		<div class='profile-wrapper'>
 			<div class='profile-data'>
 				<div class='profile-header'>
-					<div class='user-photo'>
-						<div class='user-photo-hover'>
-							Выберите<br>файл
-							<input type='file' name='avatar' hidden/>
+					<div class='userpic'>
+						<div class='userpic-hover'>
+							{{{avatar}}}
 						</div>
 					</div>
 					<p class='user-name'>Ivan</p>

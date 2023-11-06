@@ -29,15 +29,16 @@ function queryStringify(data: StringIndexed, prefix = ''): string | never {
 
 export default queryStringify;
 
-const obj: StringIndexed = {
-  key: 1,
-  key2: 'test',
-  key3: false,
-  key4: true,
-  key5: [1, 2, 3],
-  key6: { a: 1 },
-  key7: { b: { d: 2 } },
-};
+// //Test
+// const obj: StringIndexed = {
+//   key: 1,
+//   key2: 'test',
+//   key3: false,
+//   key4: true,
+//   key5: [1, 2, 3],
+//   key6: { a: 1 },
+//   key7: { b: { d: 2 } },
+// };
 
-const queryString = queryStringify(obj);
-console.log(queryString);
+// const queryString = queryStringify(obj);
+// console.log(queryString);

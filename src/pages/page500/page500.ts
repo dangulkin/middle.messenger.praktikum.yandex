@@ -1,7 +1,7 @@
 import './page500.css';
 import {tmpl} from './page500.tmpl';
 import {Link} from '../../components/Link/link';
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 
 export class Page500 extends Block {
   constructor() {

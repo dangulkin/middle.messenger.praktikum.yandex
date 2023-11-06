@@ -3,7 +3,7 @@
 import Handlebars from "handlebars";
 import { EventBus } from "./EventBus";
 import { nanoid } from "nanoid";
-import { isEmpty } from "./mydash/isempty";
+import { isEmpty } from "../utils/isempty";
 
 class Block<P extends Record<string, unknown> = any> {
   static EVENTS = {
@@ -20,6 +20,8 @@ class Block<P extends Record<string, unknown> = any> {
   private _tagName: string;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
+	private _form: HTMLFormElement | null = null;
+	// private _formData: FormData | null = null;
 
   private _meta: { oldProps: P };
 
@@ -76,7 +78,7 @@ class Block<P extends Record<string, unknown> = any> {
       if (this._element && events[eventName]) {
         this._element.addEventListener(
           eventName,
-          events[eventName] as EventListener,
+          events[eventName] as EventListener
         );
       }
     });
@@ -91,7 +93,7 @@ class Block<P extends Record<string, unknown> = any> {
       if (this._element && events[eventName]) {
         this._element.removeEventListener(
           eventName,
-          events[eventName] as EventListener,
+          events[eventName] as EventListener
         );
       }
     });
@@ -127,6 +129,8 @@ class Block<P extends Record<string, unknown> = any> {
 
   public dispatchComponentDidMount() {
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
+
+		Object.values(this.children).forEach(child => (child as Block).dispatchComponentDidMount());
   }
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
@@ -163,8 +167,10 @@ class Block<P extends Record<string, unknown> = any> {
 
   setAttribute = (attr: string, value: unknown) => {
     if (typeof value === "boolean") {
-      if (value) this.getContent()!.setAttribute(attr, "");
-      else this.getContent()!.removeAttribute(attr);
+      if (value) 
+				this.getContent()!.setAttribute(attr, "");
+      else 
+				this.getContent()!.removeAttribute(attr);
     } else if (attr !== "events") {
       this.getContent()!.setAttribute(attr, value as string);
     }
@@ -213,6 +219,8 @@ class Block<P extends Record<string, unknown> = any> {
     this._element!.innerHTML = "";
     this._element!.append(fragment);
 
+		this._form = this.getContent()?.querySelector("form") as HTMLFormElement;
+
     this._addEvents();
   }
 
@@ -222,14 +230,12 @@ class Block<P extends Record<string, unknown> = any> {
 
   //TODO: вынести в компонент
   protected form() {
-    const form$ = this.getContent()?.querySelector("form") as HTMLFormElement;
-
-    if (!form$) {
+    if (!this._form) {
       console.log("На этой странице нет формы ¯\\_(ツ)_/¯");
       return;
     }
 
-    return form$;
+    return this._form;
   }
 
   get formIsValid() {
@@ -240,18 +246,20 @@ class Block<P extends Record<string, unknown> = any> {
     return isValid;
   }
 
+	get formData() {
+		return this._form ? new FormData(this._form) : null;
+	}
+
   protected logFormData() {
     if (!this.formIsValid) {
       return;
     }
 
-    const formData = new FormData(this.form());
-
     if (this.formIsValid) {
       console.log(`\nForm is valid`);
       console.log(`\nForm data`);
 
-      formData.forEach((value, key) => {
+      this.formData?.forEach((value, key) => {
         console.log(`${key}: ${value}`);
       });
     }
@@ -276,7 +284,7 @@ class Block<P extends Record<string, unknown> = any> {
         const oldTarget = { ...target };
 
         target[prop as keyof P] = value;
-
+				
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },

@@ -2,7 +2,8 @@
   "compilerOptions": {
     "lib": [
       "ESNext",
-      "dom"
+      "dom",
+			"dom.iterable",
     ],
 
     "outDir": "lib",

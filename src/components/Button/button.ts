@@ -1,4 +1,4 @@
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 import './button.module.css'
 
 interface ButtonProps {
@@ -21,7 +21,7 @@ export class Button extends Block {
 		this.setProps(this.props);
 	}
 
-	updateButton(status:string = ''){
+	update(status:string = ''){
 		if(status)
 			this.setProps({disabled: false});
 		else 

@@ -1,49 +1,48 @@
-import { Main } from './src/pages/authorization/authorization.ts';
-import { Registration } from './src/pages/registration/registration.ts';
-import { Chats } from './src/pages/chats/chats.ts'; 
-import { Profile } from './src/pages/profile/profile.ts'; 
-import { Page404 } from './src/pages/page404/page404.ts'; 
-import { Page500 } from './src/pages/page500/page500.ts'; 
+import { Profile } from './src/pages/profile/Profile';
+import { SignUp } from './src/pages/signup/SignUp';
+import { SignIn } from './src/pages/signin/SignIn';
+import { Chats } from './src/pages/chats/chats';
+import router from './src/core/Router';
+import AuthController from './src/controllers/AuthController';
 
-window.addEventListener('DOMContentLoaded', () => {
-	const root = document.querySelector('main')!;
+enum Routes {
+  Index = '/',
+  Register = '/signup',
+  Profile = '/profile',
+  Chats = '/chats'
+}
 
-	const route = window.location.pathname;
-	let component;
-	switch(route){
-		case '/': 
-			component = new Main();
-			break;
-		
-		case '/authorization': 
-			component = new Main();
-			break;
+window.addEventListener('DOMContentLoaded', async () => {
+  router
+    .use(Routes.Index, SignIn)
+    .use(Routes.Register, SignUp)
+    .use(Routes.Profile, Profile)
+    .use(Routes.Chats, Chats)
 
-		case '/registration':
-			component = new Registration();
-			break;
+  let isProtectedRoute = true;
 
-		case '/chats':
-			component = new Chats();
-			break;
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.Register:
+      isProtectedRoute = false;
+      break;
+  }
 
-		case '/profile':
-			component = new Profile();
-			break;
+  try {
 
-		case '/Page404':
-			component = new Page404();
-			break;
+    await AuthController.fetchUser();
 
-		case '/Page500':
-			component = new Page500();
-			break;
+    router.start();
 
-		default:
-			component = new Page404();
+    if (!isProtectedRoute) {
+      router.go(Routes.Profile);
+    }
+  } catch (e) {
+    console.log(e, 'Here')
+    router.start();
 
-	}
-	root?.append(component.element!);
-	component.dispatchComponentDidMount();
-
+    if (isProtectedRoute) {
+      router.go(Routes.Index);
+    }
+  }
 });
