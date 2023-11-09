@@ -1,4 +1,6 @@
 import { Profile } from './src/pages/profile/Profile';
+import { Settings } from './src/pages/settings/Settings';
+import { ChangePassword } from './src/pages/changepassword/ChangePassword';
 import { SignUp } from './src/pages/signup/SignUp';
 import { SignIn } from './src/pages/signin/SignIn';
 import { Chats } from './src/pages/chats/chats';
@@ -9,6 +11,8 @@ enum Routes {
   Index = '/',
   Register = '/signup',
   Profile = '/profile',
+  Settings = '/settings',
+  ChangePassword = '/changepassword',
   Chats = '/chats'
 }
 
@@ -17,6 +21,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use(Routes.Index, SignIn)
     .use(Routes.Register, SignUp)
     .use(Routes.Profile, Profile)
+    .use(Routes.Settings, Settings)
+    .use(Routes.ChangePassword, ChangePassword)
     .use(Routes.Chats, Chats)
 
   let isProtectedRoute = true;

@@ -1,5 +1,5 @@
-import './Profile.css';
-import { tmpl } from './Profile.tmpl';
+import './Settings.css';
+import { tmpl } from './Settings.tmpl';
 import { Field } from '../../components/Field/field';
 import { Link } from '../../components/Link/link';
 import { Avatar } from '../../components/Avatar/avatar';
@@ -8,20 +8,14 @@ import { Button } from '../../components/Button/button';
 import { ValidationRules } from '../../utils/validationrules';
 import AuthController from '../../controllers/AuthController';
 import { withStore, State } from '../../core/Store';
-import user from '../../api/UserAPI';
+import user, { IUserData } from '../../api/UserAPI';
 import { RESOURCES } from '../../utils/http/constants';
 import Router from '../../core/Router';
 
-class BaseProfile extends Block {
+class BaseSettings extends Block {
+
   constructor() {
     super('div.profile', {});
-  }
-
-  private _checkForm() {
-		const submit = (this.children.saveButton as Button);
-    if (this.formIsValid ) {
-      submit.update('on');
-    }
   }
 
   init() {
@@ -56,12 +50,11 @@ class BaseProfile extends Block {
 		});
 
     this.children.goBack = new Link({
-      to: '#',
-      text: '',
+			to:'#',
       events: {
         click: (e) => {
-          e.preventDefault();
-					Router.go('/chats');
+					e.preventDefault();
+					Router.go('/profile');
         },
       },
     });
@@ -76,13 +69,7 @@ class BaseProfile extends Block {
         type: 'text',
         value: 'random@email.com',
         autocomplete: 'email',
-        disabled: true,
         pattern: ValidationRules.email,
-        events: {
-          blur: () => {
-            this._checkForm();
-          },
-        },
       },
       error:
         'латиница, может включать цифры и спецсимволы вроде дефиса и подчёркивания',
@@ -97,15 +84,8 @@ class BaseProfile extends Block {
         name: 'login',
         type: 'text',
         value: 'ivanivan',
-				disabled: true,
         autocomplete: 'username',
         pattern: ValidationRules.login,
-        events: {
-          focus: () => {},
-          blur: () => {
-            this._checkForm();
-          },
-        },
       },
       error: 'от 3 до 20 символов, латиница, может содержать цифры',
     });
@@ -120,13 +100,7 @@ class BaseProfile extends Block {
         type: 'text',
         value: 'Ivan',
         autocomplete: 'given-name',
-        disabled: true,
         pattern: ValidationRules.name,
-        events: {
-          blur: () => {
-            this._checkForm();
-          },
-        },
       },
       error: 'Только буквы, первая должна быть заглавной',
     });
@@ -141,13 +115,7 @@ class BaseProfile extends Block {
         type: 'text',
         value: 'Ivanov',
         autocomplete: 'surname',
-				disabled: true,
         pattern: ValidationRules.name,
-        events: {
-          blur: () => {
-            this._checkForm();
-          },
-        },
       },
       error: 'Только буквы, первая должна быть заглавной',
     });
@@ -161,14 +129,9 @@ class BaseProfile extends Block {
         name: 'display_name',
         type: 'text',
         value: '',
-				disabled: true,
+				
         autocomplete: 'nickname',
         pattern: ValidationRules.name,
-        events: {
-          blur: () => {
-            this._checkForm();
-          },
-        },
       },
       error: 'Только буквы, первая должна быть заглавной',
     });
@@ -182,47 +145,11 @@ class BaseProfile extends Block {
         name: 'phone',
         type: 'tel',
         value: '71234567890',
+				
         autocomplete: 'phone',
         pattern: ValidationRules.phone,
-        events: {
-          blur: () => {
-            this._checkForm();
-          },
-        },
       },
       error: 'от 10 до 15 цифр',
-    });
-
-    this.children.settingsLink = new Link({
-			to:'#',
-      text: 'Edit Profile',
-      events: {
-        click: (e) => {
-          e.preventDefault();
-					Router.go('/settings');
-        },
-      },
-    });
-
-    this.children.changePasswordLink = new Link({
-      to: 'page500',
-      text: 'Change password',
-      events: {
-        click: (e) => {
-          e.preventDefault();
-					Router.go('/changepassword');
-        },
-      },
-    });
-
-    this.children.logoutLink = new Link({
-      to: '/',
-      text: 'Log out',
-      events: {
-        click: () => {
-          AuthController.logout();
-        },
-      },
     });
 
     this.children.saveButton = new Button({
@@ -233,7 +160,20 @@ class BaseProfile extends Block {
         click: (e: Event) => {
           e.preventDefault();
           this.logFormData();
-          (this.children.saveButton as Button).setProps({ label: 'Сохранить' });
+
+					if(this.formData && this.formIsValid){
+						const data = Object.fromEntries(this.formData.entries());
+						user
+						.update(data as unknown as IUserData)
+						.then(()=>{
+							if (this.formIsValid) {
+								(this.children.saveButton as Button).update();
+								(this.children.saveButton as Button).setProps({ label: 'Saved!' });
+
+								setTimeout(function(){Router.go('/profile')}, 1000);
+							}
+						});
+					}
         },
       },
     });
@@ -264,7 +204,8 @@ class BaseProfile extends Block {
 }
 
 function mapStateToProps(state: State) {
+	// console.log(state.user);
   return { ...state.user };
 }
 
-export const Profile = withStore(mapStateToProps)(BaseProfile);
+export const Settings = withStore(mapStateToProps)(BaseSettings);

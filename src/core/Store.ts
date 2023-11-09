@@ -22,10 +22,14 @@ class Store extends EventBus {
   set(path: string, value: unknown) {
     set(this.state, path, value);
 
-    console.log(this.state);
+    // console.log(this.state);
 
-    this.emit(StorageEvent.UpdateState, this.state);
+    this.update();
   }
+
+	update(){
+		this.emit(StorageEvent.UpdateState, this.state);
+	}
 }
 
 const store = new Store();
@@ -35,9 +39,8 @@ export function withStore(mapStateToProps: (state: State) => any) {
     return class extends Component {
       constructor(props: any) {
         super('',{ ...props, ...mapStateToProps(store.getState()) });
-  
         store.on(StorageEvent.UpdateState, () => {
-          const propsFromState = mapStateToProps(store.getState());
+					const propsFromState = mapStateToProps(store.getState());
           this.setProps(propsFromState);
         });
       }

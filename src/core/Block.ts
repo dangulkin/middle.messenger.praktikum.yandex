@@ -40,6 +40,7 @@ class Block<P extends Record<string, unknown> = any> {
     };
 
     this.children = children;
+		// console.log(props, 'is empty? : ', isEmpty(props))
     this.props = this._makePropsProxy(props);
 
     this._tagName = tagName.split(".")[0] || tagName;
@@ -120,17 +121,20 @@ class Block<P extends Record<string, unknown> = any> {
 
   protected init() {}
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
   }
 
   // Может переопределять пользователь
-  protected componentDidMount() {}
+  protected componentDidMount() {
+		
+	}
 
   public dispatchComponentDidMount() {
+		//console.log('Block mount');
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-		Object.values(this.children).forEach(child => (child as Block).dispatchComponentDidMount());
+		// Object.values(this.children).forEach(child => (child as Block).dispatchComponentDidMount());
   }
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
@@ -145,15 +149,18 @@ class Block<P extends Record<string, unknown> = any> {
   }
 
   setProps = (nextProps: P) => {
+		
     if (!nextProps) {
       return;
     }
-
+		
     Object.assign(this._meta.oldProps, this.props);
     Object.assign(this.props, nextProps);
     Object.entries(this.props).forEach(([key, value]) => {
       this.setAttribute(key, value as string);
     });
+
+		this.eventBus().emit(Block.EVENTS.FLOW_CDU, this._meta.oldProps, nextProps);
   };
 
   get element() {
@@ -165,14 +172,20 @@ class Block<P extends Record<string, unknown> = any> {
     this.setAttribute("class", this._className);
   }
 
-  setAttribute = (attr: string, value: unknown) => {
+  setAttribute = (attr: string, value: string) => {
+		if (attr == 'class'){
+			console.log(this.getContent());
+			this.getContent()!.classList.add(value);
+			return;
+		}
+
     if (typeof value === "boolean") {
       if (value) 
 				this.getContent()!.setAttribute(attr, "");
       else 
 				this.getContent()!.removeAttribute(attr);
     } else if (attr !== "events") {
-      this.getContent()!.setAttribute(attr, value as string);
+      this.getContent()!.setAttribute(attr, value);
     }
   };
 
@@ -273,7 +286,7 @@ class Block<P extends Record<string, unknown> = any> {
 
   _makePropsProxy(props: P) {
     // eslint-disable-next-line @typescript-eslint/no-this-alias
-    const self = this;
+    // const self = this;
 
     return new Proxy(props, {
       get(target, prop: string) {
@@ -281,11 +294,10 @@ class Block<P extends Record<string, unknown> = any> {
         return typeof value === "function" ? value.bind(target) : value;
       },
       set(target, prop, value) {
-        const oldTarget = { ...target };
+        // const oldTarget = { ...target };
 
         target[prop as keyof P] = value;
 				
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
       deleteProperty() {
@@ -297,7 +309,9 @@ class Block<P extends Record<string, unknown> = any> {
   _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     const el = document.createElement(tagName);
-    if (this._className) el.className = this._className;
+    if (this._className) {
+			el.classList.add(this._className);
+		}
     return el;
   }
 

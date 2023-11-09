@@ -8,6 +8,7 @@ import Block from '../../core/Block';
 import {ValidationRules} from '../../utils/validationrules';
 import AuthController from '../../controllers/AuthController';
 import { ISignInData } from '../../api/AuthAPI';
+import Router from '../../core/Router';
 
 
 export class SignIn extends Block {
@@ -28,13 +29,6 @@ export class SignIn extends Block {
 				required: true,
 				autocomplete: 'username',
 				pattern: ValidationRules.login,
-				events: {
-					focus: () => {},
-					blur: () => {
-						if(this.formIsValid)
-							(this.children.submit as Button).updateButton('on');
-					},
-				},
 			},
 			error: 'от 3 до 20 символов, латиница, может содержать цифры'
 		});
@@ -51,13 +45,6 @@ export class SignIn extends Block {
 				required: true,
 				autocomplete: 'current_password',
 				pattern: ValidationRules.password,
-				events: {
-					focus: () => {},
-					blur: () => {
-						if(this.formIsValid)
-							(this.children.submit as Button).updateButton('on');
-					},
-				}
 			},
 			error: 'от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра'
 		});
@@ -70,21 +57,6 @@ export class SignIn extends Block {
 					click: (e:Event) => {
 						e.preventDefault();
 
-						// const values = Object
-						// .values(this.children)
-						// .filter(child => child instanceof Field)
-						// .map((child) => ([((child as Field).children.input as Input).getName(), ((child as Field).children.input as Input).getValue()]))
-
-						// const data0 = Object.fromEntries(values);
-						// console.log(data0);
-
-						// const data1: ISignInData = {
-						// 	login: this.formData?.get('login') as string,
-						// 	password: this.formData?.get('password') as string,
-						// };
-
-						// AuthController.signin(data1);
-
 						if(this.formData){
 							const data = Object.fromEntries(this.formData.entries());
 							AuthController.signin(data as unknown as ISignInData);
@@ -93,24 +65,18 @@ export class SignIn extends Block {
 						}
 						
 						this.logFormData();
-						//window.location.href='/chats';
 					}
 				}
 		});
 
 		this.children.signUpLink = new Link({
-				to: '/signup',
+				to:'#',
 				text: 'Sign Up',
 				class: 'signup-link',
 				events: {
-					click: () => {
-						if(this.formData){
-							const data = Object.fromEntries(this.formData.entries());
-							AuthController.signin(data as unknown as ISignInData);
-						}else{
-							console.log('No form data');
-						}
-						// e.preventDefault();
+					click: (e) => {
+						e.preventDefault();
+						Router.go('/signup');
 					}
 				}
 		});

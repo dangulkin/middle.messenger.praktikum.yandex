@@ -1,7 +1,7 @@
 import Block from '../../core/Block';
 import tmpl from './chat.tmpl';
 
-interface ChatProps {
+interface ChatItemProps {
   chatname: string,
   text: string,
   unread: number,
@@ -10,8 +10,8 @@ interface ChatProps {
   };
 }
 
-export class Chat extends Block {
-  constructor(props: ChatProps) {
+export class ChatItem extends Block {
+  constructor(props: ChatItemProps) {
     super('div.chat', props);
   }
 

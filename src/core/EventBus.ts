@@ -14,6 +14,7 @@ export class EventBus<Events extends EventList = EventList> {
   }
 
   public emit<K extends keyof Events>(event: K, ...args: Events[K]): void {
+		// console.log(event);
     this.listeners[event]?.forEach((listener) => listener(...args));
   }
 }

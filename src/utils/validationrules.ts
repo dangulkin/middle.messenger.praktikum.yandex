@@ -4,6 +4,6 @@ export enum ValidationRules{
 	login = '([A-Za-z_0-9\\-]+){3,20}',
 	email = '^\\S+@\\S+$',
 	password = '(?=.*[A-Z])(?=.*[0-9])[A-Za-z0-9_]{8,40}',
-	phone = '^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$',
+	phone = '^.+$',
 	message = '.+',
 }

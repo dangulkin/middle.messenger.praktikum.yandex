@@ -11,7 +11,6 @@ export const tmpl = `
 							{{{changeAvatar}}}
 						</div>
 					</div>
-					<p class='user-name'>{{first_name}}</p>
 				</div>
 				<form class='form'>
 					<div class='user-data'>
@@ -22,12 +21,8 @@ export const tmpl = `
 						{{{displayName}}}
 						{{{phone}}}
 					</div>
+					{{{saveButton}}}
 				</form>
-				<div class='profile-settings'>
-					<div class='change-data'>{{{settingsLink}}}</div>
-					<div class='change-password'>{{{changePasswordLink}}}</div>
-					<div class='logout'>{{{logoutLink}}}</div>
-				</div>
 			</div>
 		</div>
 `

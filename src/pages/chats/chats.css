@@ -161,7 +161,7 @@
 	margin: 0;
 }
 
-.chat-window-wrapper .messages-container{
+.chat-window-wrapper .feed{
 	display: flex;
 	flex-direction: column;
 }
@@ -199,6 +199,7 @@
 }
 
 .chat-window-wrapper .message-send-button {
+	border-radius: 50%;
 	width: 28px;
 	height: 28px;
 	flex-shrink: 0;

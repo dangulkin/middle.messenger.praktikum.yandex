@@ -1,18 +1,12 @@
-export enum Method {
-  Get = 'Get',
-  Post = 'Post',
-  Put = 'Put',
-  Patch = 'Patch',
-  Delete = 'Delete'
-}
 
+import { METHODS, ROOT } from './constants';
 type Options = {
-  method: Method;
+  method: METHODS;
   data?: unknown;
 };
 
 export class HTTPTransport {
-  static API_URL = 'https://ya-praktikum.tech/api/v2';
+  static API_URL = ROOT;
   protected endpoint: string;
 
   constructor(endpoint: string) {
@@ -25,32 +19,32 @@ export class HTTPTransport {
 
   public post<Response = void>(path: string, data?: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: Method.Post,
+      method: METHODS.POST,
       data,
     });
   }
 
   public put<Response = void>(path: string, data: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: Method.Put,
+      method: METHODS.PUT,
       data,
     });
   }
 
   public patch<Response = void>(path: string, data: unknown): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: Method.Patch,
+      method: METHODS.PATCH,
       data,
     });
   }
 
   public delete<Response>(path: string): Promise<Response> {
     return this.request<Response>(this.endpoint + path, {
-      method: Method.Delete,
+      method: METHODS.DELETE,
     });
   }
 
-  private request<Response>(url: string, options: Options = {method: Method.Get}): Promise<Response> {
+  private request<Response>(url: string, options: Options = {method: METHODS.GET}): Promise<Response> {
     const {method, data} = options;
 
     return new Promise((resolve, reject) => {
@@ -75,7 +69,7 @@ export class HTTPTransport {
       xhr.withCredentials = true;
       xhr.responseType = 'json';
 
-      if (method === Method.Get || !data) {
+      if (method === METHODS.GET || !data) {
         xhr.send();
       } else if(data instanceof FormData){
 				console.log('data is FormData');

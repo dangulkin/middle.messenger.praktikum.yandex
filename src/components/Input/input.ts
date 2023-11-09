@@ -10,6 +10,7 @@ export interface InputProps {
 		accept?: string,
 		autocomplete?: string,
 		required?: boolean,
+		disabled?: boolean,
 		events?:{
 			focus?: (e:Event) => void,
 			blur?: (e:Event) => void,
@@ -37,7 +38,9 @@ export class Input extends Block {
   }
 
 	init(){
-		this.setProps(this.props);
+		Object.entries(this.props).forEach(([key, value]) => {
+      this.setAttribute(key, value as string);
+    });
 	}
 
   render() {

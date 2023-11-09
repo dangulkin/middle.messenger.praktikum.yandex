@@ -3,8 +3,11 @@ import Block from '../../core/Block';
 import tmpl from './chats.tmpl';
 import { Link } from '../../components/Link/link';
 import { Input } from '../../components/Input/input';
-import { Chat } from '../../components/Chat/chat';
+import { ChatItem } from '../../components/Chat/chat';
 import { ValidationRules } from '../../utils/validationrules';
+import { Button } from '../../components/Button/button';
+// import { Message } from '../../components/Message/message';
+import { Feed } from '../../components/Feed/feed';
 
 type ChatProps = {
   chatname: string;
@@ -71,8 +74,8 @@ constructor() {
 			}
 			}];
 
-			this.children.chatlist = this.props.chats.map((chat:ChatProps) => {
-					return new Chat(chat)
+			this.children.chatlist = this.props.chats.map((props:ChatProps) => {
+					return new ChatItem(props)
 			});
 
 			this.children.profileLink = new Link({
@@ -94,21 +97,34 @@ constructor() {
 				}
 			});
 			
-			this.children.message = new Input({
+			this.children.messageInput = new Input({
 				name: 'message',
 				type: 'text',
-				value: 'Message',
 				pattern: ValidationRules.message,
 				events: {
-					focus: () => { 
-						(this.children.message as Block).setProps({value: ''});	
-					},
 					blur: () => {
-						console.log('message is valid?',(this.children.message as Input).isValid);
+						console.log('message is valid?',(this.children.messageInput as Input).isValid);
 					}
 				}
 			});
+
+			this.children.sendButton = new Button({
+				class: 'message-send-button',
+				events: {
+					click: () => {
+
+					}
+				}
+			});
+
+			this.children.feed = new Feed();
 	}
+
+	// private _createNewMessage (){
+	// 	this.children.message = new Message({
+	// 		text: (this.children.messageInput as Input).getValue(),
+	// 	});
+	// }
 
 	render() {
 		return this.compile(tmpl, this.props);

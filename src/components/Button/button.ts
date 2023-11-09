@@ -4,7 +4,7 @@ import './button.module.css'
 interface ButtonProps {
 	name?: string,
 	type?: string,
-  label: string,
+  label?: string,
 	class?: string,
 	disabled?: boolean,
   events?: {
@@ -13,8 +13,11 @@ interface ButtonProps {
 }
 
 export class Button extends Block {
+	private _itsOn : boolean;
+
   constructor(props: ButtonProps) {
     super('button', props);
+		this._itsOn = false;
   }
 
 	init(){
@@ -22,11 +25,19 @@ export class Button extends Block {
 	}
 
 	update(status:string = ''){
-		if(status)
+		if(status === 'on'){
+			this._itsOn = true;
 			this.setProps({disabled: false});
-		else 
+		}
+		else {
+			this._itsOn = false;
 			this.setProps({disabled: true});
+		}
 
+	}
+
+	get isOn(){
+		return this._itsOn;
 	}
 
   render() {
