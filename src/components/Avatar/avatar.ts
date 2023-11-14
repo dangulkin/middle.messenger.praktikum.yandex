@@ -21,7 +21,6 @@ export class Avatar extends Block {
   }
 
 	init(){
-		// this.setProps(this.props);
 	}
 
   render() {

@@ -1,4 +1,5 @@
-import { AuthAPI, ISignInData, ISignUpData } from '../api/AuthAPI';
+import { AuthAPI } from '../api/AuthAPI';
+import { ISignInData, ISignUpData} from '../api/interfaces';
 import Router from '../core/Router';
 import store from '../core/Store';
 
@@ -44,7 +45,7 @@ class AuthController {
 		// eslint-disable-next-line no-useless-catch
 		try {
       const user = await this.api.getUser();
-			// console.log('fetch: ', user);
+
       store.set('user', user);
 
     } catch (error) {

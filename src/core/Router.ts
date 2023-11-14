@@ -25,8 +25,8 @@ class Route {
   constructor(
     private pathname: string,
     private readonly blockClass: typeof Block,
-    private readonly query: string) {
-  }
+    private readonly query: string
+	){}
 
   leave() {
     this.block = null;

@@ -14,7 +14,9 @@ export class Message extends Block {
 
 	init() {
 		const date = new Date();
-		this.props.time = date.getHours() + ':' + date.getMinutes();
+		const minutes = date.getMinutes().toString();
+		const hours = date.getHours().toString();
+		this.props.time = `${hours.padStart(2,'0')}:${minutes.padStart(2,'0')}`;
 		
 		Object.entries(this.props).forEach(([key, value]) => {
       this.setAttribute(key, value as string);

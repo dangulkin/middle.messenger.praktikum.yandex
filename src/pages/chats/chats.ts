@@ -3,81 +3,22 @@ import Block from '../../core/Block';
 import tmpl from './chats.tmpl';
 import { Link } from '../../components/Link/link';
 import { Input } from '../../components/Input/input';
-import { ChatItem } from '../../components/Chat/chat';
+import { Field } from '../../components/Field/field';
+import { ChatItem } from '../../components/ChatItem/chatItem';
 import { ValidationRules } from '../../utils/validationrules';
 import { Button } from '../../components/Button/button';
-// import { Message } from '../../components/Message/message';
-import { Feed } from '../../components/Feed/feed';
+import { Chat } from '../../components/Chat/chat';
+import { Popup } from '../../components/Popup/popup';
+import ChatController from '../../controllers/ChatController';
+import { IChatData } from '../../api/interfaces';
+import { withStore, State } from '../../core/Store';
 
-type ChatProps = {
-  chatname: string;
-  text: string;
-  unread: number;
-  events: {
-    click: () => void;
-  };
-};
-
-export class Chats extends Block {
+export class BaseChats extends Block {
 constructor() {
 		super('div.chat-window-wrapper', {});
 }
 
-	init(){
-		this.props.chats = [
-			{
-				chatname: 'Jack', 
-				text: 'Hi!',
-				unread: 1,
-				events: {
-					click: () => {}	
-				}
-			},
-			{
-				chatname: 'Alice', 
-				text: 'Изображение',
-				unread:0,
-				events: {
-					click: () => {}
-				}
-			},
-			{
-				chatname: 'Beou', 
-				text: 'Let\'s get drunk! 🍻',
-				unread:3,
-				events: {
-				click: () => {}
-				}
-			},
-			{
-				chatname: 'Йохан', 
-				text: 'Чо кого?',
-				unread:0,
-			events: {
-			click: () => {}
-			}
-			},
-			{
-				chatname: 'Анжела', 
-				text: 'Вечером всё в силе? 😏',
-				unread:0,
-			events: {
-			click: () => {}
-			}
-			},
-			{
-				chatname: 'Random guy from the job', 
-				text: 'HB dude! I\'m so happy knowing ya! You are my best buddy ever! Love you bro 💋',
-				unread:23,
-			events: {
-			click: () => {}
-			}
-			}];
-
-			this.children.chatlist = this.props.chats.map((props:ChatProps) => {
-					return new ChatItem(props)
-			});
-
+ init(){
 			this.children.profileLink = new Link({
 				to: '/profile',
 				class: 'goto-profile',
@@ -96,6 +37,8 @@ constructor() {
 					focus: () => {}
 				}
 			});
+
+			this.children.chat = new Chat({});
 			
 			this.children.messageInput = new Input({
 				name: 'message',
@@ -108,25 +51,96 @@ constructor() {
 				}
 			});
 
-			this.children.sendButton = new Button({
-				class: 'message-send-button',
+			this.children.createChat = new Button({
+				label: 'Create new chat',
 				events: {
 					click: () => {
-
+						const popup = (this.children.popup as Block);
+						popup.show();
 					}
 				}
 			});
 
-			this.children.feed = new Feed();
+			this.children.popup = new Popup({
+				label: 'Add new user',
+
+				field:{
+					label: {
+						text: 'Login',
+					},
+					input: {
+						type: 'text',
+						id: 'chatname',
+						placeholder: 'Enter user login',
+						pattern: ValidationRules.login,
+						required: true,
+					}
+				},
+
+				button:{
+					label: 'Add user',
+					events: {
+						click: () => {
+							const popup = (this.children.popup as Block);
+							ChatController.create((popup.children.field as Field).input.getValue());
+							popup.hide();
+						},
+					}
+				},
+
+				events:{
+					click: (e) => {
+						const popup = (this.children.popup as Block);
+						const target = e.target as HTMLElement;
+						if(target.className === 'popup'){
+							popup.hide();
+						}
+					}
+				}
+			});
+
+			this.children.sendButton = new Button({
+				class: 'message-send-button',
+				events: {
+					click: () => {
+						
+					}
+				}
+			});
+			ChatController.fetchChats();
 	}
 
-	// private _createNewMessage (){
-	// 	this.children.message = new Message({
-	// 		text: (this.children.messageInput as Input).getValue(),
-	// 	});
-	// }
+	protected componentDidMount(): void {
+		// ChatController.fetchChats();
+	}
+
+	protected componentDidUpdate() {
+		if(!ChatController.currentChat && this.props.chats.list.length)
+			ChatController.setCurrentChat(this.props.chats.list[0].id);
+
+		this.children.chat = new Chat({
+			...ChatController.currentChat,
+		});
+
+		this.children.chatlist = [];
+		this.children.chatlist = this.props.chats.list.map((props:IChatData) => {
+			return new ChatItem(props);
+		});
+
+		
+		return true;
+	}
 
 	render() {
 		return this.compile(tmpl, this.props);
 	}
 }
+
+function mapStateToProps(state: State) {
+  return {
+		user: state.user,
+		chats: state.chats
+	};
+}
+
+export const Chats = withStore(mapStateToProps)(BaseChats);

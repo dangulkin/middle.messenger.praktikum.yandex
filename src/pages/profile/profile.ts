@@ -7,9 +7,9 @@ import Block from '../../core/Block';
 import { Button } from '../../components/Button/button';
 import { ValidationRules } from '../../utils/validationrules';
 import AuthController from '../../controllers/AuthController';
+import AvatarController from '../../controllers/AvatarController';
 import { withStore, State } from '../../core/Store';
-import user from '../../api/UserAPI';
-import { RESOURCES } from '../../utils/http/constants';
+import { RESOURCES } from '../../utils/Transport/constants';
 import Router from '../../core/Router';
 
 class BaseProfile extends Block {
@@ -48,7 +48,7 @@ class BaseProfile extends Block {
 							const formData = new FormData();
 							formData.append('avatar', avatar);
 
-							user.setAvatar(formData);
+							AvatarController.setAvatar(formData);
 						}
 					},
 				},
@@ -240,7 +240,9 @@ class BaseProfile extends Block {
   }
 
 	protected componentDidMount(): void {
+		console.log('Profile fetch');
 		AuthController.fetchUser();
+		
 	}
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,18 +1,5 @@
 import { API } from './api';
-
-export interface ISignUpData {
-  first_name: string;
-  second_name: string;
-  login: string;
-  email: string;
-  password: string;
-  phone: string;
-}
-
-export interface ISignInData {
-  login: string;
-  password: string;
-}
+import { ISignInData, ISignUpData} from './interfaces';
 
 export class AuthAPI extends API {
   constructor() {

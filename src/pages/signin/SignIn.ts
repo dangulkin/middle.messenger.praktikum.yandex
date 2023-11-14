@@ -7,7 +7,7 @@ import { Button } from '../../components/Button/button';
 import Block from '../../core/Block';
 import {ValidationRules} from '../../utils/validationrules';
 import AuthController from '../../controllers/AuthController';
-import { ISignInData } from '../../api/AuthAPI';
+import { ISignInData } from '../../api/interfaces';
 import Router from '../../core/Router';
 
 

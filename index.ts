@@ -35,13 +35,13 @@ window.addEventListener('DOMContentLoaded', async () => {
   }
 
   try {
-
+		console.log('Index fetch');
     await AuthController.fetchUser();
 
     router.start();
 
     if (!isProtectedRoute) {
-      router.go(Routes.Profile);
+      router.go(Routes.Chats);
     }
   } catch (e) {
     console.log(e, 'Here')

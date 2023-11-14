@@ -142,7 +142,6 @@ class Block<P extends Record<string, unknown> = any> {
     if (response) this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  // Может переопределять пользователь, необязательно трогать
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected componentDidUpdate(_oldProps: P, _newProps: P) {
     return true;
@@ -157,7 +156,8 @@ class Block<P extends Record<string, unknown> = any> {
     Object.assign(this._meta.oldProps, this.props);
     Object.assign(this.props, nextProps);
     Object.entries(this.props).forEach(([key, value]) => {
-      this.setAttribute(key, value as string);
+      if(typeof value !== 'object') 
+				this.setAttribute(key, value as string);
     });
 
 		this.eventBus().emit(Block.EVENTS.FLOW_CDU, this._meta.oldProps, nextProps);
@@ -171,11 +171,10 @@ class Block<P extends Record<string, unknown> = any> {
     this._className = name;
     this.setAttribute("class", this._className);
   }
-
+	
   setAttribute = (attr: string, value: string) => {
 		if (attr == 'class'){
-			console.log(this.getContent());
-			this.getContent()!.classList.add(value);
+			this.addClass(value);
 			return;
 		}
 
@@ -316,12 +315,20 @@ class Block<P extends Record<string, unknown> = any> {
   }
 
   show() {
-    if (this._element) this._element.style.display = "block";
+    if (this._element) this._element.style.visibility = "visible";
   }
 
   hide() {
-    if (this._element) this._element.style.display = "none";
+    if (this._element) this._element.style.visibility = "hidden";
   }
+
+	addClass (value: string){
+		this.getContent()!.classList.add(value);
+	}
+	
+	removeClass (value: string){
+		this.getContent()!.classList.remove(value);
+	}
 }
 
 export default Block;

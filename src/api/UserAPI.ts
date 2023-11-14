@@ -1,27 +1,12 @@
 import { API } from './api';
-
-export interface IUserData {
-  id: number;
-  first_name: string;
-  second_name: string;
-  display_name: string;
-  login: string;
-  email: string;
-  phone: string;
-  avatar: string;
-}
-
-export interface IPasswordData {
-  oldPassword: string;
-  newPassword: string;
-}
+import { IUserData, IPasswordData} from './interfaces';
 
 export class UserAPI extends API {
   constructor() {
     super('/user');
   }
 
-  setAvatar(data: FormData) {
+  uploadAvatar(data: FormData): Promise<Response> {
     return this.http.put('/profile/avatar', data);
   }
 

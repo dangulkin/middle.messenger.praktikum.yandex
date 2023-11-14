@@ -6,7 +6,7 @@ import Block from '../../core/Block';
 import { ValidationRules } from '../../utils/validationrules';
 import { Button } from '../../components/Button/button';
 import AuthController from '../../controllers/AuthController';
-import { ISignUpData } from 'src/api/AuthAPI';
+import { ISignUpData } from '../../api/interfaces';
 
 export class SignUp extends Block {
   constructor() {

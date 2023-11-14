@@ -4,13 +4,13 @@ import { Input } from '../../components/Input/input';
 import tmpl from './field.tmpl';
 import { InputProps } from '../../components/Input/input';
 
-interface FieldProps {
-	label: {
+export interface FieldProps {
+	label?: {
 		name?: string,
 		text: string,
 		for?: string
 	},
-	input: InputProps,
+	input?: InputProps,
 	error?: string
 }
 

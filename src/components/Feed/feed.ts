@@ -13,7 +13,7 @@ export class Feed extends Block {
 
 	init() {
 		const date = new Date();
-		this.props.date = new Intl.DateTimeFormat("en-US", {day: 'numeric', month: 'long'}).format(date);
+		this.props.date = new Intl.DateTimeFormat("en-EN", {day: 'numeric', month: 'long'}).format(date);
 		this.props.messages = [
 			{
 				text: `Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой. 

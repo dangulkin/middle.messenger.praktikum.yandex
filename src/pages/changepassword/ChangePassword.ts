@@ -8,8 +8,9 @@ import { Button } from '../../components/Button/button';
 import { ValidationRules } from '../../utils/validationrules';
 import AuthController from '../../controllers/AuthController';
 import { withStore, State } from '../../core/Store';
-import user, { IPasswordData } from '../../api/UserAPI';
-import { RESOURCES } from '../../utils/http/constants';
+import user from '../../api/UserAPI';
+import { IPasswordData } from '../../api/interfaces';
+import { RESOURCES } from '../../utils/Transport/constants';
 import Router from '../../core/Router';
 
 export class BaseChangePassword extends Block {

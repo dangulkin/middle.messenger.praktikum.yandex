@@ -1,7 +1,7 @@
 import Block from '../../core/Block';
 import './button.module.css'
 
-interface ButtonProps {
+export interface ButtonProps {
 	name?: string,
 	type?: string,
   label?: string,
