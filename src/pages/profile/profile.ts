@@ -1,5 +1,5 @@
 import './Profile.css';
-import { tmpl } from './Profile.tmpl';
+import { tmpl } from './profile.tmpl';
 import { Field } from '../../components/Field/field';
 import { Link } from '../../components/Link/link';
 import { Avatar } from '../../components/Avatar/avatar';
