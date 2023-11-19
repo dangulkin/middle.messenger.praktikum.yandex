@@ -19,7 +19,6 @@
 
 .message.byme {
 	align-self: flex-end;
-	/* min-width: 120px; */
 	border-radius: 12px 12px 0;
 	background-color: var(--darker-light-grey);
 }
