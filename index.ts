@@ -1,11 +1,11 @@
-import { Profile } from './pages/profile/Profile';
-import { Settings } from './pages/settings/Settings';
-import { ChangePassword } from './pages/changepassword/ChangePassword';
-import { SignUp } from './pages/signup/SignUp';
-import { SignIn } from './pages/signin/SignIn';
-import { Chats } from './pages/chats/chats';
-import router from './core/Router';
-import AuthController from './controllers/AuthController';
+import { Profile } from 'src/pages/profile/profile';
+import { Settings } from 'src/pages/settings/Settings';
+import { ChangePassword } from 'src/pages/changepassword/ChangePassword';
+import { SignUp } from 'src/pages/signup/SignUp';
+import { SignIn } from 'src/pages/signin/SignIn';
+import { Chats } from 'src/pages/chats/chats';
+import router from 'src/core/Router';
+import AuthController from 'src/controllers/AuthController';
 
 enum Routes {
   Index = '/',
