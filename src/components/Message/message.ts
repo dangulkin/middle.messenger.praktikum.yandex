@@ -1,5 +1,6 @@
 import tmpl from './message.tmpl';
 import Block from '../../core/Block';
+// import { IMessageData } from '../../api/interfaces';
 
 export interface MessageProps {
 	text?: string,

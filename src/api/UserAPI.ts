@@ -17,6 +17,10 @@ export class UserAPI extends API {
 	changePassword(data: IPasswordData) {
 		return this.http.put('/password', data);
 	}
+
+	search(login: string):Promise<IUserData[]> {
+    return this.http.post('/search', { login })
+  }
 }
 
 const user = new UserAPI();

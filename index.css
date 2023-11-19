@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter');
 
 :root{
+	--background-color: white;
 	--light-grey-color: #EAEAEA;
 	--darker-light-grey: #E4EDFD;
 	--off-white: #FBFBFB;

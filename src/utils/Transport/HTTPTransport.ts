@@ -1,12 +1,12 @@
 
-import { METHODS, ROOT } from './constants';
+import { METHODS, API_URL } from './constants';
 type Options = {
   method: METHODS;
   data?: unknown;
 };
 
 export class HTTPTransport {
-  static API_URL = ROOT;
+  static API_URL = API_URL;
   protected endpoint: string;
 
   constructor(endpoint: string) {

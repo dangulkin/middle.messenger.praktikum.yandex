@@ -2,15 +2,7 @@
 import { EventBus } from '../core/EventBus';
 import set from '../utils/set';
 import Block from '../core/Block.ts';
-import { IUserData, IChatData } from '../api/interfaces';
-
-export interface State {
-  user?: IUserData;
-	chats?: {
-		list: IChatData[],
-		currentChatId: number
-	}
-}
+import { State } from '../api/interfaces';
 
 enum StorageEvent {
   UpdateState = 'update',

@@ -7,9 +7,9 @@ import Block from '../../core/Block';
 import { Button } from '../../components/Button/button';
 import { ValidationRules } from '../../utils/validationrules';
 import AuthController from '../../controllers/AuthController';
-import { withStore, State } from '../../core/Store';
+import { withStore } from '../../core/Store';
 import user from '../../api/UserAPI';
-import { IPasswordData } from '../../api/interfaces';
+import { IPasswordData, State } from '../../api/interfaces';
 import { RESOURCES } from '../../utils/Transport/constants';
 import Router from '../../core/Router';
 

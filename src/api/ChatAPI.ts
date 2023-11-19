@@ -21,12 +21,12 @@ export class ChatAPI extends API{
     return this.http.get(`${chatId}/users`)
   }
 
-  addUsers(chatId: number, users: number[]) {
-    return this.http.put(`/users`, { data: { chatId, users } })
+  addUser(chatId: number, user: number) {
+    return this.http.put(`/users`, { chatId, user })
   }
 
-  deleteUsers(chatId: number, users: number[]) {
-    return this.http.delete(`/users`, { data: { chatId, users } })
+  deleteUser(chatId: number, user: number) {
+    return this.http.delete(`/users`, { chatId, user })
   }
 
   async token(chatId: number) {

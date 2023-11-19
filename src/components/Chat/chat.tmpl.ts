@@ -9,13 +9,13 @@ export default `
 			</div>
 
 			<h3 class='chat-name'>
-				{{title}}
+				{{chat.title}}
 			</h3>
 
 		</div>
 
 		{{{ menu }}}
-
+		{{{ tooltip }}}
 	</div>
 
 	{{{ feed }}}

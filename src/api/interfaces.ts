@@ -43,3 +43,20 @@ export interface IChats {
 	list: IChatData[],
 	currentChatId: number,
 }
+
+export interface IMessageData {
+	id: string,
+	time: string,
+	user_id: string,
+	content: string,
+	type: string
+}
+
+export interface State {
+  user?: IUserData,
+	chats?: {
+		list: IChatData[],
+		currentChatId: number
+	},
+	messages?: IMessageData[]
+}

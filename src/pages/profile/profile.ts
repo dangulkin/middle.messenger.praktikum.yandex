@@ -8,7 +8,8 @@ import { Button } from '../../components/Button/button';
 import { ValidationRules } from '../../utils/validationrules';
 import AuthController from '../../controllers/AuthController';
 import AvatarController from '../../controllers/AvatarController';
-import { withStore, State } from '../../core/Store';
+import { withStore } from '../../core/Store';
+import { State } from '../../api/interfaces';
 import { RESOURCES } from '../../utils/Transport/constants';
 import Router from '../../core/Router';
 

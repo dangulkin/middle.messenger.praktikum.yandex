@@ -20,5 +20,7 @@ export default `
 	</div>
 </div>
 
-{{{ popup }}}
+{{{ popupChat }}}
+{{{ popupUser }}}
+{{{ popupDeleteUser }}}
 `

@@ -22,7 +22,7 @@ class AuthController {
     try {
       await this.api.signup(data);
 
-      Router.go('/signup');
+      Router.go('/chats');
     } catch (error) {
       console.log(error);
     }

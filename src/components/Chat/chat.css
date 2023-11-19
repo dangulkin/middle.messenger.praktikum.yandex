@@ -10,6 +10,10 @@
 	cursor: pointer;
 }
 
+.chat-window-wrapper .chat-menu:hover{
+	background-color: var(--light-grey);
+}
+
 .profile-image {
 	width: 34px;
 	height: 34px;
@@ -20,11 +24,13 @@
 }
 
 .chat-window-wrapper .chat-header {
+	position: sticky;
+	top:0;
+	background-color: var(--background-color);
 	display: flex;
 	align-items: center;
-	padding-bottom: 12px;
+	padding: 12px 0;
 	border-top: none;
-	padding-top:0;
 	border-bottom: 1px solid var(--border-color);
 	width: 100%;
 }

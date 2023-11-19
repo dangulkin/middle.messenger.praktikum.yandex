@@ -10,8 +10,9 @@ import { Button } from '../../components/Button/button';
 import { Chat } from '../../components/Chat/chat';
 import { Popup } from '../../components/Popup/popup';
 import ChatController from '../../controllers/ChatController';
-import { IChatData } from '../../api/interfaces';
-import { withStore, State } from '../../core/Store';
+import MessageController from '../../controllers/MessageController';
+import { IChatData, State } from '../../api/interfaces';
+import { withStore } from '../../core/Store';
 
 export class BaseChats extends Block {
 constructor() {
@@ -34,12 +35,12 @@ constructor() {
 				value: 'Search',
 				pattern: ValidationRules.message,
 				events: {
-					focus: () => {}
+					focus: () => {
+
+					}
 				}
 			});
 
-			this.children.chat = new Chat({});
-			
 			this.children.messageInput = new Input({
 				name: 'message',
 				type: 'text',
@@ -51,17 +52,63 @@ constructor() {
 				}
 			});
 
+			this.children.chat = new Chat({});
+			(this.children.chat.children.tooltip as Block).setProps({
+				events:{
+					click: (e:Event) => {
+						switch((e.target as HTMLElement).className){
+							case 'add-user':
+								console.log('Add user');
+								(this.children.popupUser as Block).show();
+								break;
+							case 'delete-user':
+								console.log('Delete user');
+								(this.children.popupDeleteUser as Block).show();
+								break;
+						}
+					}
+				}
+			});
+
 			this.children.createChat = new Button({
 				label: 'Create new chat',
 				events: {
 					click: () => {
-						const popup = (this.children.popup as Block);
+						const popup = (this.children.popupChat as Block);
 						popup.show();
 					}
 				}
 			});
 
-			this.children.popup = new Popup({
+			this.children.popupChat = new Popup({
+				label: 'Create new chat',
+
+				field:{
+					label: {
+						text: 'Name',
+					},
+					input: {
+						type: 'text',
+						id: 'chatname',
+						placeholder: 'Enter chat name',
+						pattern: ValidationRules.login,
+						required: true,
+					}
+				},
+
+				button:{
+					label: 'Save',
+					events: {
+						click: () => {
+							const popup = (this.children.popupChat as Block);
+							ChatController.create((popup.children.field as Field).input.getValue());
+							popup.hide();
+						},
+					}
+				},
+			});
+
+			this.children.popupUser = new Popup({
 				label: 'Add new user',
 
 				field:{
@@ -70,7 +117,7 @@ constructor() {
 					},
 					input: {
 						type: 'text',
-						id: 'chatname',
+						id: 'username',
 						placeholder: 'Enter user login',
 						pattern: ValidationRules.login,
 						required: true,
@@ -78,48 +125,72 @@ constructor() {
 				},
 
 				button:{
-					label: 'Add user',
+					label: 'Add',
 					events: {
-						click: () => {
-							const popup = (this.children.popup as Block);
-							ChatController.create((popup.children.field as Field).input.getValue());
+						click: async () => {
+							const popup = (this.children.popupUser as Block);
 							popup.hide();
+							const chatId = ChatController.currentChat?.id as number;
+							console.log(chatId);
+							await ChatController.addUser(chatId, (popup.children.field as Field).input.getValue());
 						},
 					}
 				},
+			});
 
-				events:{
-					click: (e) => {
-						const popup = (this.children.popup as Block);
-						const target = e.target as HTMLElement;
-						if(target.className === 'popup'){
-							popup.hide();
-						}
+			this.children.popupDeleteUser = new Popup({
+				label: 'Delete user',
+
+				field:{
+					label: {
+						text: 'Login',
+					},
+					input: {
+						type: 'text',
+						id: 'username-delete',
+						placeholder: 'Enter user login',
+						pattern: ValidationRules.login,
+						required: true,
 					}
-				}
+				},
+
+				button:{
+					label: 'Delete',
+					events: {
+						click: async () => {
+							const popup = (this.children.popupDeleteUser as Block);
+							popup.hide();
+							const chatId = ChatController.currentChat?.id as number;
+							console.log(chatId);
+							await ChatController.deleteUser(chatId, (popup.children.field as Field).input.getValue());
+						},
+					}
+				},
 			});
 
 			this.children.sendButton = new Button({
 				class: 'message-send-button',
 				events: {
 					click: () => {
-						
+						const input = this.children.messageInput as Input
+						MessageController.send(ChatController.currentChat?.id as number, input.getValue());
 					}
 				}
 			});
+
 			ChatController.fetchChats();
 	}
 
 	protected componentDidMount(): void {
-		// ChatController.fetchChats();
+		console.log('CHATs MOUNT');
 	}
 
 	protected componentDidUpdate() {
 		if(!ChatController.currentChat && this.props.chats.list.length)
 			ChatController.setCurrentChat(this.props.chats.list[0].id);
 
-		this.children.chat = new Chat({
-			...ChatController.currentChat,
+		(this.children.chat as Block).setProps({
+			chat: ChatController.currentChat,
 		});
 
 		this.children.chatlist = [];
@@ -137,6 +208,7 @@ constructor() {
 }
 
 function mapStateToProps(state: State) {
+	// console.log(state)
   return {
 		user: state.user,
 		chats: state.chats

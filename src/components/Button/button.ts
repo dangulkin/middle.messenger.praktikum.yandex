@@ -1,5 +1,6 @@
 import Block from '../../core/Block';
-import './button.module.css'
+import './button.module.css';
+import tmpl from './button.tmpl.ts';
 
 export interface ButtonProps {
 	name?: string,
@@ -7,6 +8,7 @@ export interface ButtonProps {
   label?: string,
 	class?: string,
 	disabled?: boolean,
+	icon?: string,
   events?: {
     click: (e:Event) => void;
   };
@@ -16,7 +18,7 @@ export class Button extends Block {
 	private _itsOn : boolean;
 
   constructor(props: ButtonProps) {
-    super('button', props);
+    super('div', props);
 		this._itsOn = false;
   }
 
@@ -41,6 +43,6 @@ export class Button extends Block {
 	}
 
   render() {
-    return this.compile('{{label}}', this.props);
+    return this.compile(tmpl, this.props);
   }
 }

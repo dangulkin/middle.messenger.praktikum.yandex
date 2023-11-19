@@ -21,7 +21,6 @@ class Block<P extends Record<string, unknown> = any> {
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
 	private _form: HTMLFormElement | null = null;
-	// private _formData: FormData | null = null;
 
   private _meta: { oldProps: P };
 
@@ -40,7 +39,6 @@ class Block<P extends Record<string, unknown> = any> {
     };
 
     this.children = children;
-		// console.log(props, 'is empty? : ', isEmpty(props))
     this.props = this._makePropsProxy(props);
 
     this._tagName = tagName.split(".")[0] || tagName;
@@ -156,7 +154,7 @@ class Block<P extends Record<string, unknown> = any> {
     Object.assign(this._meta.oldProps, this.props);
     Object.assign(this.props, nextProps);
     Object.entries(this.props).forEach(([key, value]) => {
-      if(typeof value !== 'object') 
+      if(this._element?.hasAttribute(key) && typeof value !== 'object') 
 				this.setAttribute(key, value as string);
     });
 
@@ -173,19 +171,21 @@ class Block<P extends Record<string, unknown> = any> {
   }
 	
   setAttribute = (attr: string, value: string) => {
-		if (attr == 'class'){
-			this.addClass(value);
-			return;
-		}
+		// if(this._element?.hasAttribute(attr)){
+			if (attr == 'class'){
+				this.addClass(value);
+				return;
+			}
 
-    if (typeof value === "boolean") {
-      if (value) 
-				this.getContent()!.setAttribute(attr, "");
-      else 
-				this.getContent()!.removeAttribute(attr);
-    } else if (attr !== "events") {
-      this.getContent()!.setAttribute(attr, value);
-    }
+			if (typeof value === "boolean") {
+				if (value) 
+					this.getContent()!.setAttribute(attr, "");
+				else 
+					this.getContent()!.removeAttribute(attr);	
+			} else if (attr !== "events") {
+				this.getContent()!.setAttribute(attr, value);
+			}
+		// }
   };
 
   protected compile(template: string, context: object) {

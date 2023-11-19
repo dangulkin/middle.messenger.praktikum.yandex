@@ -28,6 +28,15 @@ export class Popup extends Block {
 			...this.props.button
 		});
 
+		this.props.events = {
+				click: (e:Event) => {
+					const target = e.target as HTMLElement;
+					if(target.className === 'popup'){
+						this.hide();
+					}
+			}
+		}
+
 		this.hide();
 	}
 	
