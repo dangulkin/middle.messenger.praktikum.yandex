@@ -1,4 +1,4 @@
-import './Profile.css';
+import './profile.css';
 import { tmpl } from './profile.tmpl';
 import { Field } from '../../components/Field/field';
 import { Link } from '../../components/Link/link';
