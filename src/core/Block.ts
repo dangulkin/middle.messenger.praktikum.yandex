@@ -3,7 +3,7 @@
 import Handlebars from "handlebars";
 import { EventBus } from "./EventBus";
 import { nanoid } from "nanoid";
-import isEmpty from '../utils/isempty.'
+import { isEmpty } from '../utils/isempty'
 
 class Block<P extends Record<string, unknown> = any> {
   static EVENTS = {
