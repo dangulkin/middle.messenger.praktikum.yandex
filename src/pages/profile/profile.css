@@ -72,6 +72,7 @@
 }
 
 .userpic{
+	
 	position: relative;
 	width: 130px;
 	height: 130px;
@@ -132,11 +133,6 @@
 
 .profile-settings .logout .link a{
 	color:var(--danger-color);
-}
-
-.avatar{
-	object-fit: cover;
-	border-radius: 100%;
 }
 
 .userpic input{

@@ -1,4 +1,3 @@
-import './ChangePassword.css';
 import { tmpl } from './ChangePassword.tmpl';
 import { Field } from '../../components/Field/field';
 import { Link } from '../../components/Link/link';

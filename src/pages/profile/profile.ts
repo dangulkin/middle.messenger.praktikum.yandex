@@ -249,6 +249,7 @@ class BaseProfile extends Block {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	protected componentDidUpdate() {
 		console.log('\n\n\nComponent did update with new props:\n', {...this.props});
+		console.log(RESOURCES + this.props.avatar);
 		(this.children.avatar as Avatar).setProps({src:RESOURCES + this.props.avatar});
 		(this.children.email as Field).input.setProps({value:this.props.email});
 		(this.children.login as Field).input.setProps({value:this.props.login});
@@ -267,6 +268,7 @@ class BaseProfile extends Block {
 }
 
 function mapStateToProps(state: State) {
+	console.log({...state.user});
   return { ...state.user };
 }
 

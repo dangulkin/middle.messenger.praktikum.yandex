@@ -154,6 +154,8 @@ class Block<P extends Record<string, unknown> = any> {
     Object.assign(this._meta.oldProps, this.props);
     Object.assign(this.props, nextProps);
     Object.entries(this.props).forEach(([key, value]) => {
+			if(key === 'src')
+				console.log(this._element, this._element?.hasAttribute(key));
       if(this._element?.hasAttribute(key) && typeof value !== 'object') 
 				this.setAttribute(key, value as string);
     });
