@@ -9,7 +9,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start": "vite --port 3000",
+    "start": "node server.cjs",
     "check-types": "npx tsc --noEmit",
     "lint": "npx eslint 'src/**/*.{ts,tsx}'",
     "stylelint": "npx stylelint --fix 'src/**/*.css'"
