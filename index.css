@@ -1,11 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter');
 
 :root{
+	--background-color: white;
 	--light-grey-color: #EAEAEA;
 	--darker-light-grey: #E4EDFD;
 	--off-white: #FBFBFB;
 	--color-blue: #3369F3;
 	--hover-blue: #0056b3;
+	--light-blue: #E4EDFD;
 	--primary-text-color: #1E1E1E;
 	--secondary-text-color: #999;
 	--message-bg: #f8f8f8;

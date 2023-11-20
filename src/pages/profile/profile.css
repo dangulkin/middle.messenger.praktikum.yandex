@@ -71,7 +71,8 @@
 	margin-top: 60px;
 }
 
-.user-photo{
+.userpic{
+	position: relative;
 	width: 130px;
 	height: 130px;
 	background: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTMwJyBoZWlnaHQ9JzEzMCcgdmlld0JveD0nMCAwIDEzMCAxMzAnIGZpbGw9J25vbmUnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+CjxwYXRoIGQ9J00xMzAgNjVDMTMwIDEwMC44OTkgMTAwLjg5OSAxMzAgNjUgMTMwQzI5LjEwMTUgMTMwIDAgMTAwLjg5OSAwIDY1QzAgMjkuMTAxNSAyOS4xMDE1IDAgNjUgMEMxMDAuODk5IDAgMTMwIDI5LjEwMTUgMTMwIDY1WicgZmlsbD0nI0VGRUZFRicvPgo8cGF0aCBkPSdNNTUuOTA5MSA1OS41NDU1QzU3LjkxNzQgNTkuNTQ1NSA1OS41NDU1IDU3LjkxNzQgNTkuNTQ1NSA1NS45MDkxQzU5LjU0NTUgNTMuOTAwOCA1Ny45MTc0IDUyLjI3MjcgNTUuOTA5MSA1Mi4yNzI3QzUzLjkwMDggNTIuMjcyNyA1Mi4yNzI4IDUzLjkwMDggNTIuMjcyOCA1NS45MDkxQzUyLjI3MjggNTcuOTE3NCA1My45MDA4IDU5LjU0NTUgNTUuOTA5MSA1OS41NDU1WicgZmlsbD0nI0NEQ0RDRCcvPgo8cGF0aCBmaWxsLXJ1bGU9J2V2ZW5vZGQnIGNsaXAtcnVsZT0nZXZlbm9kZCcgZD0nTTQ5IDQ1QzQ2Ljc5MDkgNDUgNDUgNDYuNzkwOSA0NSA0OVY4MUM0NSA4My4yMDkxIDQ2Ljc5MDkgODUgNDkgODVIODFDODMuMjA5MSA4NSA4NSA4My4yMDkxIDg1IDgxVjQ5Qzg1IDQ2Ljc5MDkgODMuMjA5MSA0NSA4MSA0NUg0OVpNODEgNDdINDlDNDcuODk1NCA0NyA0NyA0Ny44OTU0IDQ3IDQ5VjcwLjI2NjdMNTkuNjU0NyA2Ny4zMTM5QzYwLjU0ODYgNjcuMTA1MyA2MS40NjM1IDY3IDYyLjM4MTQgNjdINjcuNjE4NkM2OC41MzY1IDY3IDY5LjQ1MTQgNjcuMTA1MyA3MC4zNDUzIDY3LjMxMzlMODMgNzAuMjY2N1Y0OUM4MyA0Ny44OTU0IDgyLjEwNDYgNDcgODEgNDdaJyBmaWxsPScjQ0RDRENEJy8+Cjwvc3ZnPgo=');
@@ -97,6 +98,22 @@
 	border-bottom: var(--border-color) 1px solid;
 }
 
+.userpic-hover label.field{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	background-color: rgb(0 0 0 / 50%);
+	border-radius: 100%;
+	color: white;
+	margin: 0;
+	padding: 0;
+}
+
 .user-data  label.field:last-child, 
 .password-settings  label.field:last-child, 
 .profile-settings div:last-child .link{
@@ -117,28 +134,31 @@
 	color:var(--danger-color);
 }
 
-.user-photo-hover{
-	display: none;
-	text-align: center;
-	width: 100%;
-	height: 100%;
-	background-color: rgb(0 0 0 / 50%);
+.avatar{
+	object-fit: cover;
 	border-radius: 100%;
-	color: white;
 }
 
-.user-photo:hover .user-photo-hover{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
+.userpic input{
+	display: none;
 }
+
+.userpic-hover{
+	display: none;
+	position: absolute;
+	top:0;
+	height: 100%;
+	object-fit: cover;
+}
+
+.userpic:hover .userpic-hover{
+	display: flex;
+} 
 
 .profile-wrapper .form{
 	display: flex;
 	flex-direction: column;
-	gap:60px;
+	gap: 60px;
 	align-items: center;
 }
 

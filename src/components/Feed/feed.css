@@ -1,0 +1,27 @@
+.feed{
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding-top: 70px;
+}
+
+.feed .chat-date{
+	color: var(--secondary-text-color);
+	text-align: center;
+	font-size: 12px;
+	margin-bottom: 30px;
+}
+
+.feed .chat-date p{
+	margin:0;
+}
+
+.feed .message-status {
+	width: 10px;
+	height: 5px;
+	background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0nMTEnIGhlaWdodD0nNScgdmlld0JveD0nMCAwIDExIDUnIGZpbGw9J25vbmUnIHhtbG5zPSdodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2Zyc+CjxnIGlkPSdHcm91cCAxOTgnPgo8bGluZSBpZD0nTGluZSA1JyB5MT0nLTAuNScgeDI9JzMuNzY1JyB5Mj0nLTAuNScgdHJhbnNmb3JtPSdtYXRyaXgoMC43MDU5MzMgMC43MDgyNzggLTAuNzA1OTMzIDAuNzA4Mjc4IDAuNzAwMTk1IDIuMzMzMTMpJyBzdHJva2U9JyMzMzY5RjMnLz4KPGxpbmUgaWQ9J0xpbmUgNicgeTE9Jy0wLjUnIHgyPSc1LjY0NzUnIHkyPSctMC41JyB0cmFuc2Zvcm09J21hdHJpeCgwLjcwNTkzMyAtMC43MDgyNzggMC43MDU5MzMgMC43MDgyNzggMy4zNTgyOCA1LjAwMDA2KScgc3Ryb2tlPScjMzM2OUYzJy8+CjxsaW5lIGlkPSdMaW5lIDcnIHkxPSctMC41JyB4Mj0nNS42NDc1JyB5Mj0nLTAuNScgdHJhbnNmb3JtPSdtYXRyaXgoMC43MDU5MzMgLTAuNzA4Mjc4IDAuNzA1OTMzIDAuNzA4Mjc4IDYuMDE1ODcgNS4wMDAwNiknIHN0cm9rZT0nIzMzNjlGMycvPgo8L2c+Cjwvc3ZnPgo=');
+	background-size:contain;
+	background-repeat: no-repeat;
+	display: inline-block;
+	margin: 0;
+}

@@ -1,12 +1,14 @@
-import './registration.css';
-import {tmpl} from './registration.tmpl.ts';
-import {Field} from '../../components/Field/field.ts';
-import {Link} from '../../components/Link/link.ts';
-import Block from '../../utils/Block';
-import { ValidationRules } from '../../utils/mydash/validationrules.ts';
-import { Button } from '../../components/Button/button.ts';
+import './SignUp.css';
+import {tmpl} from './SignUp.tmpl';
+import {Field} from '../../components/Field/field';
+import {Link} from '../../components/Link/link';
+import Block from '../../core/Block';
+import { ValidationRules } from '../../utils/validationrules';
+import { Button } from '../../components/Button/button';
+import AuthController from '../../controllers/AuthController';
+import { ISignUpData } from '../../api/interfaces';
 
-export class Registration extends Block {
+export class SignUp extends Block {
   constructor() {
     super('div.registration', {});
   }
@@ -24,9 +26,9 @@ export class Registration extends Block {
 		}else{
 			(this.children.repeatPassword as Field).setCustomValidity('');
 		}
-		
+		console.log(this.formIsValid);
 		if(this.formIsValid){
-			(this.children.submit as Button).updateButton('on');
+			(this.children.submit as Button).update('on');
 		}
 	}
 
@@ -39,9 +41,9 @@ export class Registration extends Block {
 			input: {
 				name: 'email',
 				type: 'text',
-				value: 'random@example.com',
-				autocomplete: 'email',
+				placeholder: 'random@example.com',
 				required: true,
+				autocomplete: 'email',
 				pattern: ValidationRules.email,
 				events: {
 					blur: () => {
@@ -60,13 +62,13 @@ export class Registration extends Block {
 				input: {
 					name: 'login',
 					type: 'text',
-					value: 'dangulkin',
-					autocomplete: 'username',
+					placeholder: 'Login',
 					required: true,
+					autocomplete: 'username',
 					pattern: ValidationRules.login,
 					events: {
 						blur: () => {
-							this._checkForm();
+							// this._checkForm();
 						},
 					}
 				},
@@ -81,13 +83,13 @@ export class Registration extends Block {
 				input:	{
 					name: 'first_name',
 					type: 'text',
-					value: 'Ivan',
-					autocomplete: 'name',
+					placeholder: 'Name',
 					required: true,
+					autocomplete: 'name',
 					pattern: ValidationRules.name,
 					events: {
 						blur: () => {
-							this._checkForm();
+							// this._checkForm();
 						},
 					}
 				},
@@ -102,12 +104,12 @@ export class Registration extends Block {
 				input: {
 					name: 'second_name',
 					type: 'text',
-					value: 'Ivanov',
+					placeholder: 'Second name',
 					autocomplete: 'surname',
 					pattern: ValidationRules.name,
 					events: {
 						blur: () => {
-							this._checkForm();
+							// this._checkForm();
 						},
 					}
 				},
@@ -122,13 +124,12 @@ export class Registration extends Block {
 				input: {
 					name: 'phone',
 					type: 'tel',
-					value: '71234567890',
+					placeholder: '71234567890',
 					autocomplete: 'phone',
-					required: true,
 					pattern: ValidationRules.phone,
 					events: {
 						blur: () => {
-							this._checkForm();
+
 						},
 					}
 				},
@@ -142,13 +143,14 @@ export class Registration extends Block {
 				},
 				input: {
 					name: 'password',
-					type: 'text',
-					value: 'random_pass4R',
+					type: 'password',
+					placeholder: 'Введите пароль',
+					required: true,
 					autocomplete: 'current_password',
 					pattern: ValidationRules.password,
 					events: {
 						blur: () => {
-							this._checkForm();
+							//this._checkForm();
 						},
 					}
 				},
@@ -163,13 +165,14 @@ export class Registration extends Block {
 				input: {
 					name: 'password_repeat',
 					type: 'text',
-					value: 'random_pass4R',
+					placeholder: 'Повторите пароль',
+					required: true,
 					autocomplete: 'new_password',
 					pattern: ValidationRules.password,
 					events: {
 						blur: () => {
 							
-							this._checkForm();
+							// this._checkForm();
 						},
 					}
 				},
@@ -190,12 +193,17 @@ export class Registration extends Block {
 			type: 'submit',
 			label: 'Sign Up',
 			class: 'btn-signup',
-			disabled: true,
 			events: {
 				click: (e:Event) => {
 					e.preventDefault();
+
+					if(this.formData){
+						const data = Object.fromEntries(this.formData.entries());
+						AuthController.signup(data as unknown as ISignUpData);
+					}
+
 					this.logFormData();
-					window.location.href='/chats';
+					// window.location.href='/chats';
 				}
 			}
 	});

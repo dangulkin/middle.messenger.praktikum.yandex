@@ -1,7 +1,7 @@
 import './page404.css';
 import {tmpl} from './page404.tmpl';
 import {Link} from '../../components/Link/link';
-import Block from '../../utils/Block';
+import Block from '../../core/Block';
 
 
 export class Page404 extends Block {

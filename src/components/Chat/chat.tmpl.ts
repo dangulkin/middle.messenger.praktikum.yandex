@@ -1,13 +1,22 @@
 import './chat.css';
 export default `
-	<div class='profile-image'>
+	<div class='chat-header'>
+		
+		<div class='user-profile'>
+
+			<div class='profile-image'>
+				{{{avatar}}}
+			</div>
+
+			<h3 class='chat-name'>
+				{{chat.title}}
+			</h3>
+
+		</div>
+
+		{{{ menu }}}
+		{{{ tooltip }}}
 	</div>
-	<div class='chat-details'>
-			<h3>{{chatname}}</h3>
-			<p>{{text}}</p>
-	</div>
-	<div class='message-info'>
-			<p>10:30 AM</p>
-			<div class='unread-count'><p>{{unread}}</p></div>
-	</div>
+
+	{{{ feed }}}
 `

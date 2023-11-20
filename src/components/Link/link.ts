@@ -1,12 +1,12 @@
-import tmpl from './link.tmpl.js';
-import Block from '../../utils/Block';
+import tmpl from './link.tmpl';
+import Block from '../../core/Block';
 
 interface LinkProps {
   to: string,
 	class?: string,
-	text: string,
-  events: {
-    click: () => void;
+	text?: string,
+  events?: {
+    click: (e:Event) => void;
   };
 }
 

@@ -1,12 +1,17 @@
-import './authorization.css';
-import {tmpl} from './authorization.tmpl.ts';
-import {Field} from '../../components/Field/field.ts';
-import {Link} from '../../components/Link/link.ts';
-import { Button } from '../../components/Button/button.ts';
-import Block from '../../utils/Block';
-import {ValidationRules} from '../../utils/mydash/validationrules.ts';
+import './SignIn.css';
+import {tmpl} from './SignIn.tmpl';
+import {Field} from '../../components/Field/field';
+import {Link} from '../../components/Link/link';
+// import { Input } from 'src/components/Input/input';
+import { Button } from '../../components/Button/button';
+import Block from '../../core/Block';
+import {ValidationRules} from '../../utils/validationrules';
+import AuthController from '../../controllers/AuthController';
+import { ISignInData } from '../../api/interfaces';
+import Router from '../../core/Router';
 
-export class Main extends Block {
+
+export class SignIn extends Block {
   constructor() {
     super('div.authorization', {});
   }
@@ -20,16 +25,10 @@ export class Main extends Block {
 			input:	{
 				name: 'login',
 				type: 'text',
-				value: 'ivanivanov',
+				placeholder: 'Enter login',
+				required: true,
 				autocomplete: 'username',
 				pattern: ValidationRules.login,
-				events: {
-					focus: () => {},
-					blur: () => {
-						if(this.formIsValid)
-							(this.children.submit as Button).updateButton('on');
-					},
-				},
 			},
 			error: 'от 3 до 20 символов, латиница, может содержать цифры'
 		});
@@ -42,16 +41,10 @@ export class Main extends Block {
 			input: {
 				name: 'password',
 				type: 'text',
-				value: 'pass_O_pass5',
+				placeholder: 'Enter password',
+				required: true,
 				autocomplete: 'current_password',
 				pattern: ValidationRules.password,
-				events: {
-					focus: () => {},
-					blur: () => {
-						if(this.formIsValid)
-							(this.children.submit as Button).updateButton('on');
-					},
-				}
 			},
 			error: 'от 8 до 40 символов, обязательно хотя бы одна заглавная буква и цифра'
 		});
@@ -63,18 +56,28 @@ export class Main extends Block {
 				events: {
 					click: (e:Event) => {
 						e.preventDefault();
+
+						if(this.formData){
+							const data = Object.fromEntries(this.formData.entries());
+							AuthController.signin(data as unknown as ISignInData);
+						}else{
+							console.log('No form data');
+						}
+						
 						this.logFormData();
-						window.location.href='/chats';
 					}
 				}
 		});
 
 		this.children.signUpLink = new Link({
-				to: '/registration',
+				to:'#',
 				text: 'Sign Up',
 				class: 'signup-link',
 				events: {
-					click: () => {}
+					click: (e) => {
+						e.preventDefault();
+						Router.go('/signup');
+					}
 				}
 		});
 	}
