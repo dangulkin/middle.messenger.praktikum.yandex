@@ -37,6 +37,10 @@ export class Input extends Block {
     return (this.element as HTMLInputElement).value;
   }
 
+	public setValue(value: string) {
+    (this.element as HTMLInputElement).value = value;
+  }
+
 	init(){
 		Object.entries(this.props).forEach(([key, value]) => {
       this.setAttribute(key, value as string);

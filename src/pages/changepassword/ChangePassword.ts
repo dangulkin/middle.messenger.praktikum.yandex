@@ -10,7 +10,7 @@ import { withStore } from '../../core/Store';
 import user from '../../api/UserAPI';
 import { IPasswordData, State } from '../../api/interfaces';
 import { RESOURCES } from '../../utils/Transport/constants';
-import Router from '../../core/Router';
+import Router, { Routes } from '../../core/Router';
 
 export class BaseChangePassword extends Block {
 
@@ -46,7 +46,7 @@ export class BaseChangePassword extends Block {
       events: {
         click: (e) => {
 					e.preventDefault();
-					Router.go('/profile');
+					Router.go(Routes.Settings);
         },
       },
     });
@@ -144,7 +144,7 @@ export class BaseChangePassword extends Block {
 								(this.children.saveButton as Button).update();
 								(this.children.saveButton as Button).setProps({ label: 'Saved!' });
 
-								setTimeout(function(){Router.go('/profile')}, 1000);
+								setTimeout(function(){Router.go(Routes.Settings)}, 1000);
 							}
 						});
 					}

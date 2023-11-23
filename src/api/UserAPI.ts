@@ -6,7 +6,7 @@ export class UserAPI extends API {
     super('/user');
   }
 
-  uploadAvatar(data: FormData): Promise<Response> {
+  uploadAvatar(data: FormData){
     return this.http.put('/profile/avatar', data);
   }
 

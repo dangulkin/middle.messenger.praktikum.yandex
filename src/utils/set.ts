@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import merge from './merge';
 
 export type Indexed<T = unknown> = {
@@ -16,7 +15,7 @@ function set(object: Indexed | unknown, path: string, value: unknown): Indexed |
 
   const result = path.split('.').reduceRight<Indexed>((acc, key) => ({
     [key]: acc,
-  }), value as any);
+  }), value as Indexed);
 
   return merge(object as Indexed, result);
 }

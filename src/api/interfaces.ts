@@ -52,6 +52,13 @@ export interface IMessageData {
 	type: string
 }
 
+export interface IChatAvatarData {
+	avatar: string,
+	created_by: number,
+	id: number,
+	title: string
+}
+
 export interface State {
   user?: IUserData,
 	chats?: {

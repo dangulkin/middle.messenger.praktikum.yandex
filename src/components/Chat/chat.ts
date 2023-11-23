@@ -19,30 +19,17 @@ export class Chat extends Block {
 
 	init(){
 		this.children.tooltip = new Tooltip({
-			buttons: [{
+			buttons: [
+			{
+				label:'Add chat avatar',
+				class: 'add-avatar'
+			},{
 			label:'Add user',
-			class: 'add-user',
-			events: {
-				click: () => {
-					const currentChatId = ChatController.currentChat?.id
-          if (!currentChatId) return
-
-          try {
-            // await ChatController.addUsers(currentChatId, )
-          } catch (e) {
-            console.error(e)
-          }
-				}
-			}
+			class: 'add-user'
 		},
 		{
 			label:'Delete user',
-			class: 'delete-user',
-			events: {
-				click: () => {
-					
-				}
-			}
+			class: 'delete-user'
 		},
 		{
 			label: 'Delete chat',
@@ -57,13 +44,13 @@ export class Chat extends Block {
 			}
 		}]
 		});
-		this.children.tooltip.show();
 
 		this.children.menu = new Button({
 			class: 'chat-menu',
 			events: {
 				click: () => {
-					// this.children.tooltip.show();
+					const tooltip = (this.children.tooltip as Tooltip);
+					tooltip.isVisible ? tooltip.hide() : tooltip.show();
 				}
 			}
 		});
@@ -73,11 +60,10 @@ export class Chat extends Block {
 	}
 
 	protected componentDidMount(): void {
-		console.log('CHAT MOUNT');
 	}
 
 	protected componentDidUpdate(): boolean {
-		console.log('CHAT UPDATE');
+		
 		return true;
 	}
 	

@@ -109,3 +109,16 @@
 .chat-window-wrapper .chatlist-header {
 	margin-bottom: 12px;
 }
+
+.chat-window-wrapper .modal #upload-chat-avatar{
+	visibility: hidden;
+}
+
+.chat-window-wrapper label:has(#upload-chat-avatar){
+	color: var(--color-blue);
+	text-align: center;
+	font-size: 12px;
+	line-height: 16px;
+	text-decoration-line: underline;
+	cursor: pointer;
+}

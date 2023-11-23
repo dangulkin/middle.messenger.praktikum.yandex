@@ -31,6 +31,6 @@
 		"noEmit": true,
 		"allowImportingTsExtensions": true
   },
-  "include": ["./**/*.ts", "postcss.config.js"],
+  "include": ["./**/*.ts", "postcss.config.js, postcss.config.js"],
   "exclude": ["node_modules/**/*"]
 }

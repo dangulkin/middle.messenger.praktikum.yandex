@@ -1,7 +1,16 @@
 import Block from './Block';
+import isEqual from '../utils/isEqual';
+import { Page404 } from '../pages/page404/page404';
 
-function isEqual(lhs: string, rhs: string): boolean {
-  return lhs === rhs;
+export enum Routes {
+  Index = '/',
+  Register = '/sign-up',
+  Settings = '/settings',
+	EditProfile = '/profile',
+  Messenger = '/messenger',
+	Password = '/password',
+	Page500 = '/server-error',
+	Page404 = '/not-found',
 }
 
 function render(query: string, block: Block) {
@@ -83,6 +92,7 @@ class Router {
     const route = this.getRoute(pathname);
 
     if (!route) {
+			render(this.rootQuery, new Page404())
       return;
     }
 

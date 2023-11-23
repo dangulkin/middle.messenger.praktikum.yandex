@@ -11,7 +11,7 @@ import AvatarController from '../../controllers/AvatarController';
 import { withStore } from '../../core/Store';
 import { State } from '../../api/interfaces';
 import { RESOURCES } from '../../utils/Transport/constants';
-import Router from '../../core/Router';
+import Router, {Routes} from '../../core/Router';
 
 class BaseProfile extends Block {
   constructor() {
@@ -57,12 +57,11 @@ class BaseProfile extends Block {
 		});
 
     this.children.goBack = new Link({
-      to: '#',
       text: '',
       events: {
         click: (e) => {
           e.preventDefault();
-					Router.go('/chats');
+					Router.go(Routes.Messenger);
         },
       },
     });
@@ -75,7 +74,7 @@ class BaseProfile extends Block {
       input: {
         name: 'email',
         type: 'text',
-        value: 'random@email.com',
+        value: '',
         autocomplete: 'email',
         disabled: true,
         pattern: ValidationRules.email,
@@ -97,7 +96,7 @@ class BaseProfile extends Block {
       input: {
         name: 'login',
         type: 'text',
-        value: 'ivanivan',
+        value: '',
 				disabled: true,
         autocomplete: 'username',
         pattern: ValidationRules.login,
@@ -119,7 +118,7 @@ class BaseProfile extends Block {
       input: {
         name: 'first_name',
         type: 'text',
-        value: 'Ivan',
+        value: '',
         autocomplete: 'given-name',
         disabled: true,
         pattern: ValidationRules.name,
@@ -140,7 +139,7 @@ class BaseProfile extends Block {
       input: {
         name: 'second_name',
         type: 'text',
-        value: 'Ivanov',
+        value: '',
         autocomplete: 'surname',
 				disabled: true,
         pattern: ValidationRules.name,
@@ -182,7 +181,7 @@ class BaseProfile extends Block {
       input: {
         name: 'phone',
         type: 'tel',
-        value: '71234567890',
+        value: '',
         autocomplete: 'phone',
         pattern: ValidationRules.phone,
         events: {
@@ -195,33 +194,31 @@ class BaseProfile extends Block {
     });
 
     this.children.settingsLink = new Link({
-			to:'#',
       text: 'Edit Profile',
       events: {
         click: (e) => {
           e.preventDefault();
-					Router.go('/settings');
+					Router.go(Routes.EditProfile);
         },
       },
     });
 
     this.children.changePasswordLink = new Link({
-      to: 'page500',
       text: 'Change password',
       events: {
         click: (e) => {
           e.preventDefault();
-					Router.go('/changepassword');
+					Router.go(Routes.Password);
         },
       },
     });
 
     this.children.logoutLink = new Link({
-      to: '/',
       text: 'Log out',
       events: {
         click: () => {
           AuthController.logout();
+					Router.go(Routes.Index);
         },
       },
     });
@@ -241,15 +238,14 @@ class BaseProfile extends Block {
   }
 
 	protected componentDidMount(): void {
-		console.log('Profile fetch');
+		// console.log('Profile fetch');
 		AuthController.fetchUser();
 		
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	protected componentDidUpdate() {
-		console.log('\n\n\nComponent did update with new props:\n', {...this.props});
-		console.log(RESOURCES + this.props.avatar);
+		// console.log('\n\n\nComponent did update with new props:\n', {...this.props});
+		// console.log(RESOURCES + this.props.avatar);
 		(this.children.avatar as Avatar).setProps({src:RESOURCES + this.props.avatar});
 		(this.children.email as Field).input.setProps({value:this.props.email});
 		(this.children.login as Field).input.setProps({value:this.props.login});

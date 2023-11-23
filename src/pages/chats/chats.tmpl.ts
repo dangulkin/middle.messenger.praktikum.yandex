@@ -23,4 +23,5 @@ export default `
 {{{ popupChat }}}
 {{{ popupUser }}}
 {{{ popupDeleteUser }}}
+{{{ popupSetChatAvatar }}}
 `

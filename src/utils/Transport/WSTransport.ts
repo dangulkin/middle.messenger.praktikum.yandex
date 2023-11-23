@@ -32,6 +32,7 @@ export default class WSTransport extends EventBus {
   }
 
   public close() {
+		console.log('SOCKET CLOSED');
     this.socket?.close()
   }
 

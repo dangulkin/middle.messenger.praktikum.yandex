@@ -5,6 +5,8 @@ type Options = {
   data?: unknown;
 };
 
+type HTTPMethod = <R = unknown>(url: string, options?: unknown) => Promise<R>;
+
 export class HTTPTransport {
   static API_URL = API_URL;
   protected endpoint: string;
@@ -13,39 +15,39 @@ export class HTTPTransport {
     this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
   }
 
-  public get<Response>(path = '/'): Promise<Response> {
-    return this.request<Response>(this.endpoint + path);
+  public get:HTTPMethod = (path = '/') => {
+    return this.request(this.endpoint + path);
   }
 
-  public post<Response = void>(path: string, data?: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public post: HTTPMethod = (path: string, data?: unknown) => {
+    return this.request(this.endpoint + path, {
       method: METHODS.POST,
       data,
     });
   }
 
-  public put<Response = void>(path: string, data: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public put: HTTPMethod = (path: string, data: unknown) => {
+    return this.request(this.endpoint + path, {
       method: METHODS.PUT,
       data,
     });
   }
 
-  public patch<Response = void>(path: string, data: unknown): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public patch: HTTPMethod = (path: string, data: unknown) => {
+    return this.request(this.endpoint + path, {
       method: METHODS.PATCH,
       data,
     });
   }
 
-  public delete<Response>(path: string, data: unknown = {}): Promise<Response> {
-    return this.request<Response>(this.endpoint + path, {
+  public delete: HTTPMethod = (path: string, data: unknown = {}) => {
+    return this.request(this.endpoint + path, {
       method: METHODS.DELETE,
 			data,
     });
   }
 
-  private request<Response>(url: string, options: Options = {method: METHODS.GET}): Promise<Response> {
+  private request:HTTPMethod = (url: string, options: Options = {method: METHODS.GET}) => {
     const {method, data} = options;
 
     return new Promise((resolve, reject) => {

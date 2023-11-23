@@ -1,6 +1,6 @@
 import { AuthAPI } from '../api/AuthAPI';
 import { ISignInData, ISignUpData} from '../api/interfaces';
-import Router from '../core/Router';
+import Router, { Routes } from '../core/Router';
 import store from '../core/Store';
 
 class AuthController {
@@ -12,7 +12,7 @@ class AuthController {
 
       await this.fetchUser();
 
-      Router.go('/chats');
+      Router.go(Routes.Messenger);
     } catch (error) {
       console.log(error);
     }
@@ -22,7 +22,7 @@ class AuthController {
     try {
       await this.api.signup(data);
 
-      Router.go('/chats');
+      Router.go(Routes.Messenger);
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +34,7 @@ class AuthController {
 
       store.set('user', undefined);
 
-      Router.go('/');
+      Router.go(Routes.Index);
 
     } catch (error) {
       console.log(error);

@@ -1,6 +1,8 @@
 import './chatItem.css';
+import { RESOURCES } from '../../utils/Transport/constants';
 export default `
 	<div class='profile-image'>
+		{{#if avatar}}<img src='${RESOURCES}{{avatar}}'/>{{/if}}
 	</div>
 	<div class='chat-details'>
 			<h3>{{title}}</h3>
