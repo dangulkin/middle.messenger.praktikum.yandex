@@ -20,10 +20,12 @@ https://dangulkin-messenger.netlify.app
 ## Commands
 ### Start
 Launch locally on 3000 port using comand
+
 ```$ npm run start```
 
 ### Build
 Build using command
+
 ```$ npm run build```
 
 
