@@ -1,8 +1,11 @@
-import sinon, { SinonFakeXMLHttpRequestStatic, SinonFakeXMLHttpRequest } from 'sinon';
-import { expect } from 'chai';
-import { HTTPTransport } from './HTTPTransport.ts';
+import sinon, {
+  SinonFakeXMLHttpRequestStatic,
+  SinonFakeXMLHttpRequest,
+} from "sinon";
+import { expect } from "chai";
+import { HTTPTransport } from "./HTTPTransport.ts";
 
-describe('HTTPTransport test', () => {
+describe("HTTPTransport test", () => {
   let xhr: SinonFakeXMLHttpRequestStatic;
   let instance: HTTPTransport;
   const requests: SinonFakeXMLHttpRequest[] = [];
@@ -15,9 +18,9 @@ describe('HTTPTransport test', () => {
 
     xhr.onCreate = (req) => {
       requests.push(req);
-    }
+    };
 
-    instance = new HTTPTransport('');
+    instance = new HTTPTransport("");
   });
 
   afterEach(() => {
@@ -25,27 +28,27 @@ describe('HTTPTransport test', () => {
     xhr.restore();
   });
 
-  it('Method get() should be called with GET method', () => {
-    instance.get('/');
+  it("Method get() should be called with GET method", () => {
+    instance.get("/");
     const [request] = requests;
-    expect(request.method).to.equal('GET');
+    expect(request?.method).to.equal("GET");
   });
 
-	it("Method put() should be called using the PUT method", () => {
-    instance.put('/path', {});
+  it("Method put() should be called using the PUT method", () => {
+    instance.put("/path", {});
     const [request] = requests;
-    expect(request.method).to.equal('PUT');
+    expect(request?.method).to.equal("PUT");
   });
 
   it("Method post() should be called using the POST method", () => {
-    instance.post('/path');
+    instance.post("/path");
     const [request] = requests;
-    expect(request.method).to.equal('POST');
+    expect(request?.method).to.equal("POST");
   });
 
-  it('Method delete() should be called using the DELETE method', () => {
-    instance.delete('/path');
+  it("Method delete() should be called using the DELETE method", () => {
+    instance.delete("/path");
     const [request] = requests;
-    expect(request.method).to.equal('DELETE');
+    expect(request?.method).to.equal("DELETE");
   });
 });

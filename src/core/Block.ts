@@ -3,10 +3,10 @@
 import Handlebars from "handlebars";
 import { EventBus } from "./EventBus.ts";
 import { nanoid } from "nanoid";
-import { isEmpty } from '../utils/isempty.ts'
+import { isEmpty } from "../utils/isempty.ts";
 
-export type BlockType = {
-  new (childrenAndProps: Props): Block;
+export type BlockType<P extends Record<string, unknown> = any> = {
+  new (props: P): Block<P>;
 };
 
 class Block<P extends Record<string, unknown> = any> {
@@ -24,8 +24,8 @@ class Block<P extends Record<string, unknown> = any> {
   private _tagName: string;
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
-	private _form: HTMLFormElement | null = null;
-	private _visible: boolean = true;
+  private _form: HTMLFormElement | null = null;
+  private _visible: boolean = true;
 
   private _meta: { oldProps: P };
 
@@ -82,7 +82,7 @@ class Block<P extends Record<string, unknown> = any> {
       if (this._element && events[eventName]) {
         this._element.addEventListener(
           eventName,
-          events[eventName] as EventListener
+          events[eventName] as EventListener,
         );
       }
     });
@@ -97,7 +97,7 @@ class Block<P extends Record<string, unknown> = any> {
       if (this._element && events[eventName]) {
         this._element.removeEventListener(
           eventName,
-          events[eventName] as EventListener
+          events[eventName] as EventListener,
         );
       }
     });
@@ -129,15 +129,13 @@ class Block<P extends Record<string, unknown> = any> {
   }
 
   // Может переопределять пользователь
-  protected componentDidMount() {
-		
-	}
+  protected componentDidMount() {}
 
   public dispatchComponentDidMount() {
-		//console.log('Block mount');
+    //console.log('Block mount');
     this.eventBus().emit(Block.EVENTS.FLOW_CDM);
 
-		// Object.values(this.children).forEach(child => (child as Block).dispatchComponentDidMount());
+    // Object.values(this.children).forEach(child => (child as Block).dispatchComponentDidMount());
   }
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
@@ -151,21 +149,20 @@ class Block<P extends Record<string, unknown> = any> {
   }
 
   setProps = (nextProps: P) => {
-		
     if (!nextProps) {
       return;
     }
-		
+
     Object.assign(this._meta.oldProps, this.props);
     Object.assign(this.props, nextProps);
     Object.entries(this.props).forEach(([key, value]) => {
-			if(key === 'src')
-				console.log(this._element, this._element?.hasAttribute(key));
-      if(this._element?.hasAttribute(key) && typeof value !== 'object') 
-				this.setAttribute(key, value as string);
+      if (key === "src")
+        console.log(this._element, this._element?.hasAttribute(key));
+      if (this._element?.hasAttribute(key) && typeof value !== "object")
+        this.setAttribute(key, value as string);
     });
 
-		this.eventBus().emit(Block.EVENTS.FLOW_CDU, this._meta.oldProps, nextProps);
+    this.eventBus().emit(Block.EVENTS.FLOW_CDU, this._meta.oldProps, nextProps);
   };
 
   get element() {
@@ -176,23 +173,21 @@ class Block<P extends Record<string, unknown> = any> {
     this._className = name;
     this.setAttribute("class", this._className);
   }
-	
-  setAttribute = (attr: string, value: string) => {
-		// if(this._element?.hasAttribute(attr)){
-			if (attr == 'class'){
-				this.addClass(value);
-				return;
-			}
 
-			if (typeof value === "boolean") {
-				if (value) 
-					this.getContent()!.setAttribute(attr, "");
-				else 
-					this.getContent()!.removeAttribute(attr);	
-			} else if (attr !== "events") {
-				this.getContent()!.setAttribute(attr, value);
-			}
-		// }
+  setAttribute = (attr: string, value: string) => {
+    // if(this._element?.hasAttribute(attr)){
+    if (attr == "class") {
+      this.addClass(value);
+      return;
+    }
+
+    if (typeof value === "boolean") {
+      if (value) this.getContent()!.setAttribute(attr, "");
+      else this.getContent()!.removeAttribute(attr);
+    } else if (attr !== "events") {
+      this.getContent()!.setAttribute(attr, value);
+    }
+    // }
   };
 
   protected compile(template: string, context: object) {
@@ -238,7 +233,7 @@ class Block<P extends Record<string, unknown> = any> {
     this._element!.innerHTML = "";
     this._element!.append(fragment);
 
-		this._form = this.getContent()?.querySelector("form") as HTMLFormElement;
+    this._form = this.getContent()?.querySelector("form") as HTMLFormElement;
 
     this._addEvents();
   }
@@ -265,9 +260,9 @@ class Block<P extends Record<string, unknown> = any> {
     return isValid;
   }
 
-	get formData() {
-		return this._form ? new FormData(this._form) : null;
-	}
+  get formData() {
+    return this._form ? new FormData(this._form) : null;
+  }
 
   protected logFormData() {
     if (!this.formIsValid) {
@@ -303,7 +298,7 @@ class Block<P extends Record<string, unknown> = any> {
         // const oldTarget = { ...target };
 
         target[prop as keyof P] = value;
-				
+
         return true;
       },
       deleteProperty() {
@@ -316,32 +311,32 @@ class Block<P extends Record<string, unknown> = any> {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     const el = document.createElement(tagName);
     if (this._className) {
-			el.classList.add(this._className);
-		}
+      el.classList.add(this._className);
+    }
     return el;
   }
 
   show() {
     if (this._element) this._element.style.visibility = "visible";
-		this._visible = true;
+    this._visible = true;
   }
 
   hide() {
     if (this._element) this._element.style.visibility = "hidden";
-		this._visible = false;
+    this._visible = false;
   }
 
-	get isVisible(){
-		return this._visible;
-	}
+  get isVisible() {
+    return this._visible;
+  }
 
-	addClass (value: string){
-		this.getContent()!.classList.add(value);
-	}
-	
-	removeClass (value: string){
-		this.getContent()!.classList.remove(value);
-	}
+  addClass(value: string) {
+    this.getContent()!.classList.add(value);
+  }
+
+  removeClass(value: string) {
+    this.getContent()!.classList.remove(value);
+  }
 }
 
 export default Block;
