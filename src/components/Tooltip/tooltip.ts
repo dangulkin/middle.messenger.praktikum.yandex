@@ -1,8 +1,6 @@
 import './tooltip.css';
-import Block from '../../core/Block';
-import { Button, ButtonProps } from '../Button/button';
-// import { ValidationRules } from '../../utils/validationrules';
-// import ChatController from '../../controllers/ChatController';
+import Block from '../../core/Block.ts';
+import { Button, ButtonProps } from '../Button/button.ts';
 
 interface TooltipProps {
 	text?: string,

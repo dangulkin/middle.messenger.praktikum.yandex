@@ -1,4 +1,4 @@
-import { AuthAPI } from '../api/AuthAPI';
+import { AuthAPI } from '../api/AuthAPI.ts';
 import { ISignInData, ISignUpData} from '../api/interfaces';
 import Router, { Routes } from '../core/Router';
 import store from '../core/Store';

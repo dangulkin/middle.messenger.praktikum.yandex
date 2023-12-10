@@ -1,5 +1,5 @@
-import { API } from './api';
-import { IUserData, IPasswordData} from './interfaces';
+import { API } from './api.ts';
+import { IUserData, IPasswordData} from './interfaces.ts';
 
 export class UserAPI extends API {
   constructor() {

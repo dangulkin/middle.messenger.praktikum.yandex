@@ -1,6 +1,6 @@
 import './link.css';
-import tmpl from './link.tmpl';
-import Block from '../../core/Block';
+import tmpl from './link.tmpl.ts';
+import Block from '../../core/Block.ts';
 
 interface LinkProps {
   to?: string,

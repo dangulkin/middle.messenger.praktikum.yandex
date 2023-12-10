@@ -1,8 +1,8 @@
-import { ChatAPI } from '../api/ChatAPI';
-import { UserAPI } from '../api/UserAPI';
-import store from '../core/Store';
-import MessageController from './MessageController';
-import { IChatData, IUserData } from '../api/interfaces';
+import { ChatAPI } from '../api/ChatAPI.ts';
+import { UserAPI } from '../api/UserAPI.ts';
+import store from '../core/Store.ts';
+import MessageController from './MessageController.ts';
+import { IChatData, IUserData } from '../api/interfaces.ts';
 
 class ChatController {
 	private api = new ChatAPI();
@@ -35,8 +35,6 @@ class ChatController {
 
 	setCurrentChat(chatId: number){
 		store.set('chats.currentChatId', chatId);
-		// this.connectToChat(chatId);
-		// console.log('Current ID: ', chatId);
 	}
 
 	update(){

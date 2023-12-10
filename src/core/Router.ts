@@ -1,6 +1,6 @@
-import Block from './Block';
-import isEqual from '../utils/isEqual';
-import { Page404 } from '../pages/page404/page404';
+import Block from './Block.ts';
+import isEqual from '../utils/isEqual.ts';
+import { Page404 } from '../pages/page404/page404.ts';
 
 export enum Routes {
   Index = '/',
@@ -12,6 +12,8 @@ export enum Routes {
 	Page500 = '/server-error',
 	Page404 = '/not-found',
 }
+
+const ROOT = '#app';
 
 function render(query: string, block: Block) {
   const root = document.querySelector(query);
@@ -28,7 +30,7 @@ function render(query: string, block: Block) {
   return root;
 }
 
-class Route {
+export class Route {
   private block: Block | null = null;
 
   constructor(
@@ -56,7 +58,7 @@ class Route {
 }
 
 class Router {
-  private static __instance: Router;
+  private static __instance?: Router;
   private routes: Route[] = [];
   private currentRoute: Route | null = null;
   private history = window.history;
@@ -81,7 +83,6 @@ class Router {
   public start() {
     window.onpopstate = (event: PopStateEvent) => {
       const target = event.currentTarget as Window;
-
       this._onRoute(target.location.pathname);
     }
 
@@ -119,9 +120,9 @@ class Router {
     this.history.forward();
   }
 
-  private getRoute(pathname: string) {
+  getRoute(pathname: string) {
     return this.routes.find(route => route.match(pathname));
   }
 }
 
-export default new Router('#app');
+export default new Router(ROOT);

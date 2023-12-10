@@ -1,4 +1,3 @@
-import './field.css';
 export default `
 	{{label.text}}
 	{{{input}}}

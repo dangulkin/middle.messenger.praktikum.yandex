@@ -1,9 +1,9 @@
 import './feed.css';
-import Block from '../../core/Block';
-import { Message, MessageProps } from '../Message/message';
-import {withStore} from '../../core/Store';
-import MessageController from '../../controllers/MessageController';
-import { State } from 'src/api/interfaces';
+import Block from '../../core/Block.ts';
+import { Message, MessageProps } from '../Message/message.ts';
+import {withStore} from '../../core/Store.ts';
+import MessageController from '../../controllers/MessageController.ts';
+import { State } from 'src/api/interfaces.ts';
 
 export class BaseFeed extends Block {
   constructor() {

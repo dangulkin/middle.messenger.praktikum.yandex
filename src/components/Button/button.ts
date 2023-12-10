@@ -1,4 +1,4 @@
-import Block from '../../core/Block';
+import Block from '../../core/Block.ts';
 import './button.module.css';
 import tmpl from './button.tmpl.ts';
 

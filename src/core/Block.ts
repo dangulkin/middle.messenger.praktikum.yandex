@@ -1,9 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import Handlebars from "handlebars";
-import { EventBus } from "./EventBus";
+import { EventBus } from "./EventBus.ts";
 import { nanoid } from "nanoid";
-import { isEmpty } from '../utils/isempty'
+import { isEmpty } from '../utils/isempty.ts'
+
+export type BlockType = {
+  new (childrenAndProps: Props): Block;
+};
 
 class Block<P extends Record<string, unknown> = any> {
   static EVENTS = {

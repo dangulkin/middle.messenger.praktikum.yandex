@@ -1,4 +1,4 @@
-import { API } from './api';
+import { API } from './api.ts';
 
 export class ChatAPI extends API{
 	constructor() {

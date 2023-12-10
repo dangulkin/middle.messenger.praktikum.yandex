@@ -1,5 +1,5 @@
-import { API } from './api';
-import { ISignInData, ISignUpData} from './interfaces';
+import { API } from './api.ts';
+import { ISignInData, ISignUpData} from './interfaces.ts';
 
 export class AuthAPI extends API {
   constructor() {

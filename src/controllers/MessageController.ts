@@ -1,6 +1,6 @@
-import WSTransport from '../utils/Transport/WSTransport';
-import { WSEvents } from '../utils/Transport/constants';
-import store from '../core/Store.ts'
+import WSTransport from '../utils/Transport/WSTransport.ts';
+import { WSEvents } from '../utils/Transport/constants.ts';
+import store from '../core/Store.ts';
 import { IMessageData } from '../api/interfaces.ts';
 
 class MessageController {

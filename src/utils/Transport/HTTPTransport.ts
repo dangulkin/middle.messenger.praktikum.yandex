@@ -1,5 +1,5 @@
 
-import { METHODS, API_URL } from './constants';
+import { METHODS, API_URL } from './constants.ts';
 type Options = {
   method: METHODS;
   data?: unknown;

@@ -1,6 +1,6 @@
-import { UserAPI } from '../api/UserAPI';
-import { IUserData } from '../api/interfaces';
-import store from '../core/Store';
+import { UserAPI } from '../api/UserAPI.ts';
+import { IUserData } from '../api/interfaces.ts';
+import store from '../core/Store.ts';
 
 class AvatarController {
 	private api = new UserAPI();
