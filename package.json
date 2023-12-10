@@ -13,7 +13,8 @@
     "check-types": "npx tsc --noEmit",
     "lint": "npx eslint 'src/**/*.{ts,tsx}'",
     "stylelint": "npx stylelint --fix 'src/**/*.css'",
-    "test": "mocha"
+    "test": "mocha",
+		"precommit": "npm-run-all --parallel prettier stylelint lint check-types test"
   },
   "devDependencies": {
     "@types/chai": "^4.3.11",
@@ -32,6 +33,7 @@
     "esm-loader-typescript": "^1.0.6",
     "esmock": "^2.6.0",
     "handlebars": "^4.7.8",
+    "husky": "^8.0.3",
     "jsdom": "^23.0.1",
     "mocha": "^10.2.0",
     "node-esm-loader": "^0.2.5",

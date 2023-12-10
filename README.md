@@ -4,12 +4,16 @@
 https://dangulkin-messenger.netlify.app
 
 ## Pages
-[Main](https://dangulkin-messenger.netlify.app
-Authorization)
+[Main](https://dangulkin-messenger.netlify.app)
+
 [Sign in](https://dangulkin-messenger.netlify.app/)
+
 [Sign up](https://dangulkin-messenger.netlify.app/sign-up)
+
 [Messenger](https://dangulkin-messenger.netlify.app/messenger)
+
 [Profile](https://dangulkin-messenger.netlify.app/settings)
+
 [Page 404](https://dangulkin-messenger.netlify.app/notfound)
 
 
@@ -27,10 +31,10 @@ Build using command
 ```$ npm run check-types```
 
 ### Stylelint
-$ npm run stylelint
+```$ npm run stylelint```
 
 ### Linting
-$ npm run lint
+```$ npm run lint```
 
 ## Links
 
@@ -42,6 +46,7 @@ $ npm run lint
 * Prettier
 * SlyleLint
 * PostCSS
+* Husky
 * Mocha
 * Chai
 * Sinon
