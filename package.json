@@ -14,7 +14,7 @@
     "lint": "npx eslint 'src/**/*.{ts,tsx}'",
     "stylelint": "npx stylelint --fix 'src/**/*.css'",
     "test": "mocha",
-    "precommit": "npm-run-all --parallel prettier stylelint lint check-types test",
+    "precommit": "npm-run-all --parallel stylelint lint check-types test",
     "prepare": "husky install"
   },
   "devDependencies": {
