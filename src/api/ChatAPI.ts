@@ -6,7 +6,7 @@ export class ChatAPI extends API{
   }
 
   list() {
-    return this.http.get();
+    return this.http.get('/');
   }
 
   create(title: string){
@@ -28,6 +28,10 @@ export class ChatAPI extends API{
   deleteUser(chatId: number, user: number) {
     return this.http.delete(`/users`, { chatId, user })
   }
+
+	addAvatar(data: FormData) {
+		return this.http.put(`/avatar`, data)
+	}
 
   async token(chatId: number) {
     const response = await this.http.post<{ token: string }>(

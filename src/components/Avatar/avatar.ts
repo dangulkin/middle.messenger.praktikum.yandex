@@ -1,3 +1,4 @@
+import './avatar.css';
 import Block from '../../core/Block';
 
 export interface ImageProps {
@@ -17,13 +18,15 @@ export interface ImageProps {
 
 export class Avatar extends Block {
   constructor(props: ImageProps) {
-    super('img.avatar', props);
+    super('div.avatar', props);
   }
 
 	init(){
 	}
 
   render() {
-    return this.compile('', this.props);
+    return this.compile(`
+		<img src='{{src}}'/>
+		`, this.props);
   }
 }

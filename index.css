@@ -2,7 +2,8 @@
 
 :root{
 	--background-color: white;
-	--light-grey-color: #EAEAEA;
+	--even-lighter-grey: #f5f5f5;
+	--light-grey: #EAEAEA;
 	--darker-light-grey: #E4EDFD;
 	--off-white: #FBFBFB;
 	--color-blue: #3369F3;
@@ -12,7 +13,7 @@
 	--secondary-text-color: #999;
 	--message-bg: #f8f8f8;
 	--input-bg: #EFEFEF;
-	--border-color: var(--light-grey-color);
+	--border-color: var(--light-grey);
 	--border-blue: var(--color-blue);
 	--danger-color: #F00;
 	--link-color: var(--color-blue);

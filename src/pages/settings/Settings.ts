@@ -6,13 +6,13 @@ import { Avatar } from '../../components/Avatar/avatar';
 import Block from '../../core/Block';
 import { Button } from '../../components/Button/button';
 import { ValidationRules } from '../../utils/validationrules';
-import AuthController from '../../controllers/AuthController';
+// import AuthController from '../../controllers/AuthController';
 import AvatarController from '../../controllers/AvatarController';
 import { withStore } from '../../core/Store';
 import user from '../../api/UserAPI';
 import { IUserData, State } from '../../api/interfaces';
-import { RESOURCES } from '../../utils/Transport/constants';
-import Router from '../../core/Router';
+// import { RESOURCES } from '../../utils/Transport/constants';
+import Router, { Routes } from '../../core/Router';
 
 class BaseSettings extends Block {
 
@@ -52,11 +52,10 @@ class BaseSettings extends Block {
 		});
 
     this.children.goBack = new Link({
-			to:'#',
       events: {
         click: (e) => {
 					e.preventDefault();
-					Router.go('/profile');
+					Router.go(Routes.Settings);
         },
       },
     });
@@ -172,7 +171,7 @@ class BaseSettings extends Block {
 								(this.children.saveButton as Button).update();
 								(this.children.saveButton as Button).setProps({ label: 'Saved!' });
 
-								setTimeout(function(){Router.go('/profile')}, 1000);
+								setTimeout(function(){Router.go(Routes.Settings)}, 1000);
 							}
 						});
 					}
@@ -182,19 +181,18 @@ class BaseSettings extends Block {
   }
 
 	protected componentDidMount(): void {
-		AuthController.fetchUser();
+		// AuthController.fetchUser();
 	}
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	protected componentDidUpdate() {
 		console.log('\n\n\nComponent did update with new props:\n', {...this.props});
-		(this.children.avatar as Avatar).setProps({src:RESOURCES + this.props.avatar});
-		(this.children.email as Field).input.setProps({value:this.props.email});
-		(this.children.login as Field).input.setProps({value:this.props.login});
-		(this.children.firstName as Field).input.setProps({value:this.props.first_name});
-		(this.children.secondName as Field).input.setProps({value:this.props.second_name});
-		(this.children.displayName as Field).input.setProps({value:this.props.display_name || ''});
-		(this.children.phone as Field).input.setProps({value:this.props.phone});
+		// (this.children.avatar as Avatar).setProps({src:RESOURCES + this.props.avatar});
+		// (this.children.email as Field).input.setProps({value:this.props.email});
+		// (this.children.login as Field).input.setProps({value:this.props.login});
+		// (this.children.firstName as Field).input.setProps({value:this.props.first_name});
+		// (this.children.secondName as Field).input.setProps({value:this.props.second_name});
+		// (this.children.displayName as Field).input.setProps({value:this.props.display_name || ''});
+		// (this.children.phone as Field).input.setProps({value:this.props.phone});
 
 		return true;
 	}

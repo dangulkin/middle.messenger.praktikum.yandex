@@ -36,7 +36,7 @@ class ChatController {
 	setCurrentChat(chatId: number){
 		store.set('chats.currentChatId', chatId);
 		// this.connectToChat(chatId);
-		console.log('Current ID: ', chatId);
+		// console.log('Current ID: ', chatId);
 	}
 
 	update(){
@@ -66,7 +66,7 @@ class ChatController {
 		try{
 			userId = await this.getUserId(login);
 		}catch(e){
-			throw new Error('User not found');
+			console.log('User not found: ', e);
 		}
 		this.api.addUser(chatId, userId!)
   }
@@ -76,7 +76,7 @@ class ChatController {
 		try{
 			userId = await this.getUserId(login);
 		}catch(e){
-			throw new Error('User not found');
+			console.log('User not found: ', e);
 		}
 		this.api.deleteUser(chatId, userId!);
   }
@@ -90,6 +90,17 @@ class ChatController {
 		.find(user => {
 			user.login === login
 		})?.id;
+	}
+
+	async setAvatar(data:FormData){
+		try {
+			const { avatar } = await this.api.addAvatar(data) as { avatar: string };
+			store.set(`chats.list.${this.chats?.list.indexOf(this.currentChat!)}.avatar`,avatar);
+			return avatar;
+	} catch (error) {
+			console.error('Error uploading avatar:', error.message);
+	}
+	return
 	}
 }
 

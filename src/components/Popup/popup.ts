@@ -9,6 +9,7 @@ interface PopupProps {
 	label?:string, 
 	field?:FieldProps, 
 	button?:ButtonProps,
+	class? : string,
 	events?: {
 		click: (e:Event) => void
 	}

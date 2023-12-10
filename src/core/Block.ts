@@ -21,6 +21,7 @@ class Block<P extends Record<string, unknown> = any> {
   private eventBus: () => EventBus;
   private _element: HTMLElement | null = null;
 	private _form: HTMLFormElement | null = null;
+	private _visible: boolean = true;
 
   private _meta: { oldProps: P };
 
@@ -154,6 +155,8 @@ class Block<P extends Record<string, unknown> = any> {
     Object.assign(this._meta.oldProps, this.props);
     Object.assign(this.props, nextProps);
     Object.entries(this.props).forEach(([key, value]) => {
+			if(key === 'src')
+				console.log(this._element, this._element?.hasAttribute(key));
       if(this._element?.hasAttribute(key) && typeof value !== 'object') 
 				this.setAttribute(key, value as string);
     });
@@ -316,11 +319,17 @@ class Block<P extends Record<string, unknown> = any> {
 
   show() {
     if (this._element) this._element.style.visibility = "visible";
+		this._visible = true;
   }
 
   hide() {
     if (this._element) this._element.style.visibility = "hidden";
+		this._visible = false;
   }
+
+	get isVisible(){
+		return this._visible;
+	}
 
 	addClass (value: string){
 		this.getContent()!.classList.add(value);

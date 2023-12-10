@@ -1,6 +1,7 @@
 .chat-window-wrapper .chat-menu{
 	width: 28px;
 	height: 28px;
+	border-radius: 50%;
 	background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='3' height='16' viewBox='0 0 3 16' fill='none'%3e%3ccircle cx='1.5' cy='2' r='1.5' fill='%231E1E1E'/%3e%3ccircle cx='1.5' cy='8' r='1.5' fill='%231E1E1E'/%3e%3ccircle cx='1.5' cy='14' r='1.5' fill='%231E1E1E'/%3e%3c/svg%3e");	
 	background-repeat: no-repeat;
 	background-position: center;
@@ -11,16 +12,23 @@
 }
 
 .chat-window-wrapper .chat-menu:hover{
-	background-color: var(--light-grey);
+	background-color: var(--even-lighter-grey);
 }
 
 .profile-image {
 	width: 34px;
 	height: 34px;
 	flex-shrink: 0;
-	border-radius: 50%;
 	margin-right: 10px;
-	background-color: var(--light-grey-color);
+	background-color: var(--light-grey);
+	border-radius: 50%;
+	overflow: hidden;
+}
+
+.profile-image img{
+	width:100%;
+	height: 100%;
+	object-fit: cover;
 }
 
 .chat-window-wrapper .chat-header {

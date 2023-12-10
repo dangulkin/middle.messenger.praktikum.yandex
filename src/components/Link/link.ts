@@ -1,8 +1,9 @@
+import './link.css';
 import tmpl from './link.tmpl';
 import Block from '../../core/Block';
 
 interface LinkProps {
-  to: string,
+  to?: string,
 	class?: string,
 	text?: string,
   events?: {

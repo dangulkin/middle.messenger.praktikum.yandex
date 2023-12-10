@@ -45,12 +45,12 @@ class MessageController {
     const feed = (messagesState && messagesState[chatId]) || [];
 
     const messages = Array.isArray(data) ? data.reverse() : [data];
-		console.log(messages);
+
     store.set(`messages.${chatId}`, [...(feed as IMessageData[]), ...(messages as IMessageData[])]);
 	}
 
-	onClose(){
-
+	onClose(chatId: number){
+		this.socketMap.delete(chatId)
 	}
 
 	send(chatId:number, message:string){
@@ -66,6 +66,10 @@ class MessageController {
     }
 
     socket.send({ type: 'get old', content: '0' })
+  }
+
+	closeSockets() {
+    Array.from(this.socketMap.values()).forEach((socket) => socket.close());
   }
 
 	getMessages(){

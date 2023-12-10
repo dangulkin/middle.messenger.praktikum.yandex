@@ -134,11 +134,6 @@
 	color:var(--danger-color);
 }
 
-.avatar{
-	object-fit: cover;
-	border-radius: 100%;
-}
-
 .userpic input{
 	display: none;
 }

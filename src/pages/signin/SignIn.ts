@@ -8,7 +8,7 @@ import Block from '../../core/Block';
 import {ValidationRules} from '../../utils/validationrules';
 import AuthController from '../../controllers/AuthController';
 import { ISignInData } from '../../api/interfaces';
-import Router from '../../core/Router';
+import Router, { Routes } from '../../core/Router';
 
 
 export class SignIn extends Block {
@@ -70,13 +70,12 @@ export class SignIn extends Block {
 		});
 
 		this.children.signUpLink = new Link({
-				to:'#',
 				text: 'Sign Up',
 				class: 'signup-link',
 				events: {
 					click: (e) => {
 						e.preventDefault();
-						Router.go('/signup');
+						Router.go(Routes.Register);
 					}
 				}
 		});
