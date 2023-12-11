@@ -1,7 +1,7 @@
-import { AuthAPI } from '../api/AuthAPI.ts';
-import { ISignInData, ISignUpData} from '../api/interfaces';
-import Router, { Routes } from '../core/Router';
-import store from '../core/Store';
+import { AuthAPI } from "../api/AuthAPI.ts";
+import { ISignInData, ISignUpData } from "../api/interfaces.ts";
+import Router, { Routes } from "../core/Router.ts";
+import store from "../core/Store.ts";
 
 class AuthController {
   private api = new AuthAPI();
@@ -32,22 +32,20 @@ class AuthController {
     try {
       await this.api.logout();
 
-      store.set('user', undefined);
+      store.set("user", undefined);
 
       Router.go(Routes.Index);
-
     } catch (error) {
       console.log(error);
     }
   }
 
   async fetchUser() {
-		// eslint-disable-next-line no-useless-catch
-		try {
+    // eslint-disable-next-line no-useless-catch
+    try {
       const user = await this.api.getUser();
 
-      store.set('user', user);
-
+      store.set("user", user);
     } catch (error) {
       throw error;
     }

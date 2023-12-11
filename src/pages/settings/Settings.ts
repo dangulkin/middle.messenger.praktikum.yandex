@@ -1,17 +1,16 @@
 import "./Settings.css";
 import { tmpl } from "./Settings.tmpl.ts";
-import { Field } from "../../components/Field/field";
-import { Link } from "../../components/Link/link";
-import { Avatar } from "../../components/Avatar/avatar";
-import Block from "../../core/Block";
-import { Button } from "../../components/Button/button";
-import { ValidationRules } from "../../utils/validationrules";
-// import AuthController from '../../controllers/AuthController';
-import AvatarController from "../../controllers/AvatarController";
-import { withStore } from "../../core/Store";
-import user from "../../api/UserAPI";
-import { IUserData, State } from "../../api/interfaces";
-import Router, { Routes } from "../../core/Router";
+import { Field } from "../../components/Field/field.ts";
+import { Link } from "../../components/Link/link.ts";
+import { Avatar } from "../../components/Avatar/avatar.ts";
+import Block from "../../core/Block.ts";
+import { Button } from "../../components/Button/button.ts";
+import { ValidationRules } from "../../utils/validationrules.ts";
+import AvatarController from "../../controllers/AvatarController.ts";
+import { withStore } from "../../core/Store.ts";
+import user from "../../api/UserAPI.ts";
+import { IUserData, State } from "../../api/interfaces.ts";
+import Router, { Routes } from "../../core/Router.ts";
 
 class BaseSettings extends Block {
   constructor() {
