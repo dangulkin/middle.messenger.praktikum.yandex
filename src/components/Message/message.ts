@@ -1,4 +1,4 @@
-import './message.css';
+import "./message.css";
 import tmpl from "./message.tmpl.ts";
 import Block from "../../core/Block.ts";
 
@@ -14,7 +14,7 @@ export class Message extends Block {
   }
 
   init() {
-    const date = new Date();
+    const date = new Date(this.props.time);
     const minutes = date.getMinutes().toString();
     const hours = date.getHours().toString();
     this.props.time = `${hours.padStart(2, "0")}:${minutes.padStart(2, "0")}`;
