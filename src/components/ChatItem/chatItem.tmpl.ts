@@ -1,5 +1,5 @@
-import './chatItem.css';
-import { RESOURCES } from '../../utils/Transport/constants';
+import "./chatItem.css";
+import { RESOURCES } from "../../utils/Transport/constants";
 export default `
 	<div class='profile-image'>
 		{{#if avatar}}<img src='${RESOURCES}{{avatar}}'/>{{/if}}
@@ -10,6 +10,8 @@ export default `
 	</div>
 	<div class='message-info'>
 			<p>{{ time }}</p>
-			<div class='unread-count'><p>{{ unread_count }}</p></div>
+			{{#if unread_count}}
+				<div class='unread-count'><p>{{ unread_count }}</p></div>
+			{{/if}}
 	</div>
-`
+`;

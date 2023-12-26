@@ -1,4 +1,4 @@
-import Block from '../../core/Block';
+import Block from '../../core/Block.ts';
 
 export interface InputProps {
 		type?: string,

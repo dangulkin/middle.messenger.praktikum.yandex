@@ -1,5 +1,5 @@
 import './chat.css';
-import { RESOURCES } from '../../utils/Transport/constants';
+import { RESOURCES } from '../../utils/Transport/constants.ts';
 export default `
 	<div class='chat-header'>
 		

@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { EventBus } from '../core/EventBus';
-import set from '../utils/set';
+import { EventBus } from '../core/EventBus.ts';
+import set from '../utils/set.ts';
 import Block from '../core/Block.ts';
-import { State } from '../api/interfaces';
+import { State } from '../api/interfaces.ts';
 
 enum StorageEvent {
   UpdateState = 'update',

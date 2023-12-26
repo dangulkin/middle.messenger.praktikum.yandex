@@ -1,23 +1,24 @@
-import './page404.css';
-import {tmpl} from './page404.tmpl';
-import {Link} from '../../components/Link/link';
-import Block from '../../core/Block';
-import Router, { Routes } from '../../core/Router';
-
+import "./page404.css";
+import { tmpl } from "./page404.tmpl.ts";
+import { Link } from "../../components/Link/link.ts";
+import Block from "../../core/Block.ts";
+import Router, { Routes } from "../../core/Router.ts";
 
 export class Page404 extends Block {
   constructor() {
-    super('div.notfound', {});
+    super("div.notfound", {});
   }
 
-	init() {
-		this.children.backToChats = new Link({
-				text: 'Назад к чатам',
-				events: {
-					click: () => {Router.go(Routes.Messenger)}
-				}
-			});
-	}
+  init() {
+    this.children.backToChats = new Link({
+      text: "Назад к чатам",
+      events: {
+        click: () => {
+          Router.go(Routes.Messenger);
+        },
+      },
+    });
+  }
 
   render() {
     return this.compile(tmpl, this.props);
