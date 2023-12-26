@@ -326,6 +326,10 @@ class Block<P extends Record<string, unknown> = any> {
     this._visible = false;
   }
 
+  toggle() {
+    this._visible ? this.hide() : this.show();
+  }
+
   get isVisible() {
     return this._visible;
   }

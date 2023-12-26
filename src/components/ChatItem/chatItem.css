@@ -53,6 +53,10 @@
 	box-sizing: border-box;
 }
 
+.unread-count.hide {
+	visibility: hidden;
+}
+
 .unread-count p{
 	flex-shrink: 0;
 	font-size: 12px;

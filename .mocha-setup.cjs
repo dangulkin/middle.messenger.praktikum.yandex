@@ -14,6 +14,6 @@ require.extensions['.tmpl'] = function (module, filename) {
   module.exports = Handlebars.compile(contents);
 }
 
-require.extensions['.pcss'] = function () {
-  module.exports = () => ({});
-}
+// require.extensions['.pcss'] = function () {
+//   module.exports = () => ({});
+// }

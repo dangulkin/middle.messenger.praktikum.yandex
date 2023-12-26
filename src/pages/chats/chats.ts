@@ -1,29 +1,30 @@
-import './chats.css';
-import Block from '../../core/Block.ts';
-import tmpl from './chats.tmpl.ts';
-import { Link } from '../../components/Link/link.ts';
-import { Input } from '../../components/Input/input.ts';
-import { Field } from '../../components/Field/field.ts';
-import { ChatItem } from '../../components/ChatItem/chatItem.ts';
-import { ValidationRules } from '../../utils/validationrules.ts';
-import { Button } from '../../components/Button/button.ts';
-import { Chat } from '../../components/Chat/chat.ts';
-import { Popup } from '../../components/Popup/popup.ts';
-import ChatController from '../../controllers/ChatController.ts';
-import MessageController from '../../controllers/MessageController.ts';
-import { IChatData, State } from '../../api/interfaces.ts';
-import { withStore } from '../../core/Store.ts';
-import Router, { Routes } from '../../core/Router.ts';
+import "./chats.css";
+import Block from "../../core/Block.ts";
+import tmpl from "./chats.tmpl.ts";
+import { Link } from "../../components/Link/link.ts";
+import { Input } from "../../components/Input/input.ts";
+import { Field } from "../../components/Field/field.ts";
+import { ChatItem } from "../../components/ChatItem/chatItem.ts";
+import { ValidationRules } from "../../utils/validationrules.ts";
+import { Button } from "../../components/Button/button.ts";
+import { Chat } from "../../components/Chat/chat.ts";
+import { Popup } from "../../components/Popup/popup.ts";
+import ChatController from "../../controllers/ChatController.ts";
+import MessageController from "../../controllers/MessageController.ts";
+import { IChatData, State } from "../../api/interfaces.ts";
+import { withStore } from "../../core/Store.ts";
+import Router, { Routes } from "../../core/Router.ts";
 
 export class BaseChats extends Block {
   constructor() {
-    super('div.chat-window-wrapper', {});
+    super("div.chat-window-wrapper", {});
   }
 
   init() {
     this.children.profileLink = new Link({
-      class: 'goto-profile',
-      text: 'Profile',
+      class: "goto-profile",
+      text: "Profile",
+      icon: true,
       events: {
         click: () => {
           Router.go(Routes.Settings);
@@ -32,26 +33,30 @@ export class BaseChats extends Block {
     });
 
     this.children.search = new Input({
-      name: 'search',
-      type: 'search',
-      value: 'Search',
+      name: "search",
+      type: "search",
+      value: "Search",
       pattern: ValidationRules.message,
       events: {
-        focus: () => {},
+        focus: () => {
+          (this.children.search as Input)?.setValue("");
+        },
+        blur: () => {
+          (this.children.search as Input)?.setValue("Search");
+        },
       },
     });
 
     this.children.messageInput = new Input({
-      name: 'message',
-      type: 'text',
+      name: "message",
+      type: "text",
+      value: "Message",
       pattern: ValidationRules.message,
       events: {
-        blur: () => {
-          console.log(
-            'message is valid?',
-            (this.children.messageInput as Input).isValid,
-          );
+        focus: () => {
+          (this.children.messageInput as Input)?.setValue("");
         },
+        blur: () => {},
       },
     });
 
@@ -60,17 +65,20 @@ export class BaseChats extends Block {
     tooltip?.setProps({
       events: {
         click: (e: Event) => {
-          tooltip.hide();
-          switch ((e.target as HTMLElement).className) {
-            case 'add-user':
-              console.log('Add user');
+          tooltip.toggle();
+          const elem =
+            (e.target as HTMLElement).className === "icon"
+              ? (e.target as HTMLElement).parentElement
+              : (e.target as HTMLElement);
+
+          switch (elem?.className) {
+            case "add-user":
               (this.children.popupUser as Block).show();
               break;
-            case 'delete-user':
-              console.log('Delete user');
+            case "delete-user":
               (this.children.popupDeleteUser as Block).show();
               break;
-            case 'add-avatar':
+            case "add-avatar":
               (this.children.popupSetChatAvatar as Block).show();
               break;
           }
@@ -78,8 +86,19 @@ export class BaseChats extends Block {
       },
     });
 
+    this.props.events = {
+      click: (e: Event) => {
+        const elem =
+          (e.target as HTMLElement).className === "icon"
+            ? (e.target as HTMLElement).parentElement
+            : (e.target as HTMLElement);
+        if (elem?.className !== "chat-menu" && tooltip.isVisible)
+          tooltip.hide();
+      },
+    };
+
     this.children.createChat = new Button({
-      label: 'Create new chat',
+      label: "Create new chat",
       events: {
         click: () => {
           const popup = this.children.popupChat as Block;
@@ -89,23 +108,23 @@ export class BaseChats extends Block {
     });
 
     this.children.popupChat = new Popup({
-      label: 'Create new chat',
+      label: "Create new chat",
 
       field: {
         label: {
-          text: 'Name',
+          text: "Name",
         },
         input: {
-          type: 'text',
-          id: 'chatname',
-          placeholder: 'Enter chat name',
+          type: "text",
+          id: "chatname",
+          placeholder: "Enter chat name",
           pattern: ValidationRules.login,
           required: true,
         },
       },
 
       button: {
-        label: 'Save',
+        label: "Save",
         events: {
           click: () => {
             const popup = this.children.popupChat as Block;
@@ -119,29 +138,28 @@ export class BaseChats extends Block {
     });
 
     this.children.popupUser = new Popup({
-      label: 'Add new user',
+      label: "Add new user",
 
       field: {
         label: {
-          text: 'Login',
+          text: "Login",
         },
         input: {
-          type: 'text',
-          id: 'username',
-          placeholder: 'Enter user login',
+          type: "text",
+          id: "username",
+          placeholder: "Enter user login",
           pattern: ValidationRules.login,
           required: true,
         },
       },
 
       button: {
-        label: 'Add',
+        label: "Add",
         events: {
           click: async () => {
             const popup = this.children.popupUser as Block;
             popup.hide();
             const chatId = ChatController.currentChat?.id as number;
-            console.log(chatId);
             await ChatController.addUser(
               chatId,
               (popup.children.field as Field).input.getValue(),
@@ -152,29 +170,28 @@ export class BaseChats extends Block {
     });
 
     this.children.popupDeleteUser = new Popup({
-      label: 'Delete user',
+      label: "Delete user",
 
       field: {
         label: {
-          text: 'Login',
+          text: "Login",
         },
         input: {
-          type: 'text',
-          id: 'username-delete',
-          placeholder: 'Enter user login',
+          type: "text",
+          id: "username-delete",
+          placeholder: "Enter user login",
           pattern: ValidationRules.login,
           required: true,
         },
       },
 
       button: {
-        label: 'Delete',
+        label: "Delete",
         events: {
           click: async () => {
             const popup = this.children.popupDeleteUser as Block;
             popup.hide();
             const chatId = ChatController.currentChat?.id as number;
-            console.log(chatId);
             await ChatController.deleteUser(
               chatId,
               (popup.children.field as Field).input.getValue(),
@@ -185,16 +202,16 @@ export class BaseChats extends Block {
     });
 
     this.children.popupSetChatAvatar = new Popup({
-      label: 'Upload an image',
+      label: "Upload an image",
       field: {
         label: {
-          text: 'Choose an image',
-          for: 'upload-chat-avatar',
-          name: 'chat-avatar',
+          text: "Choose an image",
+          for: "upload-chat-avatar",
+          name: "chat-avatar",
         },
         input: {
-          type: 'file',
-          id: 'upload-chat-avatar',
+          type: "file",
+          id: "upload-chat-avatar",
           events: {
             change: () => {
               const popup = this.children.popupSetChatAvatar as Block;
@@ -213,7 +230,7 @@ export class BaseChats extends Block {
       },
 
       button: {
-        label: 'Upload',
+        label: "Upload",
         events: {
           click: async () => {
             const popup = this.children.popupSetChatAvatar as Block;
@@ -221,7 +238,7 @@ export class BaseChats extends Block {
 
             popup.hide();
             (popup.children.field as Block)?.setProps({
-              label: { text: 'Choose an image' },
+              label: { text: "Choose an image" },
             });
 
             const input = (
@@ -230,8 +247,8 @@ export class BaseChats extends Block {
             if (input.files) {
               const avatar = input.files[0] as Blob;
               const formData = new FormData();
-              formData.append('chatId', chatId?.toString() || '');
-              formData.append('avatar', avatar);
+              formData.append("chatId", chatId?.toString() || "");
+              formData.append("avatar", avatar);
 
               const newAvatar = await ChatController.setAvatar(formData);
               (this.children.chat as Block)?.setProps({
@@ -252,7 +269,7 @@ export class BaseChats extends Block {
     });
 
     this.children.sendButton = new Button({
-      class: 'message-send-button',
+      class: "message-send-button",
       events: {
         click: () => {
           const input = this.children.messageInput as Input;
@@ -261,7 +278,7 @@ export class BaseChats extends Block {
               ChatController.currentChat?.id as number,
               input.getValue(),
             );
-            input.setValue('');
+            input.setValue("Message");
           }
         },
       },
@@ -285,7 +302,6 @@ export class BaseChats extends Block {
       return new ChatItem(props);
     });
 
-    console.log('chats update');
     return true;
   }
 
@@ -295,7 +311,6 @@ export class BaseChats extends Block {
 }
 
 function mapStateToProps(state: State) {
-  // console.log(state)
   return {
     user: state.user,
     chats: state.chats,

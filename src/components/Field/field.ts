@@ -6,7 +6,7 @@ import tmpl from "./field.tmpl.ts";
 export interface FieldProps {
   label?: {
     name?: string;
-    text: string;
+    text?: string;
     for?: string;
   };
   input?: InputProps;

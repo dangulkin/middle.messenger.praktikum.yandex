@@ -1,37 +1,49 @@
-.tooltip{
-	position: absolute;
-	background-color: var(--background-color);
-	width: max-content;
-	height: max-content;
-	padding:4px;
-	display: flex;
-	flex-direction: column;
-	border-radius: 12px;
-	box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
-	top: 70px;
-	right: 0;
+.tooltip {
+  position: absolute;
+  background-color: var(--background-color);
+  width: max-content;
+  height: max-content;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  box-shadow: 0 0 6px 0 rgb(0 0 0 / 14%);
+  top: 70px;
+  right: 0;
 }
 
-.tooltip button{
-	color: var(--primary-text-color);
-	background: none;
-	padding: 10px;
-	width: 100%;
+.tooltip button {
+  color: var(--primary-text-color);
+  background: none;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  display: inline-flex;
+  gap: 15px;
+  align-items: center;
 }
 
-.tooltip button:hover{
-	background: var(--light-blue);
+.tooltip button:hover {
+  background: var(--even-lighter-grey);
 }
 
-.tooltip .icon{
-	width: 22px;
-	height: 22px;
+.tooltip .icon {
+  width: 22px;
+  height: 22px;
 }
 
-.tooltip .add-user .icon{
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22' fill='none'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M11 20.5C16.2467 20.5 20.5 16.2467 20.5 11C20.5 5.75329 16.2467 1.5 11 1.5C5.75329 1.5 1.5 5.75329 1.5 11C1.5 16.2467 5.75329 20.5 11 20.5ZM11 22C17.0751 22 22 17.0751 22 11C22 4.92487 17.0751 0 11 0C4.92487 0 0 4.92487 0 11C0 17.0751 4.92487 22 11 22ZM10.2499 5.5H11.7499V10.25H16.4999V11.75H11.7499V16.5H10.2499V11.75H5.49988V10.25H10.2499V5.5Z' fill='%233369F3'/%3e%3c/svg%3e");
+.tooltip .add-user .icon {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22' fill='none'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M11 20.5C16.2467 20.5 20.5 16.2467 20.5 11C20.5 5.75329 16.2467 1.5 11 1.5C5.75329 1.5 1.5 5.75329 1.5 11C1.5 16.2467 5.75329 20.5 11 20.5ZM11 22C17.0751 22 22 17.0751 22 11C22 4.92487 17.0751 0 11 0C4.92487 0 0 4.92487 0 11C0 17.0751 4.92487 22 11 22ZM10.2499 5.5H11.7499V10.25H16.4999V11.75H11.7499V16.5H10.2499V11.75H5.49988V10.25H10.2499V5.5Z' fill='%233369F3'/%3e%3c/svg%3e");
 }
 
-.tooltip .delete-user .icon{
-	background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22' fill='none'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M11 20.5C16.2467 20.5 20.5 16.2467 20.5 11C20.5 5.75329 16.2467 1.5 11 1.5C5.75329 1.5 1.5 5.75329 1.5 11C1.5 16.2467 5.75329 20.5 11 20.5ZM11 22C17.0751 22 22 17.0751 22 11C22 4.92487 17.0751 0 11 0C4.92487 0 0 4.92487 0 11C0 17.0751 4.92487 22 11 22ZM9.93919 11L6.58044 7.64124L7.6411 6.58058L10.9999 9.93934L14.3586 6.58058L15.4193 7.64124L12.0605 11L15.4193 14.3588L14.3586 15.4194L10.9999 12.0607L7.6411 15.4194L6.58044 14.3588L9.93919 11Z' fill='%233369F3'/%3e%3c/svg%3e");
+.tooltip .delete-user .icon {
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewBox='0 0 22 22' fill='none'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M11 20.5C16.2467 20.5 20.5 16.2467 20.5 11C20.5 5.75329 16.2467 1.5 11 1.5C5.75329 1.5 1.5 5.75329 1.5 11C1.5 16.2467 5.75329 20.5 11 20.5ZM11 22C17.0751 22 22 17.0751 22 11C22 4.92487 17.0751 0 11 0C4.92487 0 0 4.92487 0 11C0 17.0751 4.92487 22 11 22ZM9.93919 11L6.58044 7.64124L7.6411 6.58058L10.9999 9.93934L14.3586 6.58058L15.4193 7.64124L12.0605 11L15.4193 14.3588L14.3586 15.4194L10.9999 12.0607L7.6411 15.4194L6.58044 14.3588L9.93919 11Z' fill='%233369F3'/%3e%3c/svg%3e");
+}
+
+.tooltip .add-avatar .icon {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none"><mask id="mask0_43025_39" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="22" height="22"><circle cx="11" cy="11" r="11" fill="%23D9D9D9"/></mask><g mask="url(%23mask0_43025_39)"><circle cx="11" cy="11" r="10.25" stroke="%233369F3" stroke-width="1.5"/><path d="M21.25 22C21.25 27.6609 16.6609 32.25 11 32.25C5.33908 32.25 0.75 27.6609 0.75 22C0.75 19.2721 2.44509 16.7113 4.67679 14.7902C5.78204 13.8388 6.98977 13.0713 8.1213 12.5443C9.26575 12.0114 10.2774 11.75 11 11.75C11.7226 11.75 12.7342 12.0114 13.8787 12.5443C15.0102 13.0713 16.218 13.8388 17.3232 14.7902C19.5549 16.7113 21.25 19.2721 21.25 22Z" stroke="%233369F3" stroke-width="1.5"/><circle cx="11" cy="6" r="2" fill="%233369F3"/></g></svg>');
+}
+
+.tooltip .delete-chat .icon {
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.5 11C20.5 16.2467 16.2467 20.5 11 20.5C5.75329 20.5 1.5 16.2467 1.5 11C1.5 5.75329 5.75329 1.5 11 1.5C16.2467 1.5 20.5 5.75329 20.5 11ZM22 11C22 17.0751 17.0751 22 11 22C4.92487 22 0 17.0751 0 11C0 4.92487 4.92487 0 11 0C17.0751 0 22 4.92487 22 11ZM10.0002 5H12.0002C12.2763 5 12.5002 5.22386 12.5002 5.5V6H9.5002V5.5C9.5002 5.22386 9.72406 5 10.0002 5ZM14.0002 5.5V6H14.9988H16.5001H16.7502C17.1644 6 17.5002 6.33579 17.5002 6.75C17.5002 7.16421 17.1644 7.5 16.7502 7.5H16.4376L16.1199 15.1249C16.053 16.7318 14.7308 18 13.1225 18H8.87772C7.26944 18 5.94727 16.7318 5.88032 15.1249L5.56261 7.5H5.25024C4.83603 7.5 4.50024 7.16421 4.50024 6.75C4.50024 6.33579 4.83603 6 5.25024 6H5.50011H7.00141H8.0002V5.5C8.0002 4.39543 8.89563 3.5 10.0002 3.5H12.0002C13.1048 3.5 14.0002 4.39543 14.0002 5.5ZM14.0002 7.5H14.9363L14.6212 15.0624C14.5877 15.8659 13.9266 16.5 13.1225 16.5H8.87772C8.07358 16.5 7.41249 15.8659 7.37902 15.0624L7.06391 7.5H8.0002H9.5002H12.5002H14.0002ZM8.75 14.5V9.5C8.75 9.08579 9.08579 8.75 9.5 8.75C9.91421 8.75 10.25 9.08579 10.25 9.5V14.5C10.25 14.9142 9.91421 15.25 9.5 15.25C9.08579 15.25 8.75 14.9142 8.75 14.5ZM13.25 9.5C13.25 9.08579 12.9142 8.75 12.5 8.75C12.0858 8.75 11.75 9.08579 11.75 9.5V14.5C11.75 14.9142 12.0858 15.25 12.5 15.25C12.9142 15.25 13.25 14.9142 13.25 14.5V9.5Z" fill="%233369F3"/></svg>');
 }

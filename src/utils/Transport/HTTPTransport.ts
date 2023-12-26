@@ -76,7 +76,6 @@ export class HTTPTransport {
       if (method === METHODS.GET || !data) {
         xhr.send();
       } else if (data instanceof FormData) {
-        console.log("data is FormData");
         xhr.send(data);
       } else {
         xhr.setRequestHeader("Content-Type", "application/json");

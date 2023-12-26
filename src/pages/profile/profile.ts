@@ -50,6 +50,7 @@ class BaseProfile extends Block {
               const avatar = input.files[0] as Blob;
               const formData = new FormData();
               formData.append("avatar", avatar);
+              console.log(avatar);
 
               AvatarController.setAvatar(formData);
             }

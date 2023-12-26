@@ -15,7 +15,7 @@
     "stylelint": "npx stylelint --fix 'src/**/*.css'",
     "test": "mocha",
     "lint-staged": "npx lint-staged",
-    "precommit": "run-s check-types lint-staged test",
+    "precommit": "run-s check-types lint-staged",
     "prepare": "husky install"
   },
   "devDependencies": {

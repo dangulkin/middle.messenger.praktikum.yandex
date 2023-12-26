@@ -23,18 +23,22 @@ export class Chat extends Block {
         {
           label: "Add chat avatar",
           class: "add-avatar",
+          icon: true,
         },
         {
           label: "Add user",
           class: "add-user",
+          icon: true,
         },
         {
           label: "Delete user",
           class: "delete-user",
+          icon: true,
         },
         {
           label: "Delete chat",
           class: "delete-chat",
+          icon: true,
           events: {
             click: () => {
               if (ChatController.chats?.list.length) {
@@ -51,10 +55,11 @@ export class Chat extends Block {
 
     this.children.menu = new Button({
       class: "chat-menu",
+      icon: true,
       events: {
         click: () => {
           const tooltip = this.children.tooltip as Tooltip;
-          tooltip.isVisible ? tooltip.hide() : tooltip.show();
+          tooltip.toggle();
         },
       },
     });
